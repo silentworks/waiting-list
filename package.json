@@ -1,0 +1,38 @@
+{
+  "name": "waiting-list",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "preview": "svelte-kit preview",
+    "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+    "format": "prettier --write --plugin-search-dir=. .",
+    "m:new": "ley new",
+    "m:up": "ley up",
+    "m:down": "ley down"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^1.28.1",
+    "@sveltejs/adapter-node": "^1.0.0-next.55",
+    "@sveltejs/kit": "next",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-svelte3": "^3.2.1",
+    "ley": "^0.7.1",
+    "pg-connection-string": "^2.5.0",
+    "postgres": "^1.0.2",
+    "prettier": "~2.3.2",
+    "prettier-plugin-svelte": "^2.4.0",
+    "svelte": "^3.44.2"
+  },
+  "type": "module",
+  "dependencies": {
+    "cookie": "^0.4.1",
+    "heroicons-svelte": "^0.0.1",
+    "pragmatic-email-regex": "^1.0.4",
+    "svelte-forms-lib": "^2.0.0",
+    "validator": "^13.7.0",
+    "vest": "^3.2.8"
+  }
+}
