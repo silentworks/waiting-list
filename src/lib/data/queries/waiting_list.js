@@ -1,5 +1,6 @@
 import supabase from '$lib/db'
-import { successMapper } from '$lib/data/mappers/internal'
+import { errorMapper, successMapper } from '$lib/data/mappers/internal'
+import { waitingListsMapper } from '../mappers/waiting_list'
 
 export const addToWaitingList = async ({ email, fullName }) => {
 	const { error } = await supabase
@@ -14,5 +15,41 @@ export const addToWaitingList = async ({ email, fullName }) => {
 
 	return successMapper({
 		message: `You've been successfully added to the waiting list.`
+	})
+}
+
+export const getWaitingList = async () => {
+	const { data, error } = await supabase.from('waiting_list').select('*')
+
+	if (!error) {
+		return successMapper({
+			data: waitingListsMapper(data),
+			message: 'Waiting list retrieved successfully.'
+		})
+	}
+
+	return errorMapper({
+		message: error.message,
+		statusCode: 400
+	})
+}
+
+export const inviteFromWaitingList = async (user) => {
+	const res = await fetch('/api/invite.json', {
+		method: 'POST',
+		headers: new Headers({ 'Content-Type': 'application/json' }),
+		credentials: 'same-origin',
+		body: JSON.stringify({ user })
+	})
+
+	if (res.ok) {
+		return successMapper({
+			data: await res.json()
+		})
+	}
+
+	return errorMapper({
+		message: 'Something went wrong!!!',
+		statusCode: 400
 	})
 }

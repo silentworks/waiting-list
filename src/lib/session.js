@@ -34,12 +34,5 @@ export const checkIfLoggedIn = ({ session }, data = {}) => {
 		}
 	}
 
-	// if (session?.user?.is_admin) {
-	// 	return {
-	// 		status: 307,
-	// 		redirect: `/manage`
-	// 	}
-	// }
-
 	return { ...data }
 }

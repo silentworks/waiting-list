@@ -1,19 +1,42 @@
 <script>
+	import { inviteFromWaitingList } from '$lib/data/queries/waiting_list'
+
+	export let user = {}
 	export let position = 0
-	export let name = ''
-	export let email = ''
-	export let isInvited = false
+
+	let isLoading = false
+	const invite = async () => {
+		isLoading = true
+		const res = await inviteFromWaitingList(user)
+
+		if (res.statusCode === 200) {
+			user = res.data
+			isLoading = false
+		}
+
+		if (res.statusCode !== 200) {
+			isLoading = false
+		}
+	}
+	const del = async () => {}
 </script>
 
 <tr>
 	<th>{position}</th>
-	<td>{name} </td>
-	<td><a href="mailto:{email}">{email}</a></td>
-	<td>{isInvited ? 'Yes' : 'No'}</td>
+	<td>{user.fullName} </td>
+	<td><a href="mailto:{user.email}">{user.email}</a></td>
+	<td>{user.isInvited ? 'Yes' : 'No'}</td>
 	<td>
 		<div class="buttons">
-			<button class="button is-success is-small" disabled={isInvited}>Invite</button>
-			<button class="button is-danger is-small" disabled={isInvited}>Delete</button>
+			<button
+				class="button is-success is-small"
+				class:is-loading={isLoading}
+				disabled={user.isInvited || isLoading}
+				on:click={invite}>Invite</button
+			>
+			<button class="button is-danger is-small" disabled={user.isInvited} on:click={del}
+				>Delete</button
+			>
 		</div>
 	</td>
 </tr>

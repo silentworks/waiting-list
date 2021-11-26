@@ -5,7 +5,7 @@
 
 	onMount(async () => {
 		await new Promise((r) => setTimeout(r, 2000))
-		goto('/manage')
+		goto('/account')
 	})
 </script>
 

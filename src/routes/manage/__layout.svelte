@@ -4,40 +4,52 @@
 </script>
 
 <script>
-	import { session } from '$app/stores'
+	import { page } from '$app/stores'
+	import { goto } from '$app/navigation'
+	import { signOut } from '$lib/data/queries/users/auth'
+
+	async function handleSignOut() {
+		await signOut()
+		goto('/auth/signin')
+	}
 </script>
 
 <svelte:head>
 	<title>Waiting List App</title>
 </svelte:head>
 
-<div class="column is-2">
-  <div class="columns is-flex-direction-column is-fullheight is-gapless has-background-light">
-    <div class="column">
-      <div class="menu-label px-4 py-4 has-background-dark has-text-white is-size-6">
-        Waiting List App
-      </div>
-      <aside class="menu p-4">
-        <p class="menu-label">Welcome back {$session?.user?.fullName}</p>
-        <ul class="menu-list">
-          <li><a href="/manage" class="is-active">Dashboard</a></li>
-          <li><a href="/manage/users">Users</a></li>
-        </ul>
-      </aside>
-    </div>
-    <div class="menu-footer p-4">
-      <p>Hello</p>
-    </div>
-  </div>
+<div class="column has-background-white-ter">
+	<div class="columns is-flex-direction-column is-fullheight is-gapless has-background-white">
+		<div class="column">
+			<div class="menu-label px-4 py-4 has-background-black-ter has-text-white is-size-6 mb-0">
+				Waiting List App
+			</div>
+			<aside class="menu">
+				<ul class="menu-list">
+					<li>
+						<a href="/manage" class="p-4" class:has-background-white-ter={$page.path == '/manage'}
+							>Dashboard</a
+						>
+					</li>
+					<li>
+						<a
+							href="/manage/users"
+							class="p-4"
+							class:has-background-white-ter={$page.path == '/manage/users'}>Users</a
+						>
+					</li>
+				</ul>
+			</aside>
+		</div>
+		<div class="menu-footer p-4">
+			<a
+				href="/manage/logout"
+				class="button is-black is-fullwidth"
+				on:click|preventDefault={handleSignOut}>Log Out</a
+			>
+		</div>
+	</div>
 </div>
-<div class="column is-10">
-  <div class="p-6">
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-      <ul>
-        <li><a href="/">Waiting List App</a></li>
-        <li class="is-active"><a href="/manage" aria-current="page">Dashboard</a></li>
-      </ul>
-    </nav>
-    <slot />
-  </div>
+<div class="column is-9 is-10-desktop has-background-white-ter">
+	<slot />
 </div>
