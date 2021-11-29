@@ -13,7 +13,11 @@ export const getProfileById = async (userId) => {
 }
 
 export const getProfiles = async () => {
-	const { error, data } = await supabase.from('profiles').select('*').not('is_admin', 'eq', true)
+	const { error, data } = await supabase
+		.from('profiles')
+		.select('*')
+		.not('is_admin', 'eq', true)
+		.order('created_at', { ascending: false })
 
 	if (!error) {
 		return successMapper({

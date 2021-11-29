@@ -19,7 +19,10 @@ export const addToWaitingList = async ({ email, fullName }) => {
 }
 
 export const getWaitingList = async () => {
-	const { data, error } = await supabase.from('waiting_list').select('*')
+	const { data, error } = await supabase
+		.from('waiting_list')
+		.select('*')
+		.order('created_at', { ascending: false })
 
 	if (!error) {
 		return successMapper({
