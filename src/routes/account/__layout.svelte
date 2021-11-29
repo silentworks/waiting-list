@@ -17,7 +17,13 @@
 	import Header from '$lib/common/Header.svelte'
 </script>
 
-<section class="columns mt-6 pt-6">
-	<Header />
+<Header />
+<main class="container is-max-desktop">
 	<slot />
-</section>
+</main>
+
+<style>
+	.container {
+		padding-top: 120px;
+	}
+</style>

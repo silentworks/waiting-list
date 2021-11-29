@@ -37,12 +37,12 @@ export const getWaitingList = async () => {
 	})
 }
 
-export const inviteFromWaitingList = async (user) => {
+export const inviteFromWaitingList = async (user, redirectTo) => {
 	const res = await fetch('/api/invite.json', {
 		method: 'POST',
 		headers: new Headers({ 'Content-Type': 'application/json' }),
 		credentials: 'same-origin',
-		body: JSON.stringify({ user })
+		body: JSON.stringify({ user, redirectTo })
 	})
 
 	if (res.ok) {

@@ -1,12 +1,13 @@
 <script>
-	import { inviteFromWaitingList } from '$lib/data/queries/waiting_list'
-
 	export let user = {}
+	export let inviteUser = async () => {
+		await new Promise()
+	}
 
 	let isLoading = false
 	const invite = async () => {
 		isLoading = true
-		const res = await inviteFromWaitingList(user)
+		const res = await inviteUser(user)
 
 		if (res.statusCode === 200) {
 			user = res.data

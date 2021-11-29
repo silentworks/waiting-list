@@ -8,7 +8,7 @@
 	let message = null
 	let messageType = 'error'
 
-	const { form, errors, handleChange, handleSubmit, isValid, isSubmitting } = createForm({
+	const { form, errors, handleSubmit, isSubmitting } = createForm({
 		initialValues: {
 			email: '',
 			password: ''

@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-	<title>Reset your password - Supagram</title>
+	<title>Reset your password - Waiting List App</title>
 </svelte:head>
 
 <section class="columns mt-2">

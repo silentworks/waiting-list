@@ -20,6 +20,7 @@
 			const response = await updatePassword({ password })
 			message = response.message
 			if (response.statusCode === 200) {
+				messageType = 'success'
 				dispatch('formSuccess', { response })
 			}
 		}

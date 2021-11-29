@@ -21,10 +21,15 @@
 </script>
 
 <script>
+	import { VITE_APP_URL } from '$lib/env'
 	import Layout from './_layout.svelte'
 	import WaitingListTableRow from '$lib/table/WaitingListTableRow.svelte'
 
 	export let users
+
+	const redirectTo = `${VITE_APP_URL}logging-in?redirect=account/password-update`
+
+	const inviteUser = async (user) => await inviteFromWaitingList(user, redirectTo)
 </script>
 
 <Layout>
@@ -48,7 +53,7 @@
 			</tfoot>
 			<tbody>
 				{#each users as user}
-					<WaitingListTableRow {user} />
+					<WaitingListTableRow {user} {inviteUser} />
 				{/each}
 			</tbody>
 		</table>
