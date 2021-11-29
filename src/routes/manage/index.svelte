@@ -27,7 +27,7 @@
 
 	export let users
 
-	const redirectTo = `${VITE_APP_URL}logging-in?redirect=account/password-update`
+	const redirectTo = `${VITE_APP_URL}logging-in?redirect=/account/password-update`
 
 	const inviteUser = async (user) => await inviteFromWaitingList(user, redirectTo)
 </script>
