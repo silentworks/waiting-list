@@ -1,5 +1,5 @@
 <script context="module">
-	import { getWaitingList } from '$lib/data/queries/waiting_list'
+	import { inviteFromWaitingList, getWaitingList } from '$lib/data/queries/waiting_list'
 
 	export const load = async ({ session }) => {
 		const users = await getWaitingList()
