@@ -9,7 +9,8 @@
     "format": "prettier --write --plugin-search-dir=. .",
     "m:new": "ley new",
     "m:up": "ley up",
-    "m:down": "ley down"
+    "m:down": "ley down",
+    "m:status": "ley status"
   },
   "devDependencies": {
     "@supabase/supabase-js": "^1.28.1",

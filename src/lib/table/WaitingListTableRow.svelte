@@ -2,7 +2,6 @@
 	import { inviteFromWaitingList } from '$lib/data/queries/waiting_list'
 
 	export let user = {}
-	export let position = 0
 
 	let isLoading = false
 	const invite = async () => {
@@ -22,7 +21,6 @@
 </script>
 
 <tr>
-	<th>{position}</th>
 	<td>{user.fullName} </td>
 	<td><a href="mailto:{user.email}">{user.email}</a></td>
 	<td>{user.isInvited ? 'Yes' : 'No'}</td>

@@ -32,7 +32,6 @@
 		<table class="table is-fullwidth is-hoverable is-striped">
 			<thead>
 				<tr>
-					<th><abbr title="Position">Pos</abbr></th>
 					<th>Name</th>
 					<th>Email</th>
 					<th>Invited</th>
@@ -41,7 +40,6 @@
 			</thead>
 			<tfoot>
 				<tr>
-					<th><abbr title="Position">Pos</abbr></th>
 					<th>Name</th>
 					<th>Email</th>
 					<th>Invited</th>
@@ -49,8 +47,8 @@
 				</tr>
 			</tfoot>
 			<tbody>
-				{#each users as user, index}
-					<WaitingListTableRow {user} position={index + 1} />
+				{#each users as user}
+					<WaitingListTableRow {user} />
 				{/each}
 			</tbody>
 		</table>

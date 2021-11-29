@@ -33,20 +33,17 @@
 		<table class="table is-fullwidth is-hoverable is-striped">
 			<thead>
 				<tr>
-					<th><abbr title="Position">Pos</abbr></th>
 					<th>Name</th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
-					<th><abbr title="Position">Pos</abbr></th>
 					<th>Name</th>
 				</tr>
 			</tfoot>
 			<tbody>
 				{#each users as user, index}
 					<tr>
-						<th>{index + 1}</th>
 						<td>{user.fullName} </td>
 					</tr>
 				{:else}
