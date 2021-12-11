@@ -2,11 +2,9 @@
 	import { page, session } from '$app/stores'
 	import supabase from '$lib/db'
 	import { setAuthCookie, unsetAuthCookie } from '$lib/session'
-	import { getProfile } from '$lib/data/queries/users/getProfile'
+	import { getProfileById } from '$lib/data/queries/users/getProfile'
 	import { combinedUserMapper } from '$lib/data/mappers/users'
-	// import { onMount } from 'svelte'
 
-	// onMount(() => {
 	const { data: authListener } = supabase.auth.onAuthStateChange(async (event, _session) => {
 		if (event === 'SIGNED_OUT') {
 			session.set({ user: combinedUserMapper({}) })
@@ -14,15 +12,13 @@
 		}
 
 		if (event === 'SIGNED_IN') {
-			const profile = await getProfile()
-			const user = combinedUserMapper({ ..._session.user, ...profile })
+			const sessionUser = _session.user
+			const profile = await getProfileById(sessionUser?.id)
+			const user = combinedUserMapper({ ...sessionUser, ...profile })
 			session.set({ user })
 			await setAuthCookie(_session)
 		}
 	})
-
-	// 	return () => authListener?.unsubscribe()
-	// })
 </script>
 
 <svelte:head>
