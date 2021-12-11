@@ -1,6 +1,6 @@
 <script>
 	import Notification from '$lib/common/Notification.svelte'
-	import { signUp, checkUsername } from '$lib/data/queries/users/auth'
+	import { signUp } from '$lib/data/queries/users/auth'
 	import { VITE_APP_URL } from '$lib/env'
 
 	import { createForm } from 'svelte-forms-lib'
@@ -19,12 +19,6 @@
 		},
 		validate: (values) => SignUpSchema(values),
 		onSubmit: async ({ fullName, username, email, password }) => {
-			// const { data, message } = await checkUsername(username)
-			// if (data.alreadyInUse) {
-			// 	errors.set({ username: message })
-			// 	return
-			// }
-
 			message = null
 			const response = await signUp({ username, full_name: fullName, email, password, redirectTo })
 			message = response.message

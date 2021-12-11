@@ -32,7 +32,7 @@ dependencies:
 devDependencies:
   '@supabase/supabase-js': 1.28.1
   '@sveltejs/adapter-node': 1.0.0-next.55
-  '@sveltejs/kit': 1.0.0-next.199_svelte@3.44.2
+  '@sveltejs/kit': 1.0.0-next.201_svelte@3.44.2
   dotenv: 10.0.0
   eslint: 7.32.0
   eslint-config-prettier: 8.3.0_eslint@7.32.0
@@ -147,8 +147,8 @@ packages:
       tiny-glob: 0.2.9
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.199_svelte@3.44.2:
-    resolution: {integrity: sha512-dJGmXUf5zchMvwrCfQfHOwxXOruMQHlL4DhXU5ZtB5ccZtU9OlQBcJU0xoa/mDrF5zndPRJUuVjz2ivdD+1cPw==}
+  /@sveltejs/kit/1.0.0-next.201_svelte@3.44.2:
+    resolution: {integrity: sha512-WcYexOEPWgDWOk0oOteTU5QwWykdIcOFJig+akeHqwE/jVtPURLZFtTNx0ymUWXN4S+dUXf60KF6HEMv74FHpA==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
