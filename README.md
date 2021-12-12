@@ -1,30 +1,57 @@
-# create-svelte
+# Waiting List App
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+Example Supabase application showing how to use the `inviteUserByEmail` api to invite users to your application.
 
-## Creating a project
+This project is built with:
 
-If you're seeing this, you've probably already done this step. Congrats!
+- [SvelteKit](https://kit.svelte.dev/)
+- [Svelte Form Library](https://github.com/tjinauyeung/svelte-forms-lib)
+- [Bulma](https://bulma.io/)
+- [Vest](https://vestjs.dev/)
+- [Supabase](https://supabase.com/)
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+## Getting started
 
-# create a new project in my-app
-npm init svelte@next my-app
+Clone the project from GitHub
+
+```sh
+git clone https://github.com/silentworks/waiting-list
+cd waiting-list
 ```
 
 > Note: the `@next` is temporary
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Copy the `env.example` and name it `.env`
+
+Edit the file and enter all the required variable values
+
+```
+VITE_APP_URL=http://localhost:3000/
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+CONNECTION_STRING=
+```
+
+The "CONNECTION_STRING" can be found under **Settings/Database** inside the Supabase Dashboard
+
+### Run database migrations
+
+```sh
+pnpm m:up
+```
+
+### Start development server
+
+Once you've created a project and installed dependencies with `pnpm install`, start a development server:
 
 ```bash
-npm run dev
+pnpm dev
 
 # or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm dev -- --open
 ```
 
 ## Building
@@ -32,7 +59,7 @@ npm run dev -- --open
 Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
 
 ```bash
-npm run build
+pnpm build
 ```
 
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+> You can preview the built app with `pnpm preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
