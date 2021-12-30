@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_SUPABASE_URL:
+        VITE_SUPABASE_ANON_KEY:
+        VITE_APP_URL: http://localhost:3000/
+    ports:
+      - 80:3000
+    volumes:
+      - ./build:/app/build/
