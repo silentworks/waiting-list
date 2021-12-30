@@ -9,6 +9,7 @@ This project is built with:
 - [Bulma](https://bulma.io/)
 - [Vest](https://vestjs.dev/)
 - [Supabase](https://supabase.com/)
+- [ley](https://github.com/lukeed/ley)
 
 ## Getting started
 
