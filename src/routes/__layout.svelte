@@ -5,7 +5,7 @@
 	import { getProfileById } from '$lib/data/queries/users/getProfile'
 	import { combinedUserMapper } from '$lib/data/mappers/users'
 
-	const { data: authListener } = supabase.auth.onAuthStateChange(async (event, _session) => {
+	supabase.auth.onAuthStateChange(async (event, _session) => {
 		if (event === 'SIGNED_OUT') {
 			session.set({ user: combinedUserMapper({}) })
 			await unsetAuthCookie()
