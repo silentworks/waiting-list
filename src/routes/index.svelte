@@ -18,7 +18,7 @@
 		<section class="columns mt-6 pt-6">
 			<div class="column is-half is-hidden-touch">
 				<figure class="image is-5by3">
-					<img src="/img/1280x960.png" alt="Placeholder" />
+					<img src="/img/WaitingList_Placeholder.png" alt="Waiting List App" />
 				</figure>
 			</div>
 			<div class="column is-half-desktop is-half-tablet-only">

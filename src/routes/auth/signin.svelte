@@ -10,8 +10,8 @@
 
 <section class="columns mt-6 pt-6">
 	<div class="column is-half is-hidden-touch">
-		<figure class="image is-5by4">
-			<img src="/img/1280x960.png" alt="Placeholder" />
+		<figure class="image">
+			<img src="/img/WaitingList_Placeholder.png" alt="Placeholder" />
 		</figure>
 	</div>
 	<div class="column is-two-fifths-desktop is-half-tablet-only">

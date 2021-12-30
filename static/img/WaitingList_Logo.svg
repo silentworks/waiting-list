@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 204 204" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-207.714,-141.571)">
+        <g transform="matrix(0.925926,0,0,1.27273,36.963,-38.2468)">
+            <path d="M402.571,158.571C402.571,149.898 392.893,142.857 380.971,142.857L208.171,142.857C196.25,142.857 186.571,149.898 186.571,158.571L186.571,284.286C186.571,292.959 196.25,300 208.171,300L380.971,300C392.893,300 402.571,292.959 402.571,284.286L402.571,158.571Z" style="fill:rgb(34,2,18);stroke:rgb(111,39,0);stroke-width:3.59px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,0.344022,3.56912)">
+            <g transform="matrix(1.05714,0,0,1.28462,-21.8611,-61.666)">
+                <path d="M346.392,198.513L346.392,199.409L323.78,271.151L299.806,271.151L288.909,231.357C287.637,226.947 286.502,221.604 285.503,215.327C284.504,221.604 283.369,226.947 282.098,231.357L271.473,271.151L247.499,271.151L224.751,199.409L224.751,198.513L244.502,198.513L255.808,237.858C256.444,239.951 257.125,242.716 257.851,246.153C258.578,249.591 259.214,252.991 259.758,256.354C261.211,248.657 262.574,242.491 263.845,237.858L275.015,198.513L296.945,198.513L307.843,237.073C309.477,243.127 310.93,249.591 312.202,256.466C312.747,253.327 313.405,250.002 314.177,246.49C314.949,242.977 315.698,239.838 316.424,237.073L326.913,198.513L346.392,198.513Z" style="fill:white;fill-rule:nonzero;stroke:black;stroke-width:0.85px;stroke-linecap:butt;stroke-miterlimit:2;"/>
+            </g>
+            <g transform="matrix(1.05714,0,0,1.28462,94.7103,-61.666)">
+                <path d="M251.041,257.475L291.633,257.475L291.633,271.151L232.243,271.151L232.243,198.513L251.041,198.513L251.041,257.475Z" style="fill:white;fill-rule:nonzero;stroke:black;stroke-width:0.85px;stroke-linecap:butt;stroke-miterlimit:2;"/>
+            </g>
+        </g>
+    </g>
+</svg>
