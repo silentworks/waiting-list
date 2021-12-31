@@ -41,7 +41,7 @@
 						<a
 							href="/account/password-update"
 							class="navbar-item"
-							class:is-active={$page.path == '/password-update'}>Update Password</a
+							class:is-active={$page.url.pathname == '/password-update'}>Update Password</a
 						>
 						<hr class="navbar-divider" />
 						<a href="/logout" class="navbar-item" on:click|preventDefault={handleSignOut}>Log Out</a

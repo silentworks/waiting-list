@@ -5,6 +5,7 @@ import { getProfileById } from '$lib/data/queries/users/getProfile'
 
 export async function handleAuth({ request, resolve }) {
 	// Converts request to have `req.headers.cookie` on `req.cookies, as `getUserByCookie` expects parsed cookies on `req.cookies`
+	const query = request.url.searchParams
 	const expressStyleRequest = toExpressRequest(request)
 	const { user } = await supabase.auth.api.getUserByCookie(expressStyleRequest)
 	const profile = await getProfileById(user?.id)
@@ -17,14 +18,14 @@ export async function handleAuth({ request, resolve }) {
 	}
 
 	// TODO https://github.com/sveltejs/kit/issues/1046
-	if (request.query.has('_method')) {
-		request.method = request.query.get('_method').toUpperCase()
+	if (query.has('_method')) {
+		request.method = query.get('_method').toUpperCase()
 	}
 
 	let response = await resolve(request)
 
 	// if auth request - set cookie in response headers
-	if (request.method == 'POST' && request.path === '/api/auth.json') {
+	if (request.method == 'POST' && request.url.pathname === '/api/auth.json') {
 		supabase.auth.api.setAuthCookie(request, toExpressResponse(response))
 		response = toSvelteKitResponse(response)
 	}

@@ -14,8 +14,8 @@
     "m:status": "ley status"
   },
   "devDependencies": {
-    "@supabase/supabase-js": "^1.28.1",
-    "@sveltejs/adapter-node": "^1.0.0-next.55",
+    "@supabase/supabase-js": "^1.29.1",
+    "@sveltejs/adapter-node": "^1.0.0-next.58",
     "@sveltejs/kit": "next",
     "dotenv": "^10.0.0",
     "eslint": "^7.32.0",
@@ -25,8 +25,8 @@
     "pg-connection-string": "^2.5.0",
     "postgres": "^1.0.2",
     "prettier": "~2.3.2",
-    "prettier-plugin-svelte": "^2.4.0",
-    "svelte": "^3.44.2"
+    "prettier-plugin-svelte": "^2.5.1",
+    "svelte": "^3.44.3"
   },
   "type": "module",
   "dependencies": {

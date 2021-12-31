@@ -1,5 +1,5 @@
 <script>
-	import { page, session } from '$app/stores'
+	import { session } from '$app/stores'
 	import supabase from '$lib/db'
 	import { setAuthCookie, unsetAuthCookie } from '$lib/session'
 	import { getProfileById } from '$lib/data/queries/users/getProfile'

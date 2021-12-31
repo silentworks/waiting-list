@@ -11,8 +11,8 @@
 	})
 
 	$: {
-		if ($page.query.has('redirect')) {
-			redirectPath = $page.query.get('redirect')
+		if ($page.url.searchParams.has('redirect')) {
+			redirectPath = $page.url.searchParams.get('redirect')
 		}
 	}
 </script>

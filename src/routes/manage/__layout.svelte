@@ -27,15 +27,17 @@
 			<aside class="menu">
 				<ul class="menu-list">
 					<li>
-						<a href="/manage" class="p-4" class:has-background-white-ter={$page.path == '/manage'}
-							>Dashboard</a
+						<a
+							href="/manage"
+							class="p-4"
+							class:has-background-white-ter={$page.url.pathname == '/manage'}>Dashboard</a
 						>
 					</li>
 					<li>
 						<a
 							href="/manage/users"
 							class="p-4"
-							class:has-background-white-ter={$page.path == '/manage/users'}>Users</a
+							class:has-background-white-ter={$page.url.pathname == '/manage/users'}>Users</a
 						>
 					</li>
 				</ul>
