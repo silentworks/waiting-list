@@ -37,6 +37,7 @@ jobs:
         uses: superfly/flyctl-actions@1.1
         with:
           args: 'deploy
+            --remote-only
             --build-arg VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}
             --build-arg VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}
             --build-arg VITE_APP_URL=${{ secrets.VITE_APP_URL }}'
