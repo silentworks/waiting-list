@@ -1,6 +1,6 @@
-# fly.toml file generated for waiting-list-app on 2021-12-31T01:07:53Z
+# fly.toml file generated for waiting-list on 2021-12-31T22:53:06Z
 
-app = "waiting-list-app"
+app = "waiting-list"
 
 kill_signal = "SIGINT"
 kill_timeout = 5

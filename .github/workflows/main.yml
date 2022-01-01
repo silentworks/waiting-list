@@ -38,6 +38,8 @@ jobs:
         with:
           args: 'deploy
             --no-cache
+            --local-only
+            --detach
             --build-arg VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}
             --build-arg VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}
             --build-arg VITE_APP_URL=${{ secrets.VITE_APP_URL }}'
