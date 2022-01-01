@@ -17,7 +17,6 @@
     "@supabase/supabase-js": "^1.29.1",
     "@sveltejs/adapter-node": "^1.0.0-next.58",
     "@sveltejs/kit": "next",
-    "dotenv": "^10.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.1",
@@ -31,7 +30,7 @@
   "type": "module",
   "dependencies": {
     "cookie": "^0.4.1",
-    "heroicons-svelte": "^0.0.1",
+    "dotenv": "^10.0.0",
     "pragmatic-email-regex": "^1.0.4",
     "svelte-forms-lib": "^2.0.0",
     "validator": "^13.7.0",
