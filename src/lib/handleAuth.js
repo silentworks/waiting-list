@@ -18,8 +18,9 @@ export async function handleAuth({ request, resolve }) {
 	}
 
 	// TODO https://github.com/sveltejs/kit/issues/1046
-	if (query.has('_method')) {
-		request.method = query.get('_method').toUpperCase()
+	const method = query.get('_method')
+	if (method) {
+		request.method = method.toUpperCase()
 	}
 
 	let response = await resolve(request)
