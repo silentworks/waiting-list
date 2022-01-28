@@ -14,25 +14,25 @@
     "m:status": "ley status"
   },
   "devDependencies": {
-    "@supabase/supabase-js": "^1.29.1",
-    "@sveltejs/adapter-node": "^1.0.0-next.58",
+    "@supabase/supabase-js": "^1.29.4",
+    "@sveltejs/adapter-node": "^1.0.0-next.67",
     "@sveltejs/kit": "next",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-svelte3": "^3.2.1",
+    "eslint-plugin-svelte3": "^3.4.0",
     "ley": "^0.7.1",
     "pg-connection-string": "^2.5.0",
     "postgres": "^1.0.2",
     "prettier": "~2.3.2",
-    "prettier-plugin-svelte": "^2.5.1",
-    "svelte": "^3.44.3"
+    "prettier-plugin-svelte": "^2.6.0",
+    "svelte": "^3.46.2"
   },
   "type": "module",
   "dependencies": {
     "cookie": "^0.4.1",
     "dotenv": "^10.0.0",
     "pragmatic-email-regex": "^1.0.4",
-    "svelte-forms-lib": "^2.0.0",
+    "svelte-forms-lib": "^2.0.1",
     "validator": "^13.7.0",
     "vest": "^3.2.8"
   }
