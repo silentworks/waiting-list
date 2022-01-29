@@ -1,7 +1,14 @@
 import supabase from '$lib/admin'
 
-export async function post(req) {
-	const { user, redirectTo } = req.body
+export async function post({ request, locals }) {
+	if (!locals.user.isAdmin) {
+		return {
+			status: 401,
+			body: 'You are not authorized to make this request'
+		}
+	}
+
+	const { user, redirectTo } = await request.json()
 	const { data, error } = await supabase.auth.api.inviteUserByEmail(user.email, {
 		data: {
 			waiting_list_id: user.id,
