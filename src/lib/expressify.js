@@ -29,13 +29,3 @@ export function toExpressResponse(resp) {
 		status: (_) => ({ json: (_) => {}, end: (_) => {} })
 	}
 }
-
-/**
- * Converts an Express style response to a SvelteKit compatible response
- * @param {Express.Response} resp
- * @returns SvelteKit.Response
- */
-export function toSvelteKitResponse(resp) {
-	const { getHeader, setHeader, ...returnAbleResp } = resp
-	return returnAbleResp
-}
