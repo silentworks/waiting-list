@@ -12,7 +12,7 @@
 	}
 </script>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar" aria-label="main navigation">
 	<div class="container is-max-desktop">
 		<div class="navbar-brand">
 			<a class="navbar-item" href="/account">WLA</a>

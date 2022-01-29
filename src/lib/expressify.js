@@ -1,17 +1,19 @@
 /* eslint-disable no-unused-vars */
-import * as cookie from 'cookie';
+import * as cookie from 'cookie'
 
 /**
  * Converts a SvelteKit request to a Express compatible request.
  * Supabase expects the cookies to be parsed.
- * @param {Express.Request} req
+ * @param {Request} req
+ * @param body
  * @returns Express.Request
  */
-export function toExpressRequest(req) {
+export async function toExpressRequest(req, body = {}) {
 	return {
-		...req,
-		cookies: cookie.parse(req.headers.cookie || '')
-	};
+		body,
+		headers: { host: req.headers.get('host') },
+		cookies: cookie.parse(req.headers.get('cookie') || '')
+	}
 }
 
 /**
@@ -22,10 +24,10 @@ export function toExpressRequest(req) {
 export function toExpressResponse(resp) {
 	return {
 		...resp,
-		getHeader: (header) => resp.headers[header.toLowerCase()],
-		setHeader: (header, value) => (resp.headers[header.toLowerCase()] = value),
-		status: (_) => ({ json: (_) => {} })
-	};
+		getHeader: (header) => resp.headers.get(header.toLowerCase()),
+		setHeader: (header, value) => resp.headers.set(header.toLowerCase(), value),
+		status: (_) => ({ json: (_) => {}, end: (_) => {} })
+	}
 }
 
 /**
@@ -34,6 +36,6 @@ export function toExpressResponse(resp) {
  * @returns SvelteKit.Response
  */
 export function toSvelteKitResponse(resp) {
-	const { getHeader, setHeader, ...returnAbleResp } = resp;
-	return returnAbleResp;
+	const { getHeader, setHeader, ...returnAbleResp } = resp
+	return returnAbleResp
 }
