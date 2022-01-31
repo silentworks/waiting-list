@@ -11,6 +11,13 @@ This project is built with:
 - [Supabase](https://supabase.com/)
 - [ley](https://github.com/lukeed/ley)
 
+## Features
+
+- Invite List
+- Sign Up to Invite
+- Forgot Password
+- Admin Registration [todo]
+
 ## Getting started
 
 Clone the project from GitHub

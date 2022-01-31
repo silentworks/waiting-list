@@ -16,12 +16,12 @@ export const signIn = async ({ email, password }) => {
 	})
 }
 
-export const signUp = async ({ username, full_name, email, password, redirectTo = '' }) => {
+export const signUp = async ({ full_name, email, password, redirectTo = '' }) => {
 	const { error } = await supabase.auth.signUp(
 		{ email, password },
 		{
 			data: {
-				username,
+				is_admin: true,
 				full_name
 			},
 			redirectTo

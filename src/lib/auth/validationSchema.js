@@ -40,10 +40,6 @@ const signUpSuite = vest.create((data) => {
 	test('fullName', 'Full Name is required', () => {
 		enforce(data.fullName).isString().isNotEmpty()
 	})
-
-	test('username', 'Username is required', () => {
-		enforce(data.username).isString().isNotEmpty()
-	})
 })
 
 const waitingListSuite = vest.create((data) => {
