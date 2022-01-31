@@ -30,8 +30,8 @@
 			<button
 				class="button is-success is-small"
 				class:is-loading={isLoading}
-				disabled={user.isInvited || isLoading}
-				on:click={invite}>Invite</button
+				disabled={isLoading}
+				on:click={invite}>{user.isInvited ? 'Invite Again' : 'Invite'}</button
 			>
 			<button class="button is-danger is-small" disabled={user.isInvited} on:click={del}
 				>Delete</button
