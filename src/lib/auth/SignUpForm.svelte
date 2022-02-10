@@ -13,14 +13,13 @@
 	const { form, errors, handleChange, handleSubmit, isValid, isSubmitting } = createForm({
 		initialValues: {
 			fullName: '',
-			username: '',
 			email: '',
 			password: ''
 		},
 		validate: (values) => SignUpSchema(values),
 		onSubmit: async ({ fullName, username, email, password }) => {
 			message = null
-			const response = await signUp({ username, full_name: fullName, email, password, redirectTo })
+			const response = await signUp({ full_name: fullName, email, password, redirectTo })
 			message = response.message
 			if (response.statusCode === 200) {
 				messageType = 'success'
@@ -42,14 +41,6 @@
 	</div>
 	<div class="field">
 		<p class="control">
-			<input bind:value={$form.username} class="input" type="text" placeholder="Username" />
-		</p>
-		{#if $errors.username}
-			<p class="help is-danger">{$errors.username}</p>
-		{/if}
-	</div>
-	<div class="field">
-		<p class="control">
 			<input bind:value={$form.email} class="input" type="email" placeholder="Email" />
 		</p>
 		{#if $errors.email}
@@ -66,7 +57,7 @@
 	</div>
 	<div class="field">
 		<p class="control">
-			<button class="button is-fullwidth is-link"> Sign up </button>
+			<button class="button is-fullwidth is-link">Sign up</button>
 		</p>
 	</div>
 </form>
