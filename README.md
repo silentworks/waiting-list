@@ -16,7 +16,7 @@ This project is built with:
 - Invite List
 - Sign Up to Invite
 - Forgot Password
-- Admin Registration [todo]
+- Admin Registration
 
 ## Getting started
 
@@ -50,6 +50,12 @@ The "CONNECTION_STRING" can be found under **Settings/Database** inside the Supa
 ```sh
 pnpm m:up
 ```
+
+### Creating admin user
+
+Once the project server is running you can visit the signup path `/auth/signup` to create your admin user.
+
+> Note that once you have created your admin user, this route will no longer be accessible.
 
 ### Start development server
 
