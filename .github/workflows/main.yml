@@ -42,6 +42,7 @@ jobs:
             --detach
             --build-arg VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}
             --build-arg VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}
+            --build-arg SUPABASE_SERVICE_ROLE_KEY=${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
             --build-arg VITE_APP_URL=${{ secrets.VITE_APP_URL }}'
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
