@@ -1,4 +1,5 @@
 import supabase from '$lib/db'
+import { supabaseServerClient } from '@supabase/auth-helpers-sveltekit'
 import { errorMapper, successMapper } from '$lib/data/mappers/internal'
 import { waitingListsMapper } from '../mappers/waiting_list'
 
@@ -18,8 +19,8 @@ export const addToWaitingList = async ({ email, fullName }) => {
 	})
 }
 
-export const getWaitingList = async () => {
-	const { data, error } = await supabase
+export const getWaitingList = async ({ accessToken }) => {
+	const { data, error } = await supabaseServerClient(accessToken)
 		.from('waiting_list')
 		.select('*')
 		.order('created_at', { ascending: false })

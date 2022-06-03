@@ -1,29 +1,8 @@
-<script context="module">
-	import { inviteFromWaitingList, getWaitingList } from '$lib/data/queries/waiting_list'
-
-	export const load = async ({ session }) => {
-		const users = await getWaitingList()
-
-		if (users.statusCode === 200) {
-			return {
-				props: {
-					users: users.data
-				}
-			}
-		}
-
-		return {
-			props: {
-				users: []
-			}
-		}
-	}
-</script>
-
 <script>
 	import { VITE_APP_URL } from '$lib/env'
 	import Layout from './_layout.svelte'
 	import WaitingListTableRow from '$lib/table/WaitingListTableRow.svelte'
+	import { inviteFromWaitingList } from '$lib/data/queries/waiting_list'
 
 	export let users
 

@@ -1,10 +1,11 @@
 <script>
-	import { session } from '$app/stores'
 	import WaitingListForm from '$lib/auth/WaitingListForm.svelte'
+
+	export let isLoggedIn
 </script>
 
 <div class="container is-max-desktop p-6">
-	{#if $session?.user?.authenticated}
+	{#if isLoggedIn}
 		<section class="columns">
 			<div class="column is-full">
 				<div class="box">

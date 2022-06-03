@@ -1,11 +1,14 @@
-import { handleAuth } from '$lib/handleAuth'
+import { handleCallback, handleUser } from '@supabase/auth-helpers-sveltekit'
+import { sequence } from '@sveltejs/kit/hooks'
+import { handleProfile } from '$lib/handleProfile'
 
-export const handle = async ({ event, resolve }) => handleAuth({ event, resolve })
+export const handle = sequence(handleCallback(), handleUser(), handleProfile)
 
 export async function getSession(event) {
-	const { user, token } = event.locals
+	const { user, accessToken } = event.locals
+
 	return {
 		user,
-		token
+		accessToken
 	}
 }
