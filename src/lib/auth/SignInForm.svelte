@@ -20,7 +20,7 @@
 			message = response.message
 			if (response.statusCode === 200) {
 				messageType = 'success'
-				goto('/logging-in')
+				await goto('/logging-in')
 			}
 		}
 	})

@@ -1,25 +1,3 @@
-<script context="module">
-	import { getProfiles } from '$lib/data/queries/users/getProfile'
-
-	export const load = async ({ session }) => {
-		const users = await getProfiles()
-
-		if (users.statusCode === 200) {
-			return {
-				props: {
-					users: users.data
-				}
-			}
-		}
-
-		return {
-			props: {
-				users: []
-			}
-		}
-	}
-</script>
-
 <script>
 	import Layout from './_layout.svelte'
 

@@ -1,8 +1,3 @@
-<script context="module">
-	import { checkIfLoggedIn } from '$lib/session'
-	export const load = async ({ session }) => checkIfLoggedIn({ session })
-</script>
-
 <script>
 	import { page } from '$app/stores'
 	import { goto } from '$app/navigation'
@@ -10,7 +5,7 @@
 
 	async function handleSignOut() {
 		await signOut()
-		goto('/auth/signin')
+		await goto('/auth/signin')
 	}
 </script>
 
