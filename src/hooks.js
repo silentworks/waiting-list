@@ -1,5 +1,5 @@
 import { handleCallback, handleUser } from '@supabase/auth-helpers-sveltekit'
-import { sequence } from '@sveltejs/kit/hooks'
+import { sequence } from '@sveltejs/kit'
 import { handleProfile } from '$lib/handleProfile'
 
 export const handle = sequence(handleCallback(), handleUser(), handleProfile)
