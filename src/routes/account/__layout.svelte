@@ -1,16 +1,23 @@
 <script context="module">
-	import { checkIfLoggedIn } from '$lib/session'
+	import { withPageAuth } from '@supabase/auth-helpers-sveltekit'
 
-	export const load = async ({ session }) => {
-		if (session?.user?.isAdmin) {
-			return {
-				status: 307,
-				redirect: `/manage`
+	export const load = async ({ session }) =>
+		withPageAuth(
+			{
+				redirectTo: '/auth/signin',
+				user: session.user
+			},
+			() => {
+				if (session.user?.isAdmin) {
+					return {
+						status: 307,
+						redirect: `/manage`
+					}
+				}
+
+				return {}
 			}
-		}
-
-		return checkIfLoggedIn({ session })
-	}
+		)
 </script>
 
 <script>

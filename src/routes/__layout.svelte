@@ -3,32 +3,12 @@
 	import { session } from '$app/stores'
 	import supabase from '$lib/db'
 	import { SupaAuthHelper } from '@supabase/auth-helpers-svelte'
-
-	const onUserUpdate = async (user) => {
-		if (user) {
-			console.log('I am here and about to redirect', { user })
-			await goto('/logging-in')
-		}
-	}
-
-	// supabase.auth.onAuthStateChange(async (event, _session) => {
-	// 	if (event === 'SIGNED_OUT') {
-	// 		session.set({ user: combinedUserMapper({}) })
-	// 	}
-
-	// 	if (event === 'SIGNED_IN') {
-	// 		const sessionUser = _session.user
-	// 		const profile = await getProfileById(sessionUser?.id)
-	// 		const user = combinedUserMapper({ ...sessionUser, ...profile })
-	// 		session.set({ user })
-	// 	}
-	// })
 </script>
 
 <svelte:head>
 	<title>Waiting List App</title>
 </svelte:head>
-<SupaAuthHelper supabaseClient={supabase} {onUserUpdate} {session}>
+<SupaAuthHelper supabaseClient={supabase} {session}>
 	<div class="site-wrapper" class:is-logged-in={$session?.user?.id}>
 		<main class="columns is-gapless is-fullheight">
 			<slot />

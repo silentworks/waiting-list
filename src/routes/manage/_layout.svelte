@@ -6,7 +6,7 @@
 	<slot name="page-title">Dashboard</slot>
 </div>
 <p class="px-6 py-1 is-size-5 has-text-weight-medium">
-	Welcome back {$session?.user?.fullName}
+	Welcome back {#if $session.user}{$session?.user?.fullName}{/if}
 </p>
 <div class="p-6">
 	<slot />
