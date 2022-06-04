@@ -16,7 +16,6 @@
   "devDependencies": {
     "@supabase/supabase-js": "^1.35.3",
     "@sveltejs/adapter-node": "^1.0.0-next.78",
-    "@sveltejs/kit": "1.0.0-next.348",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-svelte3": "^4.0.0",
@@ -31,6 +30,7 @@
   "dependencies": {
     "@supabase/auth-helpers-svelte": "^0.4.0",
     "@supabase/auth-helpers-sveltekit": "^0.6.0",
+    "@sveltejs/kit": "1.0.0-next.348",
     "dotenv": "^10.0.0",
     "pragmatic-email-regex": "^1.0.4",
     "svelte-forms-lib": "^2.0.1",
