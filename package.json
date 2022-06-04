@@ -1,6 +1,6 @@
 {
   "name": "waiting-list",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
@@ -14,22 +14,23 @@
     "m:status": "ley status"
   },
   "devDependencies": {
-    "@supabase/supabase-js": "^1.30.0",
-    "@sveltejs/adapter-node": "^1.0.0-next.67",
-    "@sveltejs/kit": "next",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-svelte3": "^3.4.0",
+    "@supabase/supabase-js": "^1.35.3",
+    "@sveltejs/adapter-node": "^1.0.0-next.78",
+    "@sveltejs/kit": "1.0.0-next.348",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-svelte3": "^4.0.0",
     "ley": "^0.7.1",
     "pg-connection-string": "^2.5.0",
     "postgres": "^1.0.2",
-    "prettier": "~2.3.2",
-    "prettier-plugin-svelte": "^2.6.0",
-    "svelte": "^3.46.2"
+    "prettier": "~2.6.2",
+    "prettier-plugin-svelte": "^2.7.0",
+    "svelte": "^3.48.0"
   },
   "type": "module",
   "dependencies": {
-    "cookie": "^0.4.1",
+    "@supabase/auth-helpers-svelte": "^0.4.0",
+    "@supabase/auth-helpers-sveltekit": "^0.6.0",
     "dotenv": "^10.0.0",
     "pragmatic-email-regex": "^1.0.4",
     "svelte-forms-lib": "^2.0.1",
