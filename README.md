@@ -43,7 +43,7 @@ SUPABASE_SERVICE_ROLE_KEY=
 CONNECTION_STRING=
 ```
 
-The "CONNECTION_STRING" can be found under **Settings/Database** inside the Supabase Dashboard
+The "CONNECTION_STRING" can be found inside the Supabase Dashboard by going to **Settings > Database** then scrolling down to **Connection string** and clicking on the **URI** tab. You should see a string looking like `postgresql://postgres:[YOUR-PASSWORD]@host:5432/postgres`.
 
 ### Run database migrations
 
