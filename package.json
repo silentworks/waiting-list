@@ -29,7 +29,7 @@
   "type": "module",
   "dependencies": {
     "@supabase/auth-helpers-svelte": "^0.4.2",
-    "@supabase/auth-helpers-sveltekit": "^0.6.1",
+    "@supabase/auth-helpers-sveltekit": "^0.6.2",
     "@sveltejs/kit": "^1.0.0-next.350",
     "dotenv": "^10.0.0",
     "pragmatic-email-regex": "^1.0.4",

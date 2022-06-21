@@ -1,7 +1,6 @@
 import supabase from '$lib/admin'
 
 export async function post({ request, locals }) {
-	console.log({ user: locals.user })
 	if (!locals.user.isAdmin) {
 		return {
 			status: 401,
