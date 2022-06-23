@@ -20,8 +20,10 @@ export async function post({ request, locals }) {
 
 	if (error) {
 		return {
-			status: 400,
-			body: 'There was an error sending the invite link.'
+			status: error.status,
+			body: {
+        message: 'There was an error sending the invite link.'
+      }
 		}
 	}
 

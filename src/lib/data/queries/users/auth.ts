@@ -40,8 +40,8 @@ export const signUp = async ({ full_name, email, password, redirectTo = '' }) =>
 	})
 }
 
-export const triggerResetPasswordEmail = ({ email, redirectTo }) => {
-	const { error } = supabase.auth.api.resetPasswordForEmail(email, { redirectTo })
+export const triggerResetPasswordEmail = async ({ email, redirectTo }) => {
+	const { error } = await supabase.auth.api.resetPasswordForEmail(email, { redirectTo })
 
 	if (!error) {
 		return successMapper({
@@ -81,6 +81,6 @@ export const signOut = async () => {
 
 	return errorMapper({
 		message: error.message,
-		code: error.code
+		code: error.status
 	})
 }

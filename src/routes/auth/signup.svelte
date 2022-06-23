@@ -1,6 +1,6 @@
 <script context="module">
 	export const load = async ({ fetch }) => {
-		const res = await fetch('/api/admin.json')
+		const res = await fetch('/api/admin')
 
 		if (res.ok) {
 			const { isAdmin } = await res.json()
