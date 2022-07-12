@@ -1,12 +1,5 @@
 <script>
 	import { page } from '$app/stores'
-	import { goto } from '$app/navigation'
-	import { signOut } from '$lib/data/queries/users/auth'
-
-	async function handleSignOut() {
-		await signOut()
-		await goto('/auth/signin')
-	}
 </script>
 
 <svelte:head>
@@ -39,11 +32,7 @@
 			</aside>
 		</div>
 		<div class="menu-footer p-4">
-			<a
-				href="/manage/logout"
-				class="button is-black is-fullwidth"
-				on:click|preventDefault={handleSignOut}>Log Out</a
-			>
+			<a href="/api/auth/logout" class="button is-black is-fullwidth">Log Out</a>
 		</div>
 	</div>
 </div>

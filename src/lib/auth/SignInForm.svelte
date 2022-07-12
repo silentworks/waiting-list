@@ -3,6 +3,7 @@
 	import { signIn } from '$lib/data/queries/users/auth'
 	import { createForm } from 'svelte-forms-lib'
 	import { SignInSchema } from './validationSchema'
+	import { route } from '$lib/route'
 	import Notification from '$lib/common/Notification.svelte'
 
 	let message = null
@@ -20,7 +21,7 @@
 			message = response.message
 			if (response.statusCode === 200) {
 				messageType = 'success'
-				await goto('/logging-in')
+				route('/account')
 			}
 		}
 	})
