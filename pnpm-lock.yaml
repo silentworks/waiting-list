@@ -4,7 +4,7 @@ specifiers:
   '@supabase/auth-helpers-svelte': ^0.4.5
   '@supabase/auth-helpers-sveltekit': ^0.6.6
   '@supabase/supabase-js': ^1.35.4
-  '@sveltejs/adapter-node': ^1.0.0-next.79
+  '@sveltejs/adapter-node': 1.0.0-next.77
   '@sveltejs/kit': ^1.0.0-next.370
   dotenv: ^10.0.0
   eslint: ^8.19.0
@@ -34,7 +34,7 @@ dependencies:
 
 devDependencies:
   '@supabase/supabase-js': 1.35.4
-  '@sveltejs/adapter-node': 1.0.0-next.79
+  '@sveltejs/adapter-node': 1.0.0-next.77
   eslint: 8.19.0
   eslint-config-prettier: 8.5.0_eslint@8.19.0
   eslint-plugin-svelte3: 4.0.0_jxmmfmurkts274jdspwh3cyqve
@@ -163,8 +163,8 @@ packages:
       - encoding
       - supports-color
 
-  /@sveltejs/adapter-node/1.0.0-next.79:
-    resolution: {integrity: sha512-cPD28X6qoI53rZzGhaBmE+88vgv4oc/S/jJ1t+rUMpz4d/X2Wo3zuShXpWDhqj8Vix8SbggV0JRCtu4a0hoYQg==}
+  /@sveltejs/adapter-node/1.0.0-next.77:
+    resolution: {integrity: sha512-J9NN9y/x2mHaRYnHSncZWBx+n69tGD6dpuvuQgMpa8xOJwOsWo5GXQaGkaZdOY1wvl4tKFggsKCh6p0Ze46QLw==}
     dependencies:
       tiny-glob: 0.2.9
     dev: true
