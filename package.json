@@ -5,6 +5,8 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
     "start": "node build/index.js",
     "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
     "format": "prettier --write --plugin-search-dir=. .",
@@ -30,12 +32,13 @@
     "svelte-check": "^2.7.2",
     "svelte-preprocess": "^4.10.7",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "vite": "^3.0.0"
   },
   "type": "module",
   "dependencies": {
     "@supabase/auth-helpers-svelte": "^0.4.5",
-    "@supabase/auth-helpers-sveltekit": "^0.6.6",
+    "@supabase/auth-helpers-sveltekit": "^0.6.7",
     "@sveltejs/kit": "^1.0.0-next.370",
     "dotenv": "^10.0.0",
     "pragmatic-email-regex": "^1.0.4",
