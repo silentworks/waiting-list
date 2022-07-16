@@ -1,7 +1,7 @@
 import { withApiAuth } from '@supabase/auth-helpers-sveltekit'
 import { getProfiles } from '$lib/data/queries/users/getProfile'
 
-export const get = async ({ locals }) =>
+export const GET = async ({ locals }) =>
 	withApiAuth(
 		{
 			redirectTo: '/auth/signin',

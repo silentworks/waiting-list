@@ -1,7 +1,7 @@
 import { withApiAuth } from '@supabase/auth-helpers-sveltekit'
 import { getWaitingList } from '$lib/data/queries/waiting_list'
 
-export const get = async ({ locals }) =>
+export const GET = async ({ locals }) =>
 	withApiAuth(
 		{
 			redirectTo: '/auth/signin',

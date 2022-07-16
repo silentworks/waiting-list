@@ -1,6 +1,6 @@
 import supabase from '$lib/admin'
 
-export async function get() {
+export async function GET() {
 	const { data, error } = await supabase
 		.from('profiles')
 		.select('is_admin')
