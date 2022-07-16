@@ -1,11 +1,12 @@
 import supabase from '$lib/db'
 import { supabaseServerClient } from '@supabase/auth-helpers-sveltekit'
 import { errorMapper, successMapper } from '$lib/data/mappers/internal'
-import { waitingListsMapper } from '../mappers/waiting_list'
+import { waitingListsMapper, type WaitingListMapper } from '../mappers/waiting_list'
+import type { WaitingList } from '$lib/types'
 
 export const addToWaitingList = async ({ email, fullName }) => {
 	const { error } = await supabase
-		.from('waiting_list')
+		.from<WaitingList>('waiting_list')
 		.insert({ email, full_name: fullName }, { returning: 'minimal' })
 
 	if (!error) {
@@ -21,12 +22,12 @@ export const addToWaitingList = async ({ email, fullName }) => {
 
 export const getWaitingList = async ({ accessToken }) => {
 	const { data, error } = await supabaseServerClient(accessToken)
-		.from('waiting_list')
+		.from<WaitingList>('waiting_list')
 		.select('*')
 		.order('created_at', { ascending: false })
 
 	if (!error) {
-		return successMapper({
+		return successMapper<WaitingListMapper[]>({
 			data: waitingListsMapper(data),
 			message: 'Waiting list retrieved successfully.'
 		})
@@ -38,7 +39,7 @@ export const getWaitingList = async ({ accessToken }) => {
 	})
 }
 
-export const inviteFromWaitingList = async (user, redirectTo) => {
+export const inviteFromWaitingList = async <T>(user: WaitingListMapper, redirectTo) => {
 	const res = await fetch('/api/invite', {
 		method: 'POST',
 		headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -47,7 +48,7 @@ export const inviteFromWaitingList = async (user, redirectTo) => {
 	})
 
 	if (res.ok) {
-		return successMapper({
+		return successMapper<T>({
 			data: await res.json()
 		})
 	}

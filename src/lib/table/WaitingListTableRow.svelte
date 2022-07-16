@@ -1,15 +1,23 @@
-<script>
-	export let user = {}
-	export let inviteUser = async () => {
-		await new Promise()
-	}
+<script lang="ts">
+	import {
+		isSuccessResponse,
+		type ErrorMapperResponse,
+		type SuccessMapperResponse
+	} from '$lib/data/mappers/internal'
+	import type { WaitingListMapper } from '$lib/data/mappers/waiting_list'
+	import type { WaitingList } from '$lib/types'
+
+	export let user: WaitingListMapper
+	export let inviteUser: (
+		user: WaitingListMapper
+	) => Promise<SuccessMapperResponse<WaitingList> | ErrorMapperResponse>
 
 	let isLoading = false
 	const invite = async () => {
 		isLoading = true
 		const res = await inviteUser(user)
 
-		if (res.statusCode === 200) {
+		if (isSuccessResponse(res) && res.statusCode === 200) {
 			user = res.data
 			isLoading = false
 		}

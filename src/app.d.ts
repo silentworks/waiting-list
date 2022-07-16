@@ -4,16 +4,16 @@
 // for information about these interfaces
 declare namespace App {
 	interface Locals {
-		user: import("@supabase/supabase-js").User;
-		accessToken: string | null;
-		error: import("@supabase/supabase-js").ApiError;
+		user: import('./lib/data/mappers/users').UserProfile
+		accessToken: string | null
+		error: import('@supabase/supabase-js').ApiError
 	}
 
 	interface Platform {}
 
 	interface Session {
-		user: import("@supabase/supabase-js").User;
-		accessToken?: string;
+		user: import('./lib/data/mappers/users').UserProfile
+		accessToken?: string
 	}
 
 	interface Stuff {}

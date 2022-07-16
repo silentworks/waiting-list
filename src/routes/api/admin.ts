@@ -1,8 +1,9 @@
 import supabase from '$lib/admin'
+import type { Profiles } from '$lib/types'
 
 export async function get() {
 	const { data, error } = await supabase
-		.from('profiles')
+		.from<Profiles>('profiles')
 		.select('is_admin')
 		.eq('is_admin', true)
 		.single()

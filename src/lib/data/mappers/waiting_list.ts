@@ -1,11 +1,21 @@
+import type { WaitingList } from '$lib/types.js'
 import { withDefault } from './internal.js'
 
-export const waitingListMapper = (user) => ({
-  id: user.id,
+export interface WaitingListMapper {
+	id: string
+	fullName: string | null
+	email: string
+	invitedAt: string
+	isInvited: boolean
+}
+
+export const waitingListMapper = (user: WaitingList): WaitingListMapper => ({
+	id: user.id,
 	fullName: withDefault(user.full_name, ''),
-  email: user.email,
-  invitedAt: user.invited_at,
-  isInvited: user.invited_at ?  true : false,
+	email: user.email,
+	invitedAt: user.invited_at,
+	isInvited: user.invited_at ? true : false
 })
 
-export const waitingListsMapper = (users) => users.map((u) => waitingListMapper(u))
+export const waitingListsMapper = (users: WaitingList[]): WaitingListMapper[] =>
+	users.map((u) => waitingListMapper(u))

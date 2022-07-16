@@ -9,7 +9,5 @@ export async function handleProfile({ event, resolve }) {
 		event.locals.user = combinedUserMapper({ ...user, ...profile })
 	}
 
-	let response = await resolve(event)
-
-	return response
+	return await resolve(event)
 }

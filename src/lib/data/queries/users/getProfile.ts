@@ -2,6 +2,7 @@ import { supabaseServerClient } from '@supabase/auth-helpers-sveltekit'
 import { errorMapper, successMapper } from '$lib/data/mappers/internal'
 import { usersMapper } from '$lib/data/mappers/users'
 import supabase from '$lib/db'
+import { Profiles } from '$lib/types'
 
 export const getProfile = async () => {
 	const { data } = await supabase.from('profiles').select('*').single()
@@ -19,7 +20,7 @@ export const getProfileById = async ({ accessToken, userId }) => {
 
 export const getProfiles = async ({ accessToken }) => {
 	const { error, data } = await supabaseServerClient(accessToken)
-		.from('profiles')
+		.from<Profiles>('profiles')
 		.select('*')
 		.not('is_admin', 'eq', true)
 		.order('created_at', { ascending: false })
