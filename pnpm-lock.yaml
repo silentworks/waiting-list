@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@supabase/auth-helpers-svelte': ^0.4.5
-  '@supabase/auth-helpers-sveltekit': ^0.6.8
+  '@supabase/auth-helpers-sveltekit': ^0.6.9
   '@supabase/supabase-js': ^1.35.4
   '@sveltejs/adapter-node': 1.0.0-next.77
   '@sveltejs/kit': ^1.0.0-next.377
@@ -24,7 +24,7 @@ specifiers:
 
 dependencies:
   '@supabase/auth-helpers-svelte': 0.4.5
-  '@supabase/auth-helpers-sveltekit': 0.6.8
+  '@supabase/auth-helpers-sveltekit': 0.6.9
   '@sveltejs/kit': 1.0.0-next.377_svelte@3.49.0+vite@3.0.0
   dotenv: 10.0.0
   pragmatic-email-regex: 1.0.4
@@ -105,8 +105,8 @@ packages:
       - supports-color
     dev: false
 
-  /@supabase/auth-helpers-sveltekit/0.6.8:
-    resolution: {integrity: sha512-6ZzHJymHHiWvi4LhskFCdFR+yBsOkInPYftszQIPyqSzuVlgpODfQsAvusZpqgZbQEubX+B0W1zqn42aMDKPHw==}
+  /@supabase/auth-helpers-sveltekit/0.6.9:
+    resolution: {integrity: sha512-MG+EsxD7xQsqx9l/4LSPv6yJNuubaP8s/ke/GE+K3DUov77ShN8ubRAZVS8CSdOc9rHTI0UivwEKZc7DDXtiNA==}
     dependencies:
       '@supabase/auth-helpers-shared': 0.1.3
       '@supabase/supabase-js': 1.35.4
