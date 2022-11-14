@@ -1,11 +1,10 @@
+import { json } from '@sveltejs/kit'
 import supabase from '$lib/admin'
 
 export async function POST({ request, locals }) {
-	if (!locals.user.isAdmin) {
-		return {
-			status: 401,
-			body: 'You are not authorized to make this request'
-		}
+	console.log({ locals })
+	if (!locals.session.user.isAdmin) {
+		return new Response('You are not authorized to make this request', { status: 401 })
 	}
 
 	const { user, redirectTo } = await request.json()
@@ -19,14 +18,8 @@ export async function POST({ request, locals }) {
 	})
 
 	if (error) {
-		return {
-			status: 400,
-			body: 'There was an error sending the invite link.'
-		}
+		return new Response('There was an error sending the invite link.', { status: 400 })
 	}
 
-	return {
-		status: 200,
-		body: { ...user, isInvited: true, invitedAt: data.invited_at }
-	}
+	return json({ ...user, isInvited: true, invitedAt: data.invited_at })
 }

@@ -1,7 +1,10 @@
 <script>
-	import Layout from './_layout.svelte'
+	import Layout from '../_layout.svelte'
 
-	export let users
+	/** @type {import('./$types').PageData} */
+	export let data
+	let { users } = data
+	$: ({ users } = data)
 </script>
 
 <Layout>

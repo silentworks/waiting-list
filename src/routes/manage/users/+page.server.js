@@ -1,27 +1,18 @@
-import { withApiAuth } from '@supabase/auth-helpers-sveltekit'
+import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { getProfiles } from '$lib/data/queries/users/getProfile'
 
-export const GET = async ({ locals }) =>
-	withApiAuth(
-		{
-			redirectTo: '/auth/signin',
-			user: locals.user
-		},
-		async () => {
-			const users = await getProfiles(locals)
+/** @type {import('./$types').PageLoad} */
+export const load = async (event) => {
+	const { supabaseClient } = await getSupabase(event)
+	const users = await getProfiles({ supabaseClient })
 
-			if (users.statusCode === 200) {
-				return {
-					body: {
-						users: users.data
-					}
-				}
-			}
-
-			return {
-				body: {
-					users: []
-				}
-			}
+	if (users.statusCode === 200) {
+		return {
+			users: users.data
 		}
-	)
+	}
+
+	return {
+		users: []
+	}
+}

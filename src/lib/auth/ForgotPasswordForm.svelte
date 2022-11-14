@@ -2,11 +2,11 @@
 	import { createForm } from 'svelte-forms-lib'
 	import { ForgotPasswordSchema } from './validationSchema'
 
-	import { VITE_APP_URL } from '$lib/env'
+	import { env } from '$env/dynamic/public'
 	import { triggerResetPasswordEmail } from '$lib/data/queries/users/auth'
 	import Notification from '$lib/common/Notification.svelte'
 
-	const redirectTo = `${VITE_APP_URL}`
+	const redirectTo = `${env.PUBLIC_APP_URL}`
 	let message = null
 	let messageType = 'error'
 

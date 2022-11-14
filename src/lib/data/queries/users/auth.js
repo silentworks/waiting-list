@@ -1,8 +1,8 @@
-import supabase from '$lib/db'
+import { supabaseClient as supabase } from '$lib/db'
 import { errorMapper, successMapper } from '$lib/data/mappers/internal'
 
 export const signIn = async ({ email, password }) => {
-	const { error } = await supabase.auth.signIn({ email, password })
+	const { error } = await supabase.auth.signInWithPassword({ email, password })
 
 	if (!error) {
 		return successMapper({

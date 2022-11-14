@@ -1,5 +1,5 @@
 <script>
-	import { session } from '$app/stores'
+	import { page } from '$app/stores'
 </script>
 
 <svelte:head>
@@ -7,7 +7,7 @@
 </svelte:head>
 
 <p class="py-1 is-size-5 has-text-weight-slim">
-	Welcome {$session?.user?.fullName}
+	Welcome {$page.data.session?.user?.fullName}
 </p>
 
 <div class="content">

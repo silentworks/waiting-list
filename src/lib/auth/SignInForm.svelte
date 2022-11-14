@@ -1,5 +1,4 @@
 <script>
-	import { goto } from '$app/navigation'
 	import { signIn } from '$lib/data/queries/users/auth'
 	import { createForm } from 'svelte-forms-lib'
 	import { SignInSchema } from './validationSchema'

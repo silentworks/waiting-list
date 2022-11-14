@@ -1,23 +1,3 @@
-<script context="module">
-	export const load = async ({ fetch }) => {
-		const res = await fetch('/api/admin.json')
-
-		if (res.ok) {
-			const { isAdmin } = await res.json()
-			if (!isAdmin) {
-				return {
-					status: 200
-				}
-			}
-		}
-
-		return {
-			status: 302,
-			redirect: '/auth/signin'
-		}
-	}
-</script>
-
 <script>
 	import SignUpForm from '$lib/auth/SignUpForm.svelte'
 </script>

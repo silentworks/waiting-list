@@ -4,21 +4,31 @@
 		await new Promise()
 	}
 
-	let isLoading = false
+	export let deleteUser = async () => {
+		await new Promise()
+	}
+
+	let isInviting = false
+	let isDeleting = false
 	const invite = async () => {
-		isLoading = true
+		isInviting = true
 		const res = await inviteUser(user)
 
 		if (res.statusCode === 200) {
 			user = res.data
-			isLoading = false
+			isInviting = false
 		}
 
 		if (res.statusCode !== 200) {
-			isLoading = false
+			isInviting = false
 		}
 	}
-	const del = async () => {}
+
+	const del = async () => {
+		isDeleting = true
+		const res = await deleteUser(user)
+		isDeleting = false
+	}
 </script>
 
 <tr>
@@ -29,12 +39,15 @@
 		<div class="buttons">
 			<button
 				class="button is-success is-small"
-				class:is-loading={isLoading}
-				disabled={isLoading}
+				class:is-loading={isInviting}
+				disabled={isInviting}
 				on:click={invite}>{user.isInvited ? 'Invite Again' : 'Invite'}</button
 			>
-			<button class="button is-danger is-small" disabled={user.isInvited} on:click={del}
-				>Delete</button
+			<button
+				class="button is-danger is-small"
+				class:is-loading={isDeleting}
+				disabled={user.isInvited}
+				on:click={del}>Delete</button
 			>
 		</div>
 	</td>

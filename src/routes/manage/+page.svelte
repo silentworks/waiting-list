@@ -1,14 +1,34 @@
 <script>
-	import { VITE_APP_URL } from '$lib/env'
+	import { env } from '$env/dynamic/public'
 	import Layout from './_layout.svelte'
+	import { deleteFromWaitingList, inviteFromWaitingList } from '$lib/data/queries/waiting_list'
 	import WaitingListTableRow from '$lib/table/WaitingListTableRow.svelte'
-	import { inviteFromWaitingList } from '$lib/data/queries/waiting_list'
 
-	export let users
+	/** @type {import('./$types').PageData} */
+	export let data
+	let { users } = data
+	$: ({ users } = data)
 
-	const redirectTo = `${VITE_APP_URL}logging-in?redirect=/account/password-update`
+	const redirectTo = `${env.PUBLIC_APP_URL}logging-in?redirect=/account/password-update`
 
-	const inviteUser = async (user) => await inviteFromWaitingList(user, redirectTo)
+	let isLoading = false
+	const inviteUser = async (user) => {
+		isLoading = true
+		const res = await inviteFromWaitingList(user, redirectTo)
+
+		if (res.statusCode === 200) {
+			user = res.data
+			isLoading = false
+		}
+
+		if (res.statusCode !== 200) {
+			isLoading = false
+		}
+	}
+
+	const deleteUser = async (user) => {
+		await deleteFromWaitingList({ id: user.id })
+	}
 </script>
 
 <Layout>
@@ -32,7 +52,7 @@
 			</tfoot>
 			<tbody>
 				{#each users as user}
-					<WaitingListTableRow {user} {inviteUser} />
+					<WaitingListTableRow {user} {inviteUser} {deleteUser} />
 				{/each}
 			</tbody>
 		</table>

@@ -1,12 +1,12 @@
 <script>
 	import Notification from '$lib/common/Notification.svelte'
 	import { signUp } from '$lib/data/queries/users/auth'
-	import { VITE_APP_URL } from '$lib/env'
+	import { PUBLIC_APP_URL } from '$lib/env'
 
 	import { createForm } from 'svelte-forms-lib'
 	import { SignUpSchema } from './validationSchema'
 
-	const redirectTo = `${VITE_APP_URL}logging-in`
+	const redirectTo = `${PUBLIC_APP_URL}logging-in`
 	let message = null
 	let messageType = 'error'
 

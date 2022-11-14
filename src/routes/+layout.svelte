@@ -1,19 +1,31 @@
 <script>
-	import { session } from '$app/stores'
-	import supabase from '$lib/db'
-	import { SupaAuthHelper } from '@supabase/auth-helpers-svelte'
+	import { supabaseClient } from '$lib/db'
+	import { page } from '$app/stores'
+	import { invalidate } from '$app/navigation'
+	import { onMount } from 'svelte'
+
+	onMount(() => {
+		const {
+			data: { subscription }
+		} = supabaseClient.auth.onAuthStateChange(() => {
+			invalidate('supabase:auth')
+		})
+
+		return () => {
+			subscription.unsubscribe()
+		}
+	})
 </script>
 
 <svelte:head>
 	<title>Waiting List App</title>
 </svelte:head>
-<SupaAuthHelper supabaseClient={supabase} {session}>
-	<div class="site-wrapper" class:is-logged-in={$session?.user?.id}>
-		<main class="columns is-gapless is-fullheight">
-			<slot />
-		</main>
-	</div>
-</SupaAuthHelper>
+
+<div class="site-wrapper" class:is-logged-in={$page.data.session?.user?.id}>
+	<main class="columns is-gapless is-fullheight">
+		<slot />
+	</main>
+</div>
 
 <style>
 	:global(body, html, #svelte) {

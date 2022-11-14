@@ -1,5 +1,4 @@
-import supabase from '$lib/db'
-import { supabaseServerClient } from '@supabase/auth-helpers-sveltekit'
+import { supabaseClient as supabase } from '$lib/db'
 import { errorMapper, successMapper } from '$lib/data/mappers/internal'
 import { waitingListsMapper } from '../mappers/waiting_list'
 
@@ -19,8 +18,22 @@ export const addToWaitingList = async ({ email, fullName }) => {
 	})
 }
 
-export const getWaitingList = async ({ accessToken }) => {
-	const { data, error } = await supabaseServerClient(accessToken)
+export const deleteFromWaitingList = async ({ id }) => {
+	const { error } = await supabase.from('waiting_list').delete().match({ id })
+
+	if (!error) {
+		return successMapper({
+			message: `You've successfully delete an entry from the waiting list.`
+		})
+	}
+
+	return successMapper({
+		message: `You've successfully delete an entry from the waiting list.`
+	})
+}
+
+export const getWaitingList = async ({ supabase }) => {
+	const { data, error } = await supabase
 		.from('waiting_list')
 		.select('*')
 		.order('created_at', { ascending: false })
@@ -39,7 +52,7 @@ export const getWaitingList = async ({ accessToken }) => {
 }
 
 export const inviteFromWaitingList = async (user, redirectTo) => {
-	const res = await fetch('/api/invite.json', {
+	const res = await fetch('/api/invite', {
 		method: 'POST',
 		headers: new Headers({ 'Content-Type': 'application/json' }),
 		credentials: 'same-origin',

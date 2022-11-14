@@ -1,3 +1,4 @@
+import { json } from '@sveltejs/kit';
 import supabase from '$lib/admin'
 
 export async function GET() {
@@ -8,14 +9,8 @@ export async function GET() {
 		.single()
 
 	if (error) {
-		return {
-			status: 200,
-			body: { isAdmin: false }
-		}
+		return json({ isAdmin: false })
 	}
 
-	return {
-		status: 200,
-		body: { isAdmin: data?.is_admin }
-	}
+	return json({ isAdmin: data?.is_admin })
 }
