@@ -1,8 +1,7 @@
 <script>
 	import { env } from '$env/dynamic/public'
 	import Layout from './_layout.svelte'
-	import { deleteFromWaitingList, inviteFromWaitingList } from '$lib/data/queries/waiting_list'
-	import WaitingListTableRow from '$lib/table/WaitingListTableRow.svelte'
+	import ButtonAction from '$lib/common/ButtonAction.svelte'
 
 	/** @type {import('./$types').PageData} */
 	export let data
@@ -10,25 +9,6 @@
 	$: ({ users } = data)
 
 	const redirectTo = `${env.PUBLIC_APP_URL}logging-in?redirect=/account/password-update`
-
-	let isLoading = false
-	const inviteUser = async (user) => {
-		isLoading = true
-		const res = await inviteFromWaitingList(user, redirectTo)
-
-		if (res.statusCode === 200) {
-			user = res.data
-			isLoading = false
-		}
-
-		if (res.statusCode !== 200) {
-			isLoading = false
-		}
-	}
-
-	const deleteUser = async (user) => {
-		await deleteFromWaitingList({ id: user.id })
-	}
 </script>
 
 <Layout>
@@ -52,7 +32,28 @@
 			</tfoot>
 			<tbody>
 				{#each users as user}
-					<WaitingListTableRow {user} {inviteUser} {deleteUser} />
+					<tr>
+						<td>{user.fullName} </td>
+						<td><a href="mailto:{user.email}">{user.email}</a></td>
+						<td>{user.isInvited ? 'Yes' : 'No'}</td>
+						<td>
+							<div class="buttons">
+								<ButtonAction action="?/invite" isLoading={false}>
+									<svelte:fragment slot="inputs">
+										<input name="user" value={JSON.stringify(user)} type="hidden" />
+										<input name="redirect_to" value={redirectTo} type="hidden" />
+									</svelte:fragment>
+									{user.isInvited ? 'Invite Again' : 'Invite'}
+								</ButtonAction>
+								<ButtonAction action="?/remove" class="is-danger ml-1">
+									<svelte:fragment slot="inputs">
+										<input name="user_id" value={user.id} type="hidden" />
+									</svelte:fragment>
+									Delete
+								</ButtonAction>
+							</div>
+						</td>
+					</tr>
 				{/each}
 			</tbody>
 		</table>

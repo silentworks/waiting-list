@@ -3,9 +3,7 @@ import { errorMapper, successMapper } from '$lib/data/mappers/internal'
 import { waitingListsMapper } from '../mappers/waiting_list'
 
 export const addToWaitingList = async ({ email, fullName }) => {
-	const { error } = await supabase
-		.from('waiting_list')
-		.insert({ email, full_name: fullName }, { returning: 'minimal' })
+	const { error } = await supabase.from('waiting_list').insert({ email, full_name: fullName })
 
 	if (!error) {
 		return successMapper({

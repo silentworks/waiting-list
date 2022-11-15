@@ -1,6 +1,10 @@
 <script>
 	import { page } from '$app/stores'
-	import WaitingListForm from '$lib/auth/WaitingListForm.svelte'
+	import Notification from '$lib/common/Notification.svelte'
+	import { enhance } from '$app/forms'
+
+	/** @type {import('./$types').ActionData} */
+	export let form
 </script>
 
 <div class="container is-max-desktop p-6">
@@ -25,7 +29,48 @@
 				<div class="box p-6">
 					<h2 class="subtitle is-3 has-text-centered pb-4">Waiting List App</h2>
 					<div class="content">
-						<WaitingListForm />
+						<Notification
+							showNotification={form?.message !== undefined}
+							status={form?.success ? 'success' : 'error'}
+						>
+							{form?.message}
+						</Notification>
+
+						<form method="POST" use:enhance>
+							<div class="field">
+								<p class="control">
+									<input
+										name="fullName"
+										value={form?.fullName ?? ''}
+										class="input"
+										type="text"
+										placeholder="Full Name"
+									/>
+								</p>
+								{#if form?.errors?.fullName}
+									<p class="help is-danger">{form?.errors?.fullName}</p>
+								{/if}
+							</div>
+							<div class="field">
+								<p class="control">
+									<input
+										name="email"
+										value={form?.email ?? ''}
+										class="input"
+										type="email"
+										placeholder="Email"
+									/>
+								</p>
+								{#if form?.errors?.email}
+									<p class="help is-danger">{form?.errors?.email}</p>
+								{/if}
+							</div>
+							<div class="field">
+								<p class="control">
+									<button class="button is-fullwidth is-link">Add me to the waiting list</button>
+								</p>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

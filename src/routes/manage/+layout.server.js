@@ -5,10 +5,12 @@ import { redirect } from '@sveltejs/kit'
 export const load = async (event) => {
 	const { user } = event.locals
 	const { session } = await getSupabase(event)
-	session.user = { ...session.user, ...user }
+
 	if (!session) {
 		throw redirect(303, '/auth/signin')
 	}
+
+	session.user = { ...session.user, ...user }
 
 	if (!session.user?.isAdmin) {
 		throw redirect(303, '/account')
