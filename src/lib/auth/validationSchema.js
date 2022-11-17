@@ -10,6 +10,7 @@ const emailValidation = (data) => {
 	})
 
 	test('email', 'Email Address is not valid', () => {
+		console.log({ e: data.email })
 		enforce(data.email).isEmail()
 	})
 }
@@ -29,6 +30,7 @@ const forgotPasswordSuite = vest.create((data) => {
 })
 
 const signInSuite = vest.create((data) => {
+	console.log({ data })
 	emailValidation(data)
 	passwordValidation(data)
 })
