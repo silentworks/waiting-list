@@ -2,20 +2,21 @@ import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { getWaitingList } from '$lib/data/queries/waiting_list'
 import supabase from '$lib/admin'
 import { invalid } from '@sveltejs/kit'
+import { env } from '$env/dynamic/public'
 
 /** @type {import('./$types').PageLoad} */
 export const load = async (event) => {
 	const { supabaseClient } = await getSupabase(event)
 	const users = await getWaitingList({ supabase: supabaseClient })
 
-	if (users.statusCode === 200) {
+	if (users.statusCode !== 200) {
 		return {
-			users: users.data
+			users: []
 		}
 	}
 
 	return {
-		users: []
+		users: users.data
 	}
 }
 
@@ -27,7 +28,7 @@ export const actions = {
 
 		const formData = await request.formData()
 		const formUser = formData.get('user')
-		const redirectTo = formData.get('redirect_to')
+		const redirectTo = `${env.PUBLIC_APP_URL}logging-in?redirect=/account/password-update`
 
 		if (!formUser) {
 			return invalid(400, { user: formUser, missing: true })
@@ -56,10 +57,10 @@ export const actions = {
 		}
 
 		const formData = await request.formData()
-		const userId = formData.get('user_id')
+		const userId = formData.get('userId')
 
 		if (!userId) {
-			return invalid(400, { user: userId, missing: true })
+			return invalid(400, { userId: userId, missing: true })
 		}
 
 		const { error } = await supabase.from('waiting_list').delete().match({ id: userId })

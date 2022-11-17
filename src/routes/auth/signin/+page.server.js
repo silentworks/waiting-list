@@ -1,7 +1,14 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { SignInSchema } from '$lib/auth/validationSchema'
-import { signIn } from '$lib/data/queries/users/auth'
 import { invalid, redirect } from '@sveltejs/kit'
+
+/** @type {import('./$types').PageLoad} */
+export async function load(event) {
+	const { session } = await getSupabase(event)
+	if (session) {
+		throw redirect(303, '/account')
+	}
+}
 
 export const actions = {
 	default: async (event) => {

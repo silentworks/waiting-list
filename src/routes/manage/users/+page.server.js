@@ -6,13 +6,13 @@ export const load = async (event) => {
 	const { supabaseClient } = await getSupabase(event)
 	const users = await getProfiles({ supabaseClient })
 
-	if (users.statusCode === 200) {
+	if (users.statusCode !== 200) {
 		return {
-			users: users.data
+			users: []
 		}
 	}
 
 	return {
-		users: []
+		users: users.data
 	}
 }

@@ -1,14 +1,12 @@
 <script>
-	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
-	import { signOut } from '$lib/data/queries/users/auth'
+	import { supabaseClient } from '$lib/db'
 
 	let showDropdown = false
 	const dropDown = () => (showDropdown = !showDropdown)
 
-	async function handleSignOut() {
-		await signOut()
-		goto('/auth')
+	function handleSignOut() {
+		supabaseClient.auth.signOut()
 	}
 </script>
 

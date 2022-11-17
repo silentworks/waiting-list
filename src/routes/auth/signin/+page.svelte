@@ -1,8 +1,5 @@
 <script>
 	import Notification from '$lib/common/Notification.svelte'
-	import GitHubButton from '$lib/common/GitHubButton.svelte'
-	import TwitterButton from '$lib/common/TwitterButton.svelte'
-
 	import { enhance, applyAction } from '$app/forms'
 	import { invalidate } from '$app/navigation'
 

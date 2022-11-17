@@ -13,8 +13,9 @@
 	{action}
 	use:enhance={() => {
 		isLoading = true
-		return async () => {
+		return async ({ update }) => {
 			isLoading = false
+			update()
 		}
 	}}
 >

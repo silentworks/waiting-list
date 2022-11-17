@@ -1,5 +1,4 @@
 <script>
-	import { env } from '$env/dynamic/public'
 	import Layout from './_layout.svelte'
 	import ButtonAction from '$lib/common/ButtonAction.svelte'
 
@@ -7,8 +6,6 @@
 	export let data
 	let { users } = data
 	$: ({ users } = data)
-
-	const redirectTo = `${env.PUBLIC_APP_URL}logging-in?redirect=/account/password-update`
 </script>
 
 <Layout>
@@ -41,13 +38,12 @@
 								<ButtonAction action="?/invite" isLoading={false}>
 									<svelte:fragment slot="inputs">
 										<input name="user" value={JSON.stringify(user)} type="hidden" />
-										<input name="redirect_to" value={redirectTo} type="hidden" />
 									</svelte:fragment>
 									{user.isInvited ? 'Invite Again' : 'Invite'}
 								</ButtonAction>
 								<ButtonAction action="?/remove" class="is-danger ml-1">
 									<svelte:fragment slot="inputs">
-										<input name="user_id" value={user.id} type="hidden" />
+										<input name="userId" value={user.id} type="hidden" />
 									</svelte:fragment>
 									Delete
 								</ButtonAction>

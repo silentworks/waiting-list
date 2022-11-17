@@ -1,5 +1,9 @@
 <script>
-	import ForgotPasswordForm from '$lib/auth/ForgotPasswordForm.svelte'
+	import { enhance } from '$app/forms'
+	import Notification from '$lib/common/Notification.svelte'
+
+	/** @type {import('./$types').ActionData} */
+	export let form
 </script>
 
 <svelte:head>
@@ -15,7 +19,33 @@
 				<p class="has-text-centered">
 					Enter your email and we'll send you a link to get back into your account.
 				</p>
-				<ForgotPasswordForm />
+				<Notification
+					showNotification={form?.message !== undefined}
+					status={form?.success ? 'success' : 'error'}
+				>
+					{form?.message}
+				</Notification>
+				<form method="POST" use:enhance>
+					<div class="field">
+						<p class="control">
+							<input
+								name="email"
+								value={form?.email ?? ''}
+								class="input"
+								type="email"
+								placeholder="Email"
+							/>
+						</p>
+						{#if form?.errors?.email}
+							<p class="help is-danger">{form?.errors?.email}</p>
+						{/if}
+					</div>
+					<div class="field">
+						<p class="control">
+							<button class="button is-fullwidth is-link">Send password reset link</button>
+						</p>
+					</div>
+				</form>
 			</div>
 		</div>
 

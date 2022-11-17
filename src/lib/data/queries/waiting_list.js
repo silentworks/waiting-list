@@ -48,23 +48,3 @@ export const getWaitingList = async ({ supabase }) => {
 		statusCode: 400
 	})
 }
-
-export const inviteFromWaitingList = async (user, redirectTo) => {
-	const res = await fetch('/api/invite', {
-		method: 'POST',
-		headers: new Headers({ 'Content-Type': 'application/json' }),
-		credentials: 'same-origin',
-		body: JSON.stringify({ user, redirectTo })
-	})
-
-	if (res.ok) {
-		return successMapper({
-			data: await res.json()
-		})
-	}
-
-	return errorMapper({
-		message: 'Something went wrong!!!',
-		statusCode: 400
-	})
-}
