@@ -1,6 +1,14 @@
 import { WaitingListSchema } from '$lib/auth/validationSchema'
 import { addToWaitingList } from '$lib/data/queries/waiting_list'
+import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { invalid } from '@sveltejs/kit'
+
+/** @type {import('./$types').LayoutServerLoad} */
+export const load = async (event) => {
+	const { session } = await getSupabase(event)
+
+	return { session }
+}
 
 export const actions = {
 	default: async ({ request }) => {
