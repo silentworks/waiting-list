@@ -5,6 +5,12 @@
 	let showDropdown = false
 	const dropDown = () => (showDropdown = !showDropdown)
 
+	const keyboardDropDown = ({ key, target }) => {
+		if (key === 'Escape') {
+			showDropdown = false
+		}
+	}
+
 	function handleSignOut() {
 		supabaseClient.auth.signOut()
 	}
@@ -21,6 +27,7 @@
 				<div
 					class="navbar-item has-dropdown"
 					class:is-active={showDropdown}
+					on:keyup={keyboardDropDown}
 					on:mouseleave={() => {
 						showDropdown = false
 					}}
@@ -35,7 +42,7 @@
 						</figure>
 					</button>
 
-					<div class="navbar-dropdown" on:click={dropDown}>
+					<div class="navbar-dropdown">
 						<a
 							href="/account/password-update"
 							class="navbar-item"
