@@ -12,7 +12,6 @@ export const actions = {
 
 		const test = ResetPasswordSchema({ password, passwordConfirm })
 
-		console.log({ test })
 		if (test !== true) {
 			return invalid(400, { errors: test, password, passwordConfirm })
 		}
