@@ -18,8 +18,6 @@ export const actions = {
 		const email = formData.get('email')
 		const password = formData.get('password')
 
-		console.log({ email })
-
 		const test = SignInSchema({ email, password })
 
 		if (test !== true) {
