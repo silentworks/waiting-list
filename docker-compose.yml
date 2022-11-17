@@ -5,9 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        VITE_SUPABASE_URL:
-        VITE_SUPABASE_ANON_KEY:
-        VITE_APP_URL: http://localhost:3000/
+        PUBLIC_SUPABASE_URL:
+        PUBLIC_SUPABASE_ANON_KEY:
+        PUBLIC_APP_URL: http://localhost:3000/
         SUPABASE_SERVICE_ROLE_KEY:
     ports:
       - 80:3000

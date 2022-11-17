@@ -1,6 +1,4 @@
-import { skHelper } from '@supabase/auth-helpers-sveltekit'
-import { VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY } from './env'
+import { createClient } from '@supabase/auth-helpers-sveltekit'
+import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public'
 
-const { supabaseClient: supabase } = skHelper(VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY)
-
-export default supabase
+export const supabaseClient = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY)

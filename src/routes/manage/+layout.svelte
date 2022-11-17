@@ -1,4 +1,5 @@
 <script>
+	import { supabaseClient } from '$lib/db'
 	import { page } from '$app/stores'
 </script>
 
@@ -32,7 +33,12 @@
 			</aside>
 		</div>
 		<div class="menu-footer p-4">
-			<a href="/api/auth/logout" class="button is-black is-fullwidth">Log Out</a>
+			<button
+				class="button is-black is-fullwidth"
+				on:click={() => {
+					supabaseClient.auth.signOut()
+				}}>Log Out</button
+			>
 		</div>
 	</div>
 </div>

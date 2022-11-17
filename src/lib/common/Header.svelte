@@ -1,14 +1,18 @@
 <script>
-	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
-	import { signOut } from '$lib/data/queries/users/auth'
+	import { supabaseClient } from '$lib/db'
 
 	let showDropdown = false
 	const dropDown = () => (showDropdown = !showDropdown)
 
-	async function handleSignOut() {
-		await signOut()
-		goto('/auth')
+	const keyboardDropDown = ({ key, target }) => {
+		if (key === 'Escape') {
+			showDropdown = false
+		}
+	}
+
+	function handleSignOut() {
+		supabaseClient.auth.signOut()
 	}
 </script>
 
@@ -23,6 +27,7 @@
 				<div
 					class="navbar-item has-dropdown"
 					class:is-active={showDropdown}
+					on:keyup={keyboardDropDown}
 					on:mouseleave={() => {
 						showDropdown = false
 					}}
@@ -37,7 +42,7 @@
 						</figure>
 					</button>
 
-					<div class="navbar-dropdown" on:click={dropDown}>
+					<div class="navbar-dropdown">
 						<a
 							href="/account/password-update"
 							class="navbar-item"
