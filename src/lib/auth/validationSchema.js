@@ -10,9 +10,9 @@ const emailValidation = (data) => {
 	})
 
 	console.log({ e: data.email })
-	test('email', 'Email Address is not valid', () => {
-		enforce(data.email).isEmail()
-	})
+	// test('email', 'Email Address is not valid', () => {
+	// 	enforce(data.email).isEmail()
+	// })
 }
 
 const passwordValidation = (data) => {
