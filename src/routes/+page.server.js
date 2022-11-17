@@ -10,8 +10,9 @@ export const load = async (event) => {
 }
 
 export const actions = {
-	default: async (event) => {
+	async default(event) {
 		const { request } = event
+		console.debug({ event })
 		const { supabaseClient, session } = getSupabase(event)
 		const formData = await request.formData()
 		const fullName = formData.get('fullName')
