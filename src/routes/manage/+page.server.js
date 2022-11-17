@@ -1,6 +1,5 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { getWaitingList } from '$lib/data/queries/waiting_list'
-import supabase from '$lib/admin'
 import { invalid } from '@sveltejs/kit'
 import { env } from '$env/dynamic/public'
 
@@ -21,7 +20,9 @@ export const load = async (event) => {
 }
 
 export const actions = {
-	invite: async ({ locals, request }) => {
+	invite: async (event) => {
+		const { locals, request } = event
+		const { supabaseClient: supabase } = await getSupabase(event)
 		if (!locals.user.isAdmin) {
 			return invalid(401, { message: 'You are not authorized to make this request' })
 		}
@@ -51,7 +52,9 @@ export const actions = {
 
 		return { ...user, isInvited: true, invitedAt: data.invited_at }
 	},
-	remove: async ({ locals, request }) => {
+	remove: async (event) => {
+		const { locals, request } = event
+		const { supabaseClient: supabase } = await getSupabase(event)
 		if (!locals.user.isAdmin) {
 			return invalid(401, { message: 'You are not authorized to make this request' })
 		}
@@ -61,6 +64,19 @@ export const actions = {
 
 		if (!userId) {
 			return invalid(400, { userId: userId, missing: true })
+		}
+
+		// check if invited before allowing delete
+		const { data } = await supabase
+			.from('waiting_list')
+			.select()
+			.match({ id: userId })
+			.maybeSingle()
+
+		if (data) {
+			return invalid(400, {
+				message: `You cannot delete ${data.full_name} from the waiting list`
+			})
 		}
 
 		const { error } = await supabase.from('waiting_list').delete().match({ id: userId })

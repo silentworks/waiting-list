@@ -1,6 +1,10 @@
 <script>
 	import Layout from './_layout.svelte'
+	import Notification from '$lib/common/Notification.svelte'
 	import ButtonAction from '$lib/common/ButtonAction.svelte'
+
+	/** @type {import('./$types').ActionData} */
+	export let form
 
 	/** @type {import('./$types').PageData} */
 	export let data
@@ -9,6 +13,12 @@
 </script>
 
 <Layout>
+	<Notification
+		showNotification={form?.message !== undefined}
+		status={form?.success ? 'success' : 'error'}
+	>
+		{form?.message}
+	</Notification>
 	<div class="box">
 		<table class="table is-fullwidth is-hoverable is-striped">
 			<thead>
@@ -41,7 +51,7 @@
 									</svelte:fragment>
 									{user.isInvited ? 'Invite Again' : 'Invite'}
 								</ButtonAction>
-								<ButtonAction action="?/remove" class="is-danger ml-1">
+								<ButtonAction action="?/remove" class="is-danger ml-1" isDisabled={user.isInvited}>
 									<svelte:fragment slot="inputs">
 										<input name="userId" value={user.id} type="hidden" />
 									</svelte:fragment>

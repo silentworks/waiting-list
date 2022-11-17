@@ -25,7 +25,7 @@
 			<tbody>
 				{#each users as user, index}
 					<tr>
-						<td>{user.fullName} </td>
+						<td>{user.fullName}</td>
 					</tr>
 				{:else}
 					<tr>
