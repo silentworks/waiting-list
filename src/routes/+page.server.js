@@ -1,5 +1,4 @@
 import { WaitingListSchema } from '$lib/auth/validationSchema'
-import { addToWaitingList } from '$lib/data/queries/waiting_list'
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { invalid } from '@sveltejs/kit'
 
@@ -11,7 +10,9 @@ export const load = async (event) => {
 }
 
 export const actions = {
-	default: async ({ request }) => {
+	default: async (event) => {
+		const { request } = event
+		const { supabaseClient: supabase } = getSupabase(event)
 		const formData = await request.formData()
 		const fullName = formData.get('fullName')
 		const email = formData.get('email')
@@ -22,12 +23,15 @@ export const actions = {
 			return invalid(400, { errors: test })
 		}
 
-		const response = await addToWaitingList({ fullName, email })
+		const { error } = await supabase.from('waiting_list').insert({ email, full_name: fullName })
 
-		if (response.statusCode !== 200) {
-			return invalid(400, { success: false, message: response.message })
+		if (error) {
+			return invalid(400, {
+				success: false,
+				message: `You've been successfully added to the waiting list.`
+			})
 		}
 
-		return { success: true, message: response.message }
+		return { success: true, message: `You've been successfully added to the waiting list.` }
 	}
 }

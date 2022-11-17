@@ -1,21 +1,24 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
-import { getWaitingList } from '$lib/data/queries/waiting_list'
 import { invalid } from '@sveltejs/kit'
 import { env } from '$env/dynamic/public'
+import { waitingListsMapper } from '$lib/data/mappers/waiting_list'
 
 /** @type {import('./$types').PageLoad} */
 export const load = async (event) => {
-	const { supabaseClient } = await getSupabase(event)
-	const users = await getWaitingList({ supabase: supabaseClient })
+	const { supabaseClient: supabase } = await getSupabase(event)
+	const { data, error } = await supabase
+		.from('waiting_list')
+		.select('*')
+		.order('created_at', { ascending: false })
 
-	if (users.statusCode !== 200) {
+	if (error) {
 		return {
 			users: []
 		}
 	}
 
 	return {
-		users: users.data
+		users: waitingListsMapper(data)
 	}
 }
 

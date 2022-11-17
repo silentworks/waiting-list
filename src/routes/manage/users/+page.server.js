@@ -1,18 +1,22 @@
+import { usersMapper } from '$lib/data/mappers/users'
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
-import { getProfiles } from '$lib/data/queries/users/getProfile'
 
 /** @type {import('./$types').PageLoad} */
 export const load = async (event) => {
 	const { supabaseClient } = await getSupabase(event)
-	const users = await getProfiles({ supabaseClient })
+	const { error, data } = await supabaseClient
+		.from('profiles')
+		.select('*')
+		.not('is_admin', 'eq', true)
+		.order('created_at', { ascending: false })
 
-	if (users.statusCode !== 200) {
+	if (error) {
 		return {
 			users: []
 		}
 	}
 
 	return {
-		users: users.data
+		users: usersMapper(data)
 	}
 }
