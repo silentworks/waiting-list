@@ -33,8 +33,6 @@
     "@sveltejs/kit": "^1.0.0-next.544",
     "dotenv": "^10.0.0",
     "pragmatic-email-regex": "^1.0.4",
-    "svelte-forms-lib": "^2.0.1",
-    "validator": "^13.7.0",
     "vest": "^3.2.8"
   }
 }

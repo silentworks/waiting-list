@@ -16,8 +16,6 @@ specifiers:
   prettier: ~2.6.2
   prettier-plugin-svelte: ^2.7.0
   svelte: ^3.53.1
-  svelte-forms-lib: ^2.0.1
-  validator: ^13.7.0
   vest: ^3.2.8
   vite: ^3.2.3
 
@@ -26,8 +24,6 @@ dependencies:
   '@sveltejs/kit': 1.0.0-next.544_svelte@3.53.1+vite@3.2.3
   dotenv: 10.0.0
   pragmatic-email-regex: 1.0.4
-  svelte-forms-lib: 2.0.1
-  validator: 13.7.0
   vest: 3.2.8
 
 devDependencies:
@@ -464,11 +460,6 @@ packages:
   /deepmerge/4.2.2:
     resolution: {integrity: sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==}
     engines: {node: '>=0.10.0'}
-
-  /dequal/2.0.3:
-    resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
-    engines: {node: '>=6'}
-    dev: false
 
   /devalue/4.2.0:
     resolution: {integrity: sha512-mbjoAaCL2qogBKgeFxFPOXAUsZchircF+B/79LD4sHH0+NHfYm8gZpQrskKDn5gENGt35+5OI1GUF7hLVnkPDw==}
@@ -1313,12 +1304,6 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  /svelte-forms-lib/2.0.1:
-    resolution: {integrity: sha512-kwbJ3ynsepsrrJyAMrvSc0Lj/myc9vfI2DL8OKxgArZimrNYsRh1gENYhvrcKEI3BiZrv8q3VFfmGo/GMyk7Zg==}
-    dependencies:
-      dequal: 2.0.3
-    dev: false
-
   /svelte-hmr/0.15.0_svelte@3.53.1:
     resolution: {integrity: sha512-Aw21SsyoohyVn4yiKXWPNCSW2DQNH/76kvUnE9kpt4h9hcg9tfyQc6xshx9hzgMfGF0kVx0EGD8oBMWSnATeOg==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
@@ -1402,11 +1387,6 @@ packages:
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
     dev: true
-
-  /validator/13.7.0:
-    resolution: {integrity: sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==}
-    engines: {node: '>= 0.10'}
-    dev: false
 
   /vest/3.2.8:
     resolution: {integrity: sha512-O+GLawwfIO7ESODaJMevsI+LL959dZzjwK6oUYzMTxog+6fZ8U/NPR/ITX6tmECb8EEUVuLkNJ1lGOkoor35SA==}
