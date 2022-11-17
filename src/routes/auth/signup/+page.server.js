@@ -1,7 +1,7 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { SignUpSchema } from '$lib/auth/validationSchema'
 import { invalid, redirect } from '@sveltejs/kit'
-import { env } from '$env/dynamic/public'
+import { env } from '$env/static/public'
 import supabase from '$lib/admin'
 
 export const load = async () => {

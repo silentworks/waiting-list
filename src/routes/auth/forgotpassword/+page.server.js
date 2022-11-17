@@ -1,7 +1,7 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { ForgotPasswordSchema } from '$lib/auth/validationSchema'
 import { invalid } from '@sveltejs/kit'
-import { env } from '$env/dynamic/public'
+import { env } from '$env/static/public'
 
 export const actions = {
 	default: async (event) => {

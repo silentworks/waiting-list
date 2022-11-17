@@ -1,6 +1,6 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { invalid } from '@sveltejs/kit'
-import { env } from '$env/dynamic/public'
+import { env } from '$env/static/public'
 import { waitingListsMapper } from '$lib/data/mappers/waiting_list'
 
 /** @type {import('./$types').PageLoad} */
