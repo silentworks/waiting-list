@@ -10,10 +10,9 @@ export const load = async (event) => {
 }
 
 export const actions = {
-	async default(event) {
+	default: async (event) => {
 		const { request } = event
-		console.debug({ event })
-		const { supabaseClient, session } = getSupabase(event)
+		const { supabaseClient: supabase } = await getSupabase(event)
 		const formData = await request.formData()
 		const fullName = formData.get('fullName')
 		const email = formData.get('email')
@@ -23,10 +22,8 @@ export const actions = {
 		if (test !== true) {
 			return invalid(400, { errors: test })
 		}
-		console.debug({ supabaseClient, session })
-		const { error } = await supabaseClient
-			.from('waiting_list')
-			.insert({ email, full_name: fullName })
+
+		const { error } = await supabase.from('waiting_list').insert({ email, full_name: fullName })
 
 		if (error) {
 			return invalid(400, {
