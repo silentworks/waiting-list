@@ -22,7 +22,7 @@ export const actions = {
 		if (test !== true) {
 			return invalid(400, { errors: test })
 		}
-
+		console.debug({ supabase })
 		const { error } = await supabase.from('waiting_list').insert({ email, full_name: fullName })
 
 		if (error) {
