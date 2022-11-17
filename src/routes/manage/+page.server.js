@@ -1,6 +1,6 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { invalid } from '@sveltejs/kit'
-import { env } from '$env/static/public'
+import { PUBLIC_APP_URL } from '$env/static/public'
 import { waitingListsMapper } from '$lib/data/mappers/waiting_list'
 
 /** @type {import('./$types').PageLoad} */
@@ -32,7 +32,7 @@ export const actions = {
 
 		const formData = await request.formData()
 		const formUser = formData.get('user')
-		const redirectTo = `${env.PUBLIC_APP_URL}logging-in?redirect=/account/password-update`
+		const redirectTo = `${PUBLIC_APP_URL}logging-in?redirect=/account/password-update`
 
 		if (!formUser) {
 			return invalid(400, { user: formUser, missing: true })

@@ -1,7 +1,7 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { ForgotPasswordSchema } from '$lib/auth/validationSchema'
 import { invalid } from '@sveltejs/kit'
-import { env } from '$env/static/public'
+import { PUBLIC_APP_URL } from '$env/static/public'
 
 export const actions = {
 	default: async (event) => {
@@ -9,7 +9,7 @@ export const actions = {
 		const { supabaseClient: supabase } = await getSupabase(event)
 		const formData = await request.formData()
 		const email = formData.get('email')
-		const redirectTo = `${env.PUBLIC_APP_URL}`
+		const redirectTo = `${PUBLIC_APP_URL}`
 
 		const test = ForgotPasswordSchema({ email })
 
