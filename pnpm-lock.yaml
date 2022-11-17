@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@supabase/auth-helpers-sveltekit': ^0.8.6
   '@supabase/supabase-js': ^2.1.0
-  '@sveltejs/adapter-auto': 1.0.0-next.88
   '@sveltejs/adapter-node': 1.0.0-next.100
   '@sveltejs/kit': ^1.0.0-next.544
   dotenv: ^10.0.0
@@ -29,7 +28,6 @@ dependencies:
 
 devDependencies:
   '@supabase/supabase-js': 2.1.0
-  '@sveltejs/adapter-auto': 1.0.0-next.88
   '@sveltejs/adapter-node': 1.0.0-next.100
   eslint: 8.19.0
   eslint-config-prettier: 8.5.0_eslint@8.19.0
@@ -225,12 +223,6 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
-
-  /@sveltejs/adapter-auto/1.0.0-next.88:
-    resolution: {integrity: sha512-WcbELnu0Dz/72T1gbhDHxmNevVMEnQeNVi2IYrEj/uEKSMet4LOIrPv3DAAl8NETgBfzNJbMQpE7r9yL67CMTA==}
-    dependencies:
-      import-meta-resolve: 2.1.0
-    dev: true
 
   /@sveltejs/adapter-node/1.0.0-next.100:
     resolution: {integrity: sha512-XtyweoRcrnD3T/hkqv4XAlhU24VM6/QiUqR2mfs7I3Ji/KrBKWSM2GCpSptnfk3mELK193sJ0T4m6Z3x8uf47w==}
@@ -949,10 +941,6 @@ packages:
     dependencies:
       parent-module: 1.0.1
       resolve-from: 4.0.0
-    dev: true
-
-  /import-meta-resolve/2.1.0:
-    resolution: {integrity: sha512-yG9pxkWJVTy4cmRsNWE3ztFdtFuYIV8G4N+cbCkO8b+qngkLyIUhxQFuZ0qJm67+0nUOxjMPT7nfksPKza1v2g==}
     dev: true
 
   /imurmurhash/0.1.4:
