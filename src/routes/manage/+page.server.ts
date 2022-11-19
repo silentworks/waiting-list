@@ -2,9 +2,9 @@ import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { invalid } from '@sveltejs/kit'
 import { PUBLIC_APP_URL } from '$env/static/public'
 import { waitingListsMapper } from '$lib/data/mappers/waiting_list'
+import type { Actions, PageServerLoad } from './$types'
 
-/** @type {import('./$types').PageLoad} */
-export const load = async (event) => {
+export const load: PageServerLoad = async (event) => {
 	const { supabaseClient: supabase } = await getSupabase(event)
 	const { data, error } = await supabase
 		.from('waiting_list')
@@ -22,7 +22,7 @@ export const load = async (event) => {
 	}
 }
 
-export const actions = {
+export const actions: Actions = {
 	invite: async (event) => {
 		const { locals, request } = event
 		const { supabaseClient: supabase } = await getSupabase(event)

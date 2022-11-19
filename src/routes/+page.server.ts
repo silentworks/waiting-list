@@ -1,15 +1,15 @@
 import { WaitingListSchema } from '$lib/auth/validationSchema'
+import type { PageServerLoad, Actions } from './$types'
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { invalid } from '@sveltejs/kit'
 
-/** @type {import('./$types').LayoutServerLoad} */
-export const load = async (event) => {
+export const load: PageServerLoad = async (event) => {
 	const { session } = await getSupabase(event)
 
 	return { session }
 }
 
-export const actions = {
+export const actions: Actions = {
 	default: async (event) => {
 		const { request } = event
 		const { supabaseClient: supabase } = await getSupabase(event)

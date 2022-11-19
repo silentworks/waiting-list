@@ -1,8 +1,8 @@
 import { usersMapper } from '$lib/data/mappers/users'
+import type { PageServerLoad } from './$types'
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 
-/** @type {import('./$types').PageLoad} */
-export const load = async (event) => {
+export const load: PageServerLoad = async (event) => {
 	const { supabaseClient: supabase } = await getSupabase(event)
 	const { error, data } = await supabase
 		.from('profiles')

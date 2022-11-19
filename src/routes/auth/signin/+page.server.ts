@@ -1,22 +1,22 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { SignInSchema } from '$lib/auth/validationSchema'
 import { invalid, redirect } from '@sveltejs/kit'
+import type { Actions, PageServerLoad } from './$types'
 
-/** @type {import('./$types').PageLoad} */
-export async function load(event) {
+export const load: PageServerLoad = async (event) => {
 	const { session } = await getSupabase(event)
 	if (session) {
 		throw redirect(303, '/account')
 	}
 }
 
-export const actions = {
+export const actions: Actions = {
 	default: async (event) => {
 		const { request } = event
 		const { supabaseClient: supabase } = await getSupabase(event)
 		const formData = await request.formData()
-		const email = formData.get('email')
-		const password = formData.get('password')
+		const email = formData.get('email') as string
+		const password = formData.get('password') as string
 
 		const test = SignInSchema({ email, password })
 
