@@ -9,13 +9,13 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.43.0
   '@typescript-eslint/parser': ^5.43.0
   dotenv: ^10.0.0
+  email-regex: ^5.0.0
   eslint: ^8.19.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-svelte3: ^4.0.0
   ley: ^0.7.1
   pg-connection-string: ^2.5.0
   postgres: ^1.0.2
-  pragmatic-email-regex: ^1.0.4
   prettier: ~2.6.2
   prettier-plugin-svelte: ^2.7.0
   svelte: ^3.53.1
@@ -29,8 +29,7 @@ specifiers:
 dependencies:
   '@supabase/auth-helpers-sveltekit': 0.8.6_zj6vbgpit7u2xp5t7lhhtyhq6e
   '@sveltejs/kit': 1.0.0-next.544_svelte@3.53.1+vite@3.2.3
-  dotenv: 10.0.0
-  pragmatic-email-regex: 1.0.4
+  email-regex: 5.0.0
   vest: 4.6.7
 
 devDependencies:
@@ -39,6 +38,7 @@ devDependencies:
   '@types/cookie': 0.5.1
   '@typescript-eslint/eslint-plugin': 5.43.0_22gm3x357jc3ewc4htazeq32sy
   '@typescript-eslint/parser': 5.43.0_usmmkovhi5rq4o6qby5klkytae
+  dotenv: 10.0.0
   eslint: 8.19.0
   eslint-config-prettier: 8.5.0_eslint@8.19.0
   eslint-plugin-svelte3: 4.0.0_y5cdeyehcp2aughnqqgp2xsklq
@@ -738,6 +738,11 @@ packages:
   /dotenv/10.0.0:
     resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  /email-regex/5.0.0:
+    resolution: {integrity: sha512-he76Cm8JFxb6OGQHabLBPdsiStgPmJeAEhctmw0uhonUh1pCBsHpI6/rB62s2GNzjBb0YlhIcF/1l9Lp5AfH0Q==}
+    engines: {node: '>=12'}
     dev: false
 
   /es5-ext/0.10.61:
@@ -1577,10 +1582,6 @@ packages:
   /postgres/1.0.2:
     resolution: {integrity: sha512-zeLgt42KSUNgX/uvo+gbVxTAYwgSY6MIKuU/a8YWuObX4rtGuKrVWopvEAqIAPSO0FeHS1TsSKnqPjoufPy8NA==}
     dev: true
-
-  /pragmatic-email-regex/1.0.4:
-    resolution: {integrity: sha512-5mASbs4Q2d6M7UBkEvNkQgxCOmz0y4xOswyGFJyVxoS3aiEwcvXnJs4eOfc+NF8t1CxvM64DlY/4MvbM9WR8qA==}
-    dev: false
 
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}

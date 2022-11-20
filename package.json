@@ -21,6 +21,7 @@
     "@types/cookie": "^0.5.1",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
+    "dotenv": "^10.0.0",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-svelte3": "^4.0.0",
@@ -40,8 +41,7 @@
   "dependencies": {
     "@supabase/auth-helpers-sveltekit": "^0.8.6",
     "@sveltejs/kit": "^1.0.0-next.544",
-    "dotenv": "^10.0.0",
-    "pragmatic-email-regex": "^1.0.4",
+    "email-regex": "^5.0.0",
     "vest": "^4.6.7"
   }
 }

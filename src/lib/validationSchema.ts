@@ -1,17 +1,18 @@
 import { create, test, enforce, skipWhen } from 'vest'
-import isEmail from 'pragmatic-email-regex'
+import emailRegex from 'email-regex'
 import { suiteRun } from '$lib/utils'
 
-enforce.extend({ isEmail })
+enforce.extend({
+	isValidEmail: (value) => emailRegex({ exact: true }).test(value)
+})
 
 const emailValidation = (data: { email: string }) => {
 	test('email', 'Email is required', () => {
 		enforce(data.email).isString().isNotEmpty()
 	})
 
-	console.log({ e: data.email })
 	test('email', 'Email Address is not valid', () => {
-		enforce(data.email).isEmail()
+		enforce(data.email).isValidEmail()
 	})
 }
 
