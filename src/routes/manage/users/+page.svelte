@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
+	import type { PageData } from './$types'
 	import Layout from '../_layout.svelte'
 
-	/** @type {import('./$types').PageData} */
-	export let data
+	export let data: PageData
 	let { users } = data
 	$: ({ users } = data)
 </script>
@@ -23,7 +23,7 @@
 				</tr>
 			</tfoot>
 			<tbody>
-				{#each users as user, index}
+				{#each users as user}
 					<tr>
 						<td>{user.fullName}</td>
 					</tr>

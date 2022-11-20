@@ -9,7 +9,7 @@ export const actions: Actions = {
 		const { supabaseClient: supabase } = await getSupabase(event)
 		const formData = await request.formData()
 		const password = formData.get('password') as string
-		const passwordConfirm = formData.get('passwordConfirm')
+		const passwordConfirm = formData.get('passwordConfirm') as string
 
 		const test = ResetPasswordSchema({ password, passwordConfirm })
 

@@ -3,6 +3,7 @@ import { invalid } from '@sveltejs/kit'
 import { PUBLIC_APP_URL } from '$env/static/public'
 import { waitingListsMapper } from '$lib/data/mappers/waiting_list'
 import type { Actions, PageServerLoad } from './$types'
+import supabase from '$lib/admin'
 
 export const load: PageServerLoad = async (event) => {
 	const { supabaseClient: supabase } = await getSupabase(event)
@@ -25,7 +26,6 @@ export const load: PageServerLoad = async (event) => {
 export const actions: Actions = {
 	invite: async (event) => {
 		const { locals, request } = event
-		const { supabaseClient: supabase } = await getSupabase(event)
 		if (!locals.user.isAdmin) {
 			return invalid(401, { message: 'You are not authorized to make this request' })
 		}
@@ -76,7 +76,8 @@ export const actions: Actions = {
 			.match({ id: userId })
 			.maybeSingle()
 
-		if (data) {
+		if (data && data.invited_at) {
+			console.log({ data })
 			return invalid(400, {
 				message: `You cannot delete ${data.full_name} from the waiting list`
 			})
@@ -87,6 +88,6 @@ export const actions: Actions = {
 			return invalid(400, { message: 'There was an error deleting the user.' })
 		}
 
-		return { success: true }
+		return { success: true, message: 'User was deleted successfully' }
 	}
 }

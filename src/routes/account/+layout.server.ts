@@ -12,7 +12,7 @@ export const load: LayoutServerLoad = async (event) => {
 
 	session.user = { ...session.user, ...user }
 
-	if (session.user?.isAdmin) {
+	if (user?.isAdmin) {
 		throw redirect(303, '/manage')
 	}
 

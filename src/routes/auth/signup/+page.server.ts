@@ -28,7 +28,7 @@ export const actions: Actions = {
 		const formData = await request.formData()
 		const email = formData.get('email') as string
 		const password = formData.get('password') as string
-		const fullName = formData.get('fullName')
+		const fullName = formData.get('fullName') as string
 		const emailRedirectTo = `${PUBLIC_APP_URL}logging-in`
 
 		const test = SignUpSchema({ email, password, fullName })

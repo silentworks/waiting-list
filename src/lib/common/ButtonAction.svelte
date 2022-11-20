@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
 	import { enhance } from '$app/forms'
 
-	export let action
+	export let action: string
 	export let isDisabled = false
-	let isLoading = false
-	let className
+	export let isLoading = false
+	let className = ''
 	export { className as class }
 </script>
 

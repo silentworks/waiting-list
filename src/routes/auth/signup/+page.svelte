@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import { enhance } from '$app/forms'
 	import Notification from '$lib/common/Notification.svelte'
+	import type { ActionData } from './$types'
 
-	/** @type {import('./$types').ActionData} */
-	export let form
+	export let form: ActionData
 </script>
 
 <svelte:head>
@@ -54,7 +54,7 @@
 						<p class="control">
 							<input
 								name="password"
-								value={form?.password ?? ''}
+								value=""
 								class="input"
 								type="password"
 								placeholder="Password"

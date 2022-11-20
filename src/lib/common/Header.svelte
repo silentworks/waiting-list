@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores'
 	import { supabaseClient } from '$lib/db'
 
 	let showDropdown = false
 	const dropDown = () => (showDropdown = !showDropdown)
 
-	const keyboardDropDown = ({ key, target }) => {
+	const keyboardDropDown = ({ key }: { key: string }) => {
 		if (key === 'Escape') {
 			showDropdown = false
 		}

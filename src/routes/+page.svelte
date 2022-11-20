@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores'
 	import Notification from '$lib/common/Notification.svelte'
 	import { enhance } from '$app/forms'
+	import type { ActionData } from './$types'
 
-	/** @type {import('./$types').ActionData} */
-	export let form
+	export let form: ActionData
 </script>
 
 <div class="container is-max-desktop p-6">

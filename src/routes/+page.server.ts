@@ -14,13 +14,13 @@ export const actions: Actions = {
 		const { request } = event
 		const { supabaseClient: supabase } = await getSupabase(event)
 		const formData = await request.formData()
-		const fullName = formData.get('fullName')
-		const email = formData.get('email')
+		const fullName = formData.get('fullName') as string
+		const email = formData.get('email') as string
 
 		const test = WaitingListSchema({ fullName, email })
 
 		if (test !== true) {
-			return invalid(400, { errors: test })
+			return invalid(400, { errors: test, fullName, email })
 		}
 
 		const { error } = await supabase.from('waiting_list').insert({ email, full_name: fullName })

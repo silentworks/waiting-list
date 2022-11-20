@@ -15,7 +15,7 @@ export const actions: Actions = {
 		const test = ForgotPasswordSchema({ email })
 
 		if (test !== true) {
-			return invalid(400, { errors: test })
+			return invalid(400, { errors: test, email })
 		}
 
 		const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo })

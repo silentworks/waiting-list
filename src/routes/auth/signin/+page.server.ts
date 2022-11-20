@@ -21,7 +21,7 @@ export const actions: Actions = {
 		const test = SignInSchema({ email, password })
 
 		if (test !== true) {
-			return invalid(400, { errors: test })
+			return invalid(400, { errors: test, email })
 		}
 
 		const { error } = await supabase.auth.signInWithPassword({ email, password })
