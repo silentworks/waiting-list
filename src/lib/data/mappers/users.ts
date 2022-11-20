@@ -1,5 +1,5 @@
 import type { User } from '@supabase/supabase-js'
-import type { Database } from '../../../schema.js'
+import type { Database } from '../../schema.js'
 import { withDefault } from './internal.js'
 
 interface UserMapper {

@@ -4,7 +4,7 @@
 // for information about these interfaces
 declare namespace App {
 	interface Supabase {
-		Database: import('./schema').Database
+		Database: import('./lib/schema').Database
 		SchemaName: 'public'
 	}
 

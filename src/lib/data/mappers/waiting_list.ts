@@ -1,4 +1,4 @@
-import type { Database } from '../../../schema.js'
+import type { Database } from '../../schema.js'
 import { withDefault } from './internal.js'
 
 export interface WaitingListMapper {
