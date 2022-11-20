@@ -1,4 +1,4 @@
-import { WaitingListSchema } from '$lib/auth/validationSchema'
+import { WaitingListSchema } from '$lib/validationSchema'
 import type { PageServerLoad, Actions } from './$types'
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { invalid } from '@sveltejs/kit'

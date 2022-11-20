@@ -1,5 +1,5 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
-import { ResetPasswordSchema } from '$lib/auth/validationSchema'
+import { ResetPasswordSchema } from '$lib/validationSchema'
 import { invalid } from '@sveltejs/kit'
 import type { Actions } from './$types'
 

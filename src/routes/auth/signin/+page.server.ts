@@ -1,5 +1,5 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
-import { SignInSchema } from '$lib/auth/validationSchema'
+import { SignInSchema } from '$lib/validationSchema'
 import { invalid, redirect } from '@sveltejs/kit'
 import type { Actions, PageServerLoad } from './$types'
 

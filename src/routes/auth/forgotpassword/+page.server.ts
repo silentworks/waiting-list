@@ -1,5 +1,5 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
-import { ForgotPasswordSchema } from '$lib/auth/validationSchema'
+import { ForgotPasswordSchema } from '$lib/validationSchema'
 import { invalid } from '@sveltejs/kit'
 import { PUBLIC_APP_URL } from '$env/static/public'
 import type { Actions } from './$types'

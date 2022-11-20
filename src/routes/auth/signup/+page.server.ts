@@ -1,5 +1,5 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
-import { SignUpSchema } from '$lib/auth/validationSchema'
+import { SignUpSchema } from '$lib/validationSchema'
 import { invalid, redirect } from '@sveltejs/kit'
 import { PUBLIC_APP_URL } from '$env/static/public'
 import supabase from '$lib/admin'
