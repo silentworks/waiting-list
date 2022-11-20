@@ -5,7 +5,6 @@ Example Supabase application showing how to use the `inviteUserByEmail` api to i
 This project is built with:
 
 - [SvelteKit](https://kit.svelte.dev/)
-- [Svelte Form Library](https://github.com/tjinauyeung/svelte-forms-lib)
 - [Bulma](https://bulma.io/)
 - [Vest](https://vestjs.dev/)
 - [Supabase](https://supabase.com/)
@@ -36,9 +35,8 @@ Copy the `env.example` and name it `.env`
 Edit the file and enter all the required variable values
 
 ```
-VITE_APP_URL=http://localhost:3000/
-VITE_SUPABASE_URL=
-VITE_SUPABASE_ANON_KEY=
+PUBLIC_SUPABASE_URL=
+PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 CONNECTION_STRING=
 ```
@@ -59,7 +57,7 @@ Once the project server is running you can visit the signup path `/auth/signup` 
 
 ### Start development server
 
-Once you've created a project and installed dependencies with `pnpm install`, start a development server:
+Once you've created a project and installed dependencies with `pnpm install` (or `npm install` or `yarn`), start a development server:
 
 ```bash
 pnpm dev
@@ -70,10 +68,12 @@ pnpm dev -- --open
 
 ## Building
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
+To create a production version of your app:
 
 ```bash
 pnpm build
 ```
 
-> You can preview the built app with `pnpm preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+You can preview the production build with `pnpm preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.

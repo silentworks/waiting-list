@@ -1,7 +1,6 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { SignUpSchema } from '$lib/validationSchema'
 import { invalid, redirect } from '@sveltejs/kit'
-import { PUBLIC_APP_URL } from '$env/static/public'
 import supabase from '$lib/admin'
 import type { Actions, PageServerLoad } from './$types'
 
@@ -23,13 +22,13 @@ export const load: PageServerLoad = async () => {
 
 export const actions: Actions = {
 	default: async (event) => {
-		const { request } = event
+		const { request, url } = event
 		const { supabaseClient: supabase } = await getSupabase(event)
 		const formData = await request.formData()
 		const email = formData.get('email') as string
 		const password = formData.get('password') as string
 		const fullName = formData.get('fullName') as string
-		const emailRedirectTo = `${PUBLIC_APP_URL}logging-in`
+		const emailRedirectTo = `${url.origin}/logging-in`
 
 		const test = SignUpSchema({ email, password, fullName })
 

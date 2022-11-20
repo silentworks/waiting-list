@@ -1,6 +1,5 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { invalid } from '@sveltejs/kit'
-import { PUBLIC_APP_URL } from '$env/static/public'
 import { waitingListsMapper } from '$lib/data/mappers/waiting_list'
 import type { Actions, PageServerLoad } from './$types'
 import supabase from '$lib/admin'
@@ -25,14 +24,14 @@ export const load: PageServerLoad = async (event) => {
 
 export const actions: Actions = {
 	invite: async (event) => {
-		const { locals, request } = event
+		const { locals, request, url } = event
 		if (!locals.user.isAdmin) {
 			return invalid(401, { message: 'You are not authorized to make this request' })
 		}
 
 		const formData = await request.formData()
 		const formUser = formData.get('user') as string
-		const redirectTo = `${PUBLIC_APP_URL}logging-in?redirect=/account/password-update`
+		const redirectTo = `${url.origin}/logging-in?redirect=/account/password-update`
 
 		if (!formUser) {
 			return invalid(400, { user: formUser, missing: true })

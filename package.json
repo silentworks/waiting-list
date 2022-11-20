@@ -1,6 +1,6 @@
 {
   "name": "waiting-list",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
@@ -18,6 +18,7 @@
   "devDependencies": {
     "@supabase/supabase-js": "^2.1.0",
     "@sveltejs/adapter-node": "1.0.0-next.100",
+    "@sveltejs/kit": "1.0.0-next.544",
     "@types/cookie": "^0.5.1",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
@@ -40,7 +41,6 @@
   "type": "module",
   "dependencies": {
     "@supabase/auth-helpers-sveltekit": "^0.8.6",
-    "@sveltejs/kit": "^1.0.0-next.544",
     "email-regex": "^5.0.0",
     "vest": "^4.6.7"
   }
