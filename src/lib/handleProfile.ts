@@ -1,7 +1,8 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { combinedUserMapper } from '$lib/data/mappers/users'
+import type { Handle } from '@sveltejs/kit'
 
-export async function handleProfile({ event, resolve }) {
+export const handleProfile: Handle = async ({ event, resolve }) => {
 	const { session, supabaseClient } = await getSupabase(event)
 
 	if (session) {
