@@ -1,8 +1,8 @@
+import type { LayoutServerLoad } from './$types'
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { redirect } from '@sveltejs/kit'
 
-/** @type {import('./$types').PageLoad} */
-export const load = async (event) => {
+export const load: LayoutServerLoad = async (event) => {
 	const { user } = event.locals
 	const { session } = await getSupabase(event)
 
@@ -12,7 +12,7 @@ export const load = async (event) => {
 
 	session.user = { ...session.user, ...user }
 
-	if (!session.user?.isAdmin) {
+	if (!user?.isAdmin) {
 		throw redirect(303, '/account')
 	}
 

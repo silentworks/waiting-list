@@ -1,13 +1,12 @@
-<script>
+<script lang="ts">
 	import Layout from './_layout.svelte'
 	import Notification from '$lib/common/Notification.svelte'
 	import ButtonAction from '$lib/common/ButtonAction.svelte'
+	import type { ActionData, PageData } from './$types'
 
-	/** @type {import('./$types').ActionData} */
-	export let form
+	export let form: ActionData
 
-	/** @type {import('./$types').PageData} */
-	export let data
+	export let data: PageData
 	let { users } = data
 	$: ({ users } = data)
 </script>

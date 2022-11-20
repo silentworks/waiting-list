@@ -2,9 +2,10 @@ import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { invalid } from '@sveltejs/kit'
 import { PUBLIC_APP_URL } from '$env/static/public'
 import { waitingListsMapper } from '$lib/data/mappers/waiting_list'
+import type { Actions, PageServerLoad } from './$types'
+import supabase from '$lib/admin'
 
-/** @type {import('./$types').PageLoad} */
-export const load = async (event) => {
+export const load: PageServerLoad = async (event) => {
 	const { supabaseClient: supabase } = await getSupabase(event)
 	const { data, error } = await supabase
 		.from('waiting_list')
@@ -22,16 +23,15 @@ export const load = async (event) => {
 	}
 }
 
-export const actions = {
+export const actions: Actions = {
 	invite: async (event) => {
 		const { locals, request } = event
-		const { supabaseClient: supabase } = await getSupabase(event)
 		if (!locals.user.isAdmin) {
 			return invalid(401, { message: 'You are not authorized to make this request' })
 		}
 
 		const formData = await request.formData()
-		const formUser = formData.get('user')
+		const formUser = formData.get('user') as string
 		const redirectTo = `${PUBLIC_APP_URL}logging-in?redirect=/account/password-update`
 
 		if (!formUser) {
@@ -53,7 +53,7 @@ export const actions = {
 			return invalid(400, { message: 'There was an error sending the invite link.' })
 		}
 
-		return { ...user, isInvited: true, invitedAt: data.invited_at }
+		return { ...user, isInvited: true, invitedAt: data.user.invited_at }
 	},
 	remove: async (event) => {
 		const { locals, request } = event
@@ -76,7 +76,8 @@ export const actions = {
 			.match({ id: userId })
 			.maybeSingle()
 
-		if (data) {
+		if (data && data.invited_at) {
+			console.log({ data })
 			return invalid(400, {
 				message: `You cannot delete ${data.full_name} from the waiting list`
 			})
@@ -87,6 +88,6 @@ export const actions = {
 			return invalid(400, { message: 'There was an error deleting the user.' })
 		}
 
-		return { success: true }
+		return { success: true, message: 'User was deleted successfully' }
 	}
 }

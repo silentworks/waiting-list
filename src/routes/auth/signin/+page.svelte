@@ -1,16 +1,17 @@
-<script>
+<script lang="ts">
 	import Notification from '$lib/common/Notification.svelte'
 	import { enhance, applyAction } from '$app/forms'
 	import { invalidate } from '$app/navigation'
+	import type { ActionData } from './$types'
+	import type { ActionResult } from '@sveltejs/kit'
 
 	let isSubmitting = false
 
-	/** @type {import('./$types').ActionData} */
-	export let form
+	export let form: ActionData
 
 	const handleSubmit = () => {
 		isSubmitting = true
-		return async ({ result }) => {
+		return async ({ result }: { result: ActionResult }) => {
 			if (result.type === 'redirect') {
 				await invalidate('supabase:auth')
 			} else {
@@ -60,7 +61,7 @@
 						<p class="control">
 							<input
 								name="password"
-								value={form?.password ?? ''}
+								value=""
 								class="input"
 								type="password"
 								placeholder="Password"

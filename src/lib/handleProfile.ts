@@ -1,7 +1,8 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
-import { combinedUserMapper } from '$lib/data/mappers/users'
+import { combinedUserMapper, type UserProfileProp } from '$lib/data/mappers/users'
+import type { Handle } from '@sveltejs/kit'
 
-export async function handleProfile({ event, resolve }) {
+export const handleProfile: Handle = async ({ event, resolve }) => {
 	const { session, supabaseClient } = await getSupabase(event)
 
 	if (session) {
@@ -12,7 +13,9 @@ export async function handleProfile({ event, resolve }) {
 				.select('*')
 				.eq('id', user?.id)
 				.maybeSingle()
-			event.locals.user = combinedUserMapper({ ...user, ...profile })
+
+			const userProfile: UserProfileProp = Object.assign(user, profile)
+			event.locals.user = combinedUserMapper(userProfile)
 		}
 	}
 
