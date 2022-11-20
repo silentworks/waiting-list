@@ -1,4 +1,5 @@
 import type { User } from '@supabase/supabase-js'
+import type { Database } from 'src/schema.js'
 import { withDefault } from './internal.js'
 
 interface UserMapper {
@@ -7,33 +8,34 @@ interface UserMapper {
 }
 
 interface LoggedInUserMapper {
-	last_sign_in_at: string
+	last_sign_in_at?: string
 	authenticated: boolean
-	email: string
+	email?: string
 	id: string
 }
 
-export type UserProfile = UserMapper & LoggedInUserMapper & User
+type ProfileRow = Database['public']['Tables']['profiles']['Row']
+type UserProp = Pick<ProfileRow, 'full_name' | 'is_admin'>
+type MyUser = Pick<User, 'id' | 'email' | 'aud' | 'last_sign_in_at'>
 
-export const userMapper = (user): UserMapper => ({
-	fullName: withDefault<string, string>(user.full_name, ''),
-	isAdmin: user.is_admin
+export const userMapper = (user: UserProp): UserMapper => ({
+	fullName: withDefault<string | null, string>(user.full_name, ''),
+	isAdmin: user.is_admin ? true : false
 })
 
-export const userToDBMapper = (user) => ({
-	full_name: withDefault<string, null>(user.fullName, null)
-})
+export const usersMapper = (users: UserProp[]) => users.map((u) => userMapper(u))
 
-export const usersMapper = (users) => users.map((u) => userMapper(u))
-
-export const loggedInUserMapper = (user): LoggedInUserMapper => ({
+export const loggedInUserMapper = (user: MyUser): LoggedInUserMapper => ({
 	last_sign_in_at: user.last_sign_in_at,
 	authenticated: user.aud === 'authenticated',
 	email: user.email,
 	id: user.id
 })
 
-export const combinedUserMapper = (user) => ({
+export type UserProfileProp = MyUser & UserProp
+export type CombinedUserMapper = LoggedInUserMapper & UserMapper
+
+export const combinedUserMapper = (user: UserProfileProp) => ({
 	...loggedInUserMapper(user),
 	...userMapper(user)
 })

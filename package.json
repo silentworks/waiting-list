@@ -42,6 +42,6 @@
     "@sveltejs/kit": "^1.0.0-next.544",
     "dotenv": "^10.0.0",
     "pragmatic-email-regex": "^1.0.4",
-    "vest": "^3.2.8"
+    "vest": "^4.6.7"
   }
 }

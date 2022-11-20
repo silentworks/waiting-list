@@ -1,3 +1,5 @@
+import type { Suite } from 'vest'
+
 export const formatErrors = (errors) => {
 	let formattedErrors = {}
 	for (const err in errors) {
@@ -9,7 +11,7 @@ export const formatErrors = (errors) => {
 	return formattedErrors
 }
 
-export const suiteRun = (suite, data) => {
+export const suiteRun = (suite: Suite, data: any) => {
 	suite(data)
 	const result = suite.get()
 	if (result.isValid()) {

@@ -1,10 +1,10 @@
-import vest, { test, enforce, skipWhen } from 'vest'
+import { create, test, enforce, skipWhen } from 'vest'
 import isEmail from 'pragmatic-email-regex'
 import { suiteRun } from '$lib/utils'
 
 enforce.extend({ isEmail })
 
-const emailValidation = (data) => {
+const emailValidation = (data: { email: string }) => {
 	test('email', 'Email is required', () => {
 		enforce(data.email).isString().isNotEmpty()
 	})
@@ -15,7 +15,7 @@ const emailValidation = (data) => {
 	// })
 }
 
-const passwordValidation = (data) => {
+const passwordValidation = (data: { password: string }) => {
 	test('password', 'Password is required', () => {
 		enforce(data.password).isString().isNotEmpty()
 	})
@@ -25,16 +25,16 @@ const passwordValidation = (data) => {
 	})
 }
 
-const forgotPasswordSuite = vest.create((data) => {
+const forgotPasswordSuite = create((data) => {
 	emailValidation(data)
 })
 
-const signInSuite = vest.create((data) => {
+const signInSuite = create((data) => {
 	emailValidation(data)
 	passwordValidation(data)
 })
 
-const signUpSuite = vest.create((data) => {
+const signUpSuite = create((data) => {
 	emailValidation(data)
 	passwordValidation(data)
 
@@ -43,7 +43,7 @@ const signUpSuite = vest.create((data) => {
 	})
 })
 
-const waitingListSuite = vest.create((data) => {
+const waitingListSuite = create((data) => {
 	emailValidation(data)
 
 	test('fullName', 'Full Name is required', () => {
@@ -51,7 +51,7 @@ const waitingListSuite = vest.create((data) => {
 	})
 })
 
-const resetPasswordSuite = vest.create((data) => {
+const resetPasswordSuite = create((data) => {
 	passwordValidation(data)
 
 	skipWhen(!data.password, () => {
@@ -61,8 +61,32 @@ const resetPasswordSuite = vest.create((data) => {
 	})
 })
 
-export const ForgotPasswordSchema = (data) => suiteRun(forgotPasswordSuite, data)
-export const SignInSchema = (data) => suiteRun(signInSuite, data)
-export const SignUpSchema = (data) => suiteRun(signUpSuite, data)
-export const WaitingListSchema = (data) => suiteRun(waitingListSuite, data)
-export const ResetPasswordSchema = (data) => suiteRun(resetPasswordSuite, data)
+interface ForgotPassword {
+	email: string
+}
+
+interface SignIn {
+	email: string
+	password: string
+}
+
+interface SignUp {
+	email: string
+	password: string
+	fullName: string
+}
+
+interface WaitingList {
+	email: string
+	fullName: string
+}
+interface ResetPassword {
+	password: string
+	passwordConfirm: string
+}
+
+export const ForgotPasswordSchema = (data: ForgotPassword) => suiteRun(forgotPasswordSuite, data)
+export const SignInSchema = (data: SignIn) => suiteRun(signInSuite, data)
+export const SignUpSchema = (data: SignUp) => suiteRun(signUpSuite, data)
+export const WaitingListSchema = (data: WaitingList) => suiteRun(waitingListSuite, data)
+export const ResetPasswordSchema = (data: ResetPassword) => suiteRun(resetPasswordSuite, data)

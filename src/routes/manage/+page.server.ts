@@ -31,7 +31,7 @@ export const actions: Actions = {
 		}
 
 		const formData = await request.formData()
-		const formUser = formData.get('user')
+		const formUser = formData.get('user') as string
 		const redirectTo = `${PUBLIC_APP_URL}logging-in?redirect=/account/password-update`
 
 		if (!formUser) {
@@ -53,7 +53,7 @@ export const actions: Actions = {
 			return invalid(400, { message: 'There was an error sending the invite link.' })
 		}
 
-		return { ...user, isInvited: true, invitedAt: data.invited_at }
+		return { ...user, isInvited: true, invitedAt: data.user.invited_at }
 	},
 	remove: async (event) => {
 		const { locals, request } = event
