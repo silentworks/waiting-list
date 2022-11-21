@@ -49,7 +49,7 @@ export const actions: Actions = {
 		})
 
 		if (error) {
-			console.log({ error, redirectTo })
+			console.log({ error, supabase })
 			return invalid(400, { message: 'There was an error sending the invite link.' })
 		}
 
