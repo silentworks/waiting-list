@@ -49,6 +49,7 @@ export const actions: Actions = {
 		})
 
 		if (error) {
+			console.log({ error, redirectTo })
 			return invalid(400, { message: 'There was an error sending the invite link.' })
 		}
 
