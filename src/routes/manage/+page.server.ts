@@ -76,7 +76,6 @@ export const actions: Actions = {
 			.maybeSingle()
 
 		if (data && data.invited_at) {
-			console.log({ data })
 			return invalid(400, {
 				message: `You cannot delete ${data.full_name} from the waiting list`
 			})
