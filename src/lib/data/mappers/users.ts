@@ -3,6 +3,7 @@ import type { Database } from '../../schema.js'
 import { withDefault } from './internal.js'
 
 interface UserMapper {
+	id: string
 	fullName: string | null
 	isAdmin: boolean
 }
@@ -15,10 +16,11 @@ interface LoggedInUserMapper {
 }
 
 type ProfileRow = Database['public']['Tables']['profiles']['Row']
-type UserProp = Pick<ProfileRow, 'full_name' | 'is_admin'>
+type UserProp = Pick<ProfileRow, 'id' | 'full_name' | 'is_admin'>
 type MyUser = Pick<User, 'id' | 'email' | 'aud' | 'last_sign_in_at'>
 
 export const userMapper = (user: UserProp): UserMapper => ({
+	id: user.id,
 	fullName: withDefault<string | null, string>(user.full_name, ''),
 	isAdmin: user.is_admin ? true : false
 })

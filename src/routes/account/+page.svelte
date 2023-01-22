@@ -21,12 +21,12 @@
 				>
 			</li>
 			<li>
-				<a href="https://supabase.com/docs/reference/javascript/auth-api-inviteuserbyemail"
+				<a href="https://supabase.com/docs/reference/javascript/auth-admin-inviteuserbyemail"
 					>Invite user</a
 				>
 			</li>
 			<li>
-				<a href="https://supabase.com/docs/reference/javascript/auth-signin#sign-in-with-magic-link"
+				<a href="https://supabase.com/docs/reference/javascript/auth-signinwithotp"
 					>Sign in with magic link</a
 				>
 			</li>
