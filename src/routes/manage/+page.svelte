@@ -59,6 +59,10 @@
 							</div>
 						</td>
 					</tr>
+				{:else}
+					<tr>
+						<td colspan="4" class="has-text-centered">No user was found on the waiting list</td>
+					</tr>
 				{/each}
 			</tbody>
 		</table>

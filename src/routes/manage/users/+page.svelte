@@ -51,7 +51,7 @@
 					</tr>
 				{:else}
 					<tr>
-						<td colspan="2" class="has-text-centered">No records found</td>
+						<td colspan="2" class="has-text-centered">No user has been invited as yet</td>
 					</tr>
 				{/each}
 			</tbody>
