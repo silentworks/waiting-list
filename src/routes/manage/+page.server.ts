@@ -1,5 +1,5 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
-import { invalid } from '@sveltejs/kit'
+import { fail } from '@sveltejs/kit'
 import { waitingListsMapper } from '$lib/data/mappers/waiting_list'
 import type { Actions, PageServerLoad } from './$types'
 import supabase from '$lib/admin'
@@ -26,7 +26,7 @@ export const actions: Actions = {
 	invite: async (event) => {
 		const { locals, request, url } = event
 		if (!locals.user.isAdmin) {
-			return invalid(401, { message: 'You are not authorized to make this request' })
+			return fail(401, { message: 'You are not authorized to make this request' })
 		}
 
 		const formData = await request.formData()
@@ -34,7 +34,7 @@ export const actions: Actions = {
 		const redirectTo = `${url.origin}/logging-in?redirect=/account/password-update`
 
 		if (!formUser) {
-			return invalid(400, { user: formUser, missing: true })
+			return fail(400, { user: formUser, missing: true })
 		}
 
 		const user = JSON.parse(formUser)
@@ -49,7 +49,7 @@ export const actions: Actions = {
 		})
 
 		if (error) {
-			return invalid(400, { message: 'There was an error sending the invite link.' })
+			return fail(400, { message: 'There was an error sending the invite link.' })
 		}
 
 		return { ...user, isInvited: true, invitedAt: data.user.invited_at }
@@ -58,14 +58,14 @@ export const actions: Actions = {
 		const { locals, request } = event
 		const { supabaseClient: supabase } = await getSupabase(event)
 		if (!locals.user.isAdmin) {
-			return invalid(401, { message: 'You are not authorized to make this request' })
+			return fail(401, { message: 'You are not authorized to make this request' })
 		}
 
 		const formData = await request.formData()
 		const userId = formData.get('userId')
 
 		if (!userId) {
-			return invalid(400, { userId: userId, missing: true })
+			return fail(400, { userId: userId, missing: true })
 		}
 
 		// check if invited before allowing delete
@@ -76,14 +76,14 @@ export const actions: Actions = {
 			.maybeSingle()
 
 		if (data && data.invited_at) {
-			return invalid(400, {
+			return fail(400, {
 				message: `You cannot delete ${data.full_name} from the waiting list`
 			})
 		}
 
 		const { error } = await supabase.from('waiting_list').delete().match({ id: userId })
 		if (error) {
-			return invalid(400, { message: 'There was an error deleting the user.' })
+			return fail(400, { message: 'There was an error deleting the user.' })
 		}
 
 		return { success: true, message: 'User was deleted successfully' }

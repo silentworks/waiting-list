@@ -1,6 +1,6 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { ForgotPasswordSchema } from '$lib/validationSchema'
-import { invalid } from '@sveltejs/kit'
+import { fail } from '@sveltejs/kit'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
@@ -14,13 +14,13 @@ export const actions: Actions = {
 		const test = ForgotPasswordSchema({ email })
 
 		if (test !== true) {
-			return invalid(400, { errors: test, email })
+			return fail(400, { errors: test, email })
 		}
 
 		const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo })
 
 		if (error) {
-			return invalid(400, {
+			return fail(400, {
 				success: false,
 				message: error.message
 			})

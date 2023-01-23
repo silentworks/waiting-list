@@ -1,6 +1,6 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { SignUpSchema } from '$lib/validationSchema'
-import { invalid, redirect } from '@sveltejs/kit'
+import { fail, redirect } from '@sveltejs/kit'
 import supabase from '$lib/admin'
 import type { Actions, PageServerLoad } from './$types'
 
@@ -33,7 +33,7 @@ export const actions: Actions = {
 		const test = SignUpSchema({ email, password, fullName })
 
 		if (test !== true) {
-			return invalid(400, { errors: test, email, password, fullName })
+			return fail(400, { errors: test, email, password, fullName })
 		}
 
 		const { error } = await supabase.auth.signUp({
@@ -49,7 +49,7 @@ export const actions: Actions = {
 		})
 
 		if (error) {
-			return invalid(400, {
+			return fail(400, {
 				success: false,
 				message: error.message,
 				email,

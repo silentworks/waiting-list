@@ -1,7 +1,7 @@
 import { usersMapper } from '$lib/data/mappers/users'
 import type { Actions, PageServerLoad } from './$types'
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
-import { invalid } from '@sveltejs/kit'
+import { fail } from '@sveltejs/kit'
 import supabase from '$lib/admin'
 
 export const load: PageServerLoad = async (event) => {
@@ -27,7 +27,7 @@ export const actions: Actions = {
 	remove: async (event) => {
 		const { locals, request } = event
 		if (!locals.user.isAdmin) {
-			return invalid(401, { message: 'You are not authorized to make this request' })
+			return fail(401, { message: 'You are not authorized to make this request' })
 		}
 
 		const formData = await request.formData()
@@ -35,14 +35,14 @@ export const actions: Actions = {
 		const userFullName = formData.get('userFullName') as string
 
 		if (!userId) {
-			return invalid(400, { userId: userId, missing: true })
+			return fail(400, { userId: userId, missing: true })
 		}
 
 		// check if invited before allowing delete
 		const { error } = await supabase.auth.admin.deleteUser(userId)
 
 		if (error) {
-			return invalid(400, {
+			return fail(400, {
 				message: `You cannot delete ${userFullName} from the waiting list`
 			})
 		}

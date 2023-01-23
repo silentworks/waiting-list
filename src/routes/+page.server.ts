@@ -1,7 +1,7 @@
 import { WaitingListSchema } from '$lib/validationSchema'
 import type { PageServerLoad, Actions } from './$types'
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
-import { invalid } from '@sveltejs/kit'
+import { fail } from '@sveltejs/kit'
 
 export const load: PageServerLoad = async (event) => {
 	const { session } = await getSupabase(event)
@@ -20,13 +20,13 @@ export const actions: Actions = {
 		const test = WaitingListSchema({ fullName, email })
 
 		if (test !== true) {
-			return invalid(400, { errors: test, fullName, email })
+			return fail(400, { errors: test, fullName, email })
 		}
 
 		const { error } = await supabase.from('waiting_list').insert({ email, full_name: fullName })
 
 		if (error) {
-			return invalid(400, {
+			return fail(400, {
 				success: false,
 				message: `You've been successfully added to the waiting list.`
 			})

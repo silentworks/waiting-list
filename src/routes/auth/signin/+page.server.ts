@@ -1,6 +1,6 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { SignInSchema } from '$lib/validationSchema'
-import { invalid, redirect } from '@sveltejs/kit'
+import { fail, redirect } from '@sveltejs/kit'
 import type { Actions, PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async (event) => {
@@ -21,14 +21,15 @@ export const actions: Actions = {
 		const test = SignInSchema({ email, password })
 
 		if (test !== true) {
-			return invalid(400, { errors: test, email })
+			return fail(400, { errors: test, email })
 		}
 
 		const { error } = await supabase.auth.signInWithPassword({ email, password })
 
 		if (error) {
-			return invalid(400, {
+			return fail(400, {
 				success: false,
+				email,
 				message: `The email that you've entered doesn't belong to an account. Please check your email and try again.`
 			})
 		}

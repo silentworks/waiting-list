@@ -17,8 +17,8 @@
   },
   "devDependencies": {
     "@supabase/supabase-js": "^2.4.1",
-    "@sveltejs/adapter-node": "1.0.0-next.100",
-    "@sveltejs/kit": "1.0.0-next.544",
+    "@sveltejs/adapter-node": "^1.1.4",
+    "@sveltejs/kit": "^1.2.3",
     "@types/cookie": "^0.5.1",
     "@typescript-eslint/eslint-plugin": "^5.48.2",
     "@typescript-eslint/parser": "^5.48.2",
@@ -36,7 +36,7 @@
     "svelte-preprocess": "^4.10.7",
     "tslib": "^2.4.1",
     "typescript": "^4.9.4",
-    "vite": "^3.2.5"
+    "vite": "^4.0.4"
   },
   "type": "module",
   "dependencies": {
