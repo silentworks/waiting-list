@@ -1,6 +1,6 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { ResetPasswordSchema } from '$lib/validationSchema'
-import { invalid } from '@sveltejs/kit'
+import { fail } from '@sveltejs/kit'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
@@ -14,13 +14,13 @@ export const actions: Actions = {
 		const test = ResetPasswordSchema({ password, passwordConfirm })
 
 		if (test !== true) {
-			return invalid(400, { errors: test, password, passwordConfirm })
+			return fail(400, { errors: test, password, passwordConfirm })
 		}
 
 		const { error } = await supabase.auth.updateUser({ password })
 
 		if (error) {
-			return invalid(400, {
+			return fail(400, {
 				success: false,
 				message: error.message
 			})
