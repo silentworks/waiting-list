@@ -1,12 +1,13 @@
-import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { ResetPasswordSchema } from '$lib/validationSchema'
 import { fail } from '@sveltejs/kit'
 import type { Actions } from './$types'
 
-export const actions: Actions = {
+export const actions = {
 	default: async (event) => {
-		const { request } = event
-		const { supabaseClient: supabase } = await getSupabase(event)
+		const {
+			request,
+			locals: { supabase }
+		} = event
 		const formData = await request.formData()
 		const password = formData.get('password') as string
 		const passwordConfirm = formData.get('passwordConfirm') as string
@@ -31,4 +32,4 @@ export const actions: Actions = {
 			message: 'Password updated successfully.'
 		}
 	}
-}
+} satisfies Actions

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores'
-	import { supabaseClient } from '$lib/db'
 
 	let showDropdown = false
 	const dropDown = () => (showDropdown = !showDropdown)
@@ -9,10 +8,6 @@
 		if (key === 'Escape') {
 			showDropdown = false
 		}
-	}
-
-	function handleSignOut() {
-		supabaseClient.auth.signOut()
 	}
 </script>
 
@@ -49,8 +44,7 @@
 							class:is-active={$page.url.pathname == '/password-update'}>Update Password</a
 						>
 						<hr class="navbar-divider" />
-						<a href="/logout" class="navbar-item" on:click|preventDefault={handleSignOut}>Log Out</a
-						>
+						<a href="/auth/signout" class="navbar-item">Log Out</a>
 					</div>
 				</div>
 			</div>

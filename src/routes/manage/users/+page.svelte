@@ -1,17 +1,17 @@
 <script lang="ts">
 	import type { ActionData, PageData } from './$types'
-	import Layout from '../_layout.svelte'
+	import Layout from '../Layout.svelte'
 	import Notification from '$lib/common/Notification.svelte'
 	import ButtonAction from '$lib/common/ButtonAction.svelte'
 
 	export let form: ActionData
 
 	export let data: PageData
-	let { users } = data
-	$: ({ users } = data)
+	let { users, user } = data
+	$: ({ users, user } = data)
 </script>
 
-<Layout>
+<Layout {user}>
 	<svelte:fragment slot="page-title">Users</svelte:fragment>
 	<Notification
 		showNotification={form?.message !== undefined}

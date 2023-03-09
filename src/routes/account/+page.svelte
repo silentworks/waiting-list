@@ -1,5 +1,9 @@
-<script>
-	import { page } from '$app/stores'
+<script lang="ts">
+	import type { PageData } from './$types'
+
+	export let data: PageData
+
+	$: ({ user } = data)
 </script>
 
 <svelte:head>
@@ -7,7 +11,7 @@
 </svelte:head>
 
 <p class="py-1 is-size-5 has-text-weight-slim">
-	Welcome {$page.data.session?.user?.fullName}
+	Welcome {user?.fullName}
 </p>
 
 <div class="content">
