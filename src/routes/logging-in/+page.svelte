@@ -1,19 +1,17 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
 	import { goto } from '$app/navigation'
 	import FullScreenLoader from '$lib/common/FullScreenLoader.svelte'
 	import { page } from '$app/stores'
+	import type { PageData } from './$types'
+	import { browser } from '$app/environment'
 
-	let redirectPath = '/account'
-	onMount(async () => {
-		await new Promise((r) => setTimeout(r, 2000))
-		goto(redirectPath)
-	})
-
+	export let data: PageData
 	$: {
 		const redirectTo = $page.url.searchParams.get('redirect')
-		if (redirectTo) {
-			redirectPath = redirectTo
+
+		// check if user has been set in session store then redirect
+		if (browser && data.session) {
+			goto(redirectTo ?? '/account')
 		}
 	}
 </script>

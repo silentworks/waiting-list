@@ -1,11 +1,9 @@
 import { usersMapper } from '$lib/data/mappers/users'
 import type { Actions, PageServerLoad } from './$types'
-import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { fail } from '@sveltejs/kit'
 import supabase from '$lib/admin'
 
-export const load: PageServerLoad = async (event) => {
-	const { supabaseClient: supabase } = await getSupabase(event)
+export const load = (async ({ locals: { supabase } }) => {
 	const { error, data } = await supabase
 		.from('profiles')
 		.select('*')
@@ -21,9 +19,9 @@ export const load: PageServerLoad = async (event) => {
 	return {
 		users: usersMapper(data)
 	}
-}
+}) satisfies PageServerLoad
 
-export const actions: Actions = {
+export const actions = {
 	remove: async (event) => {
 		const { locals, request } = event
 		if (!locals.user.isAdmin) {
@@ -49,4 +47,4 @@ export const actions: Actions = {
 
 		return { success: true, message: 'User was deleted successfully' }
 	}
-}
+} satisfies Actions

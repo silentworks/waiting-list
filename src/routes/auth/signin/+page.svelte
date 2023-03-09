@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Notification from '$lib/common/Notification.svelte'
-	import { enhance, applyAction } from '$app/forms'
+	import { enhance, applyAction, type SubmitFunction } from '$app/forms'
 	import { invalidate } from '$app/navigation'
 	import type { ActionData } from './$types'
 	import type { ActionResult } from '@sveltejs/kit'
@@ -9,14 +9,10 @@
 
 	export let form: ActionData
 
-	const handleSubmit = () => {
+	const handleSubmit: SubmitFunction = () => {
 		isSubmitting = true
-		return async ({ result }: { result: ActionResult }) => {
-			if (result.type === 'redirect') {
-				await invalidate('supabase:auth')
-			} else {
-				await applyAction(result)
-			}
+		return async ({ update }) => {
+			update()
 			isSubmitting = false
 		}
 	}

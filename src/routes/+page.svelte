@@ -1,14 +1,16 @@
 <script lang="ts">
-	import { page } from '$app/stores'
 	import Notification from '$lib/common/Notification.svelte'
 	import { enhance } from '$app/forms'
-	import type { ActionData } from './$types'
+	import type { ActionData, PageData } from './$types'
 
 	export let form: ActionData
+	export let data: PageData
+	let { user } = data
+	$: ({ user } = data)
 </script>
 
 <div class="container is-max-desktop p-6">
-	{#if $page.data.session?.user?.id}
+	{#if user?.id}
 		<section class="columns">
 			<div class="column is-full">
 				<div class="box">

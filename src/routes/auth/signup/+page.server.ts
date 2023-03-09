@@ -1,10 +1,9 @@
-import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { SignUpSchema } from '$lib/validationSchema'
 import { fail, redirect } from '@sveltejs/kit'
 import supabase from '$lib/admin'
 import type { Actions, PageServerLoad } from './$types'
 
-export const load: PageServerLoad = async () => {
+export const load = (async () => {
 	const { data, error } = await supabase
 		.from('profiles')
 		.select('is_admin')
@@ -18,12 +17,15 @@ export const load: PageServerLoad = async () => {
 	}
 
 	throw redirect(302, '/auth/signin')
-}
+}) satisfies PageServerLoad
 
-export const actions: Actions = {
+export const actions = {
 	default: async (event) => {
-		const { request, url } = event
-		const { supabaseClient: supabase } = await getSupabase(event)
+		const {
+			url,
+			request,
+			locals: { supabase }
+		} = event
 		const formData = await request.formData()
 		const email = formData.get('email') as string
 		const password = formData.get('password') as string
@@ -63,4 +65,4 @@ export const actions: Actions = {
 			message: 'Signup successfully, please check your email for a confirmation message.'
 		}
 	}
-}
+} satisfies Actions

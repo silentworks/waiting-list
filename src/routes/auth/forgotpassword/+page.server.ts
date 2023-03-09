@@ -1,12 +1,14 @@
-import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { ForgotPasswordSchema } from '$lib/validationSchema'
 import { fail } from '@sveltejs/kit'
 import type { Actions } from './$types'
 
-export const actions: Actions = {
+export const actions = {
 	default: async (event) => {
-		const { request, url } = event
-		const { supabaseClient: supabase } = await getSupabase(event)
+		const {
+			url,
+			request,
+			locals: { supabase }
+		} = event
 		const formData = await request.formData()
 		const email = formData.get('email') as string
 		const redirectTo = url.origin
@@ -31,4 +33,4 @@ export const actions: Actions = {
 			message: 'Reset email sent successfully, please check your email for the reset password link.'
 		}
 	}
-}
+} satisfies Actions

@@ -1,11 +1,12 @@
-import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { fail } from '@sveltejs/kit'
 import { waitingListsMapper } from '$lib/data/mappers/waiting_list'
 import type { Actions, PageServerLoad } from './$types'
 import supabase from '$lib/admin'
 
-export const load: PageServerLoad = async (event) => {
-	const { supabaseClient: supabase } = await getSupabase(event)
+export const load = (async (event) => {
+	const {
+		locals: { supabase }
+	} = event
 	const { data, error } = await supabase
 		.from('waiting_list')
 		.select('*')
@@ -20,9 +21,9 @@ export const load: PageServerLoad = async (event) => {
 	return {
 		users: waitingListsMapper(data)
 	}
-}
+}) satisfies PageServerLoad
 
-export const actions: Actions = {
+export const actions = {
 	invite: async (event) => {
 		const { locals, request, url } = event
 		if (!locals.user.isAdmin) {
@@ -55,9 +56,11 @@ export const actions: Actions = {
 		return { ...user, isInvited: true, invitedAt: data.user.invited_at }
 	},
 	remove: async (event) => {
-		const { locals, request } = event
-		const { supabaseClient: supabase } = await getSupabase(event)
-		if (!locals.user.isAdmin) {
+		const {
+			request,
+			locals: { supabase, user }
+		} = event
+		if (!user.isAdmin) {
 			return fail(401, { message: 'You are not authorized to make this request' })
 		}
 
@@ -88,4 +91,4 @@ export const actions: Actions = {
 
 		return { success: true, message: 'User was deleted successfully' }
 	}
-}
+} satisfies Actions

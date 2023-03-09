@@ -1,19 +1,20 @@
-<script>
-	import { supabaseClient } from '$lib/db'
-	import { page } from '$app/stores'
+<script lang="ts">
 	import { invalidate } from '$app/navigation'
 	import { onMount } from 'svelte'
+	import type { LayoutData } from './$types'
+
+	export let data: LayoutData
+
+	$: ({ session, supabase } = data)
 
 	onMount(() => {
-		const {
-			data: { subscription }
-		} = supabaseClient.auth.onAuthStateChange(() => {
-			invalidate('supabase:auth')
+		const { data } = supabase.auth.onAuthStateChange((_, _session) => {
+			if (_session?.expires_at !== session?.expires_at) {
+				invalidate('supabase:auth')
+			}
 		})
 
-		return () => {
-			subscription.unsubscribe()
-		}
+		return () => data.subscription.unsubscribe()
 	})
 </script>
 
@@ -21,7 +22,7 @@
 	<title>Waiting List App</title>
 </svelte:head>
 
-<div class="site-wrapper" class:is-logged-in={$page.data.session?.user?.id}>
+<div class="site-wrapper" class:is-logged-in={session?.user?.id}>
 	<main class="columns is-gapless is-fullheight">
 		<slot />
 	</main>
