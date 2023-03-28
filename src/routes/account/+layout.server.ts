@@ -1,7 +1,6 @@
-import type { LayoutServerLoad } from './$types'
 import { redirect } from '@sveltejs/kit'
 
-export const load = (async ({ locals: { getSession, user } }) => {
+export const load = async ({ locals: { getSession, user } }) => {
 	const session = await getSession()
 
 	if (!session) {
@@ -13,4 +12,4 @@ export const load = (async ({ locals: { getSession, user } }) => {
 	}
 
 	return { session }
-}) satisfies LayoutServerLoad
+}

@@ -17,6 +17,8 @@ export const handleProfile: Handle = async ({ event, resolve }) => {
 			const userProfile: UserProfileProp = Object.assign(user, profile)
 			event.locals.user = combinedUserMapper(userProfile)
 		}
+	} else {
+		event.locals.user = null
 	}
 
 	return resolve(event)

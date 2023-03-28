@@ -1,7 +1,6 @@
-import type { LayoutServerLoad } from './$types'
 import { redirect } from '@sveltejs/kit'
 
-export const load = (async (event) => {
+export const load = async (event) => {
 	const { user, getSession } = event.locals
 	const session = await getSession()
 
@@ -14,4 +13,4 @@ export const load = (async (event) => {
 	}
 
 	return { session }
-}) satisfies LayoutServerLoad
+}

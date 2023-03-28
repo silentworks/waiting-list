@@ -1,11 +1,10 @@
 <script lang="ts">
 	import Notification from '$lib/common/Notification.svelte'
 	import { enhance } from '$app/forms'
-	import type { ActionData, PageData } from './$types'
 
-	export let form: ActionData
-	export let data: PageData
-	let { user } = data
+	export let form
+	export let data
+
 	$: ({ user } = data)
 </script>
 

@@ -2,10 +2,9 @@
 	import Layout from './Layout.svelte'
 	import Notification from '$lib/common/Notification.svelte'
 	import ButtonAction from '$lib/common/ButtonAction.svelte'
-	import type { ActionData, PageData } from './$types'
 
-	export let form: ActionData
-	export let data: PageData
+	export let form
+	export let data
 
 	$: ({ users, user } = data)
 </script>

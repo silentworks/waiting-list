@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
 	import Notification from '$lib/common/Notification.svelte'
-	import type { ActionData } from './$types'
 
-	export let form: ActionData
+	export let form
 </script>
 
 <svelte:head>

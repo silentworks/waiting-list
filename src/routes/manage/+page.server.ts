@@ -1,9 +1,8 @@
 import { fail } from '@sveltejs/kit'
 import { waitingListsMapper } from '$lib/data/mappers/waiting_list'
-import type { Actions, PageServerLoad } from './$types'
 import supabase from '$lib/admin'
 
-export const load = (async (event) => {
+export const load = async (event) => {
 	const {
 		locals: { supabase }
 	} = event
@@ -21,18 +20,18 @@ export const load = (async (event) => {
 	return {
 		users: waitingListsMapper(data)
 	}
-}) satisfies PageServerLoad
+}
 
 export const actions = {
 	invite: async (event) => {
 		const { locals, request, url } = event
-		if (!locals.user.isAdmin) {
+		if (!locals.user?.isAdmin) {
 			return fail(401, { message: 'You are not authorized to make this request' })
 		}
 
 		const formData = await request.formData()
 		const formUser = formData.get('user') as string
-		const redirectTo = `${url.origin}/logging-in?redirect=/account/password-update`
+		const redirectTo = `${url.origin}/logging-in?next=/account/password-update`
 
 		if (!formUser) {
 			return fail(400, { user: formUser, missing: true })
@@ -91,4 +90,4 @@ export const actions = {
 
 		return { success: true, message: 'User was deleted successfully' }
 	}
-} satisfies Actions
+}
