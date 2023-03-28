@@ -1,6 +1,5 @@
 import { ForgotPasswordSchema } from '$lib/validationSchema'
 import { fail } from '@sveltejs/kit'
-import type { Actions } from './$types'
 
 export const actions = {
 	default: async (event) => {
@@ -11,7 +10,7 @@ export const actions = {
 		} = event
 		const formData = await request.formData()
 		const email = formData.get('email') as string
-		const redirectTo = url.origin
+		const redirectTo = `${url.origin}/logging-in?next=/account/password-update`
 
 		const test = ForgotPasswordSchema({ email })
 
@@ -33,4 +32,4 @@ export const actions = {
 			message: 'Reset email sent successfully, please check your email for the reset password link.'
 		}
 	}
-} satisfies Actions
+}

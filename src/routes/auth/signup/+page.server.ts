@@ -1,9 +1,8 @@
 import { SignUpSchema } from '$lib/validationSchema'
 import { fail, redirect } from '@sveltejs/kit'
 import supabase from '$lib/admin'
-import type { Actions, PageServerLoad } from './$types'
 
-export const load = (async () => {
+export const load = async () => {
 	const { data, error } = await supabase
 		.from('profiles')
 		.select('is_admin')
@@ -17,7 +16,7 @@ export const load = (async () => {
 	}
 
 	throw redirect(302, '/auth/signin')
-}) satisfies PageServerLoad
+}
 
 export const actions = {
 	default: async (event) => {
@@ -65,4 +64,4 @@ export const actions = {
 			message: 'Signup successfully, please check your email for a confirmation message.'
 		}
 	}
-} satisfies Actions
+}

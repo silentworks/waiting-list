@@ -1,12 +1,5 @@
 import { WaitingListSchema } from '$lib/validationSchema'
-import type { PageServerLoad, Actions } from './$types'
 import { fail } from '@sveltejs/kit'
-
-export const load = (async ({ locals: { getSession } }) => {
-	const session = await getSession()
-
-	return { session }
-}) satisfies PageServerLoad
 
 export const actions = {
 	default: async (event) => {
@@ -35,4 +28,4 @@ export const actions = {
 
 		return { success: true, message: `You've been successfully added to the waiting list.` }
 	}
-} satisfies Actions
+}

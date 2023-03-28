@@ -1,6 +1,5 @@
 import { ResetPasswordSchema } from '$lib/validationSchema'
 import { fail } from '@sveltejs/kit'
-import type { Actions } from './$types'
 
 export const actions = {
 	default: async (event) => {
@@ -32,4 +31,4 @@ export const actions = {
 			message: 'Password updated successfully.'
 		}
 	}
-} satisfies Actions
+}

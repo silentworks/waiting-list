@@ -16,32 +16,32 @@
     "m:status": "ley status"
   },
   "devDependencies": {
-    "@supabase/supabase-js": "^2.10.0",
-    "@sveltejs/adapter-node": "^1.2.1",
-    "@sveltejs/kit": "^1.10.0",
+    "@supabase/supabase-js": "^2.12.1",
+    "@sveltejs/adapter-node": "^1.2.3",
+    "@sveltejs/kit": "^1.14.0",
     "@types/cookie": "^0.5.1",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "@typescript-eslint/parser": "^5.54.0",
-    "dotenv": "^10.0.0",
-    "eslint": "^8.35.0",
-    "eslint-config-prettier": "^8.6.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-svelte3": "^4.0.0",
-    "ley": "^0.7.1",
+    "ley": "^0.8.1",
     "pg-connection-string": "^2.5.0",
-    "postgres": "^1.0.2",
-    "prettier": "~2.6.2",
-    "prettier-plugin-svelte": "^2.9.0",
-    "svelte": "^3.55.1",
-    "svelte-check": "^2.10.3",
-    "svelte-preprocess": "^4.10.7",
+    "postgres": "^3.3.4",
+    "prettier": "~2.8.7",
+    "prettier-plugin-svelte": "^2.10.0",
+    "svelte": "^3.57.0",
+    "svelte-check": "^3.1.4",
+    "svelte-preprocess": "^5.0.3",
     "tslib": "^2.5.0",
-    "typescript": "^4.9.5",
-    "vite": "^4.1.4"
+    "typescript": "^5.0.2",
+    "vite": "^4.2.1"
   },
   "type": "module",
   "dependencies": {
     "@supabase/auth-helpers-sveltekit": "^0.9.0",
     "email-regex": "^5.0.0",
-    "vest": "^4.6.8"
+    "vest": "^4.6.9"
   }
 }

@@ -1,12 +1,11 @@
 <script lang="ts">
-	import type { ActionData, PageData } from './$types'
 	import Layout from '../Layout.svelte'
 	import Notification from '$lib/common/Notification.svelte'
 	import ButtonAction from '$lib/common/ButtonAction.svelte'
 
-	export let form: ActionData
+	export let form
+	export let data
 
-	export let data: PageData
 	let { users, user } = data
 	$: ({ users, user } = data)
 </script>

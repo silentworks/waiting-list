@@ -1,13 +1,10 @@
 <script lang="ts">
 	import Notification from '$lib/common/Notification.svelte'
-	import { enhance, applyAction, type SubmitFunction } from '$app/forms'
-	import { invalidate } from '$app/navigation'
-	import type { ActionData } from './$types'
-	import type { ActionResult } from '@sveltejs/kit'
+	import { enhance, type SubmitFunction } from '$app/forms'
 
 	let isSubmitting = false
 
-	export let form: ActionData
+	export let form
 
 	const handleSubmit: SubmitFunction = () => {
 		isSubmitting = true

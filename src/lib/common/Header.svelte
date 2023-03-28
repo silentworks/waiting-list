@@ -19,32 +19,20 @@
 
 		<div class="navbar-menu">
 			<div class="navbar-end">
-				<div
-					class="navbar-item has-dropdown"
-					class:is-active={showDropdown}
-					on:keyup={keyboardDropDown}
-					on:mouseleave={() => {
-						showDropdown = false
-					}}
-				>
-					<button class="button is-medium is-ghost" on:click={dropDown}>
-						<figure class="image">
-							<img
-								class="is-rounded"
-								src="https://avatars.githubusercontent.com/u/54469796"
-								alt="Placeholder"
-							/>
-						</figure>
-					</button>
-
-					<div class="navbar-dropdown">
-						<a
-							href="/account/password-update"
-							class="navbar-item"
-							class:is-active={$page.url.pathname == '/password-update'}>Update Password</a
-						>
-						<hr class="navbar-divider" />
-						<a href="/auth/signout" class="navbar-item">Log Out</a>
+				<div class="navbar-item">
+					<div class="field is-grouped">
+						<div class="control">
+							<a
+								href="/account/password-update"
+								class="button is-ghost"
+								class:is-active={$page.url.pathname == '/password-update'}>Update Password</a
+							>
+						</div>
+						<div class="control">
+							<form action="/auth/signout" method="post">
+								<button class="button is-danger">Log Out</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>

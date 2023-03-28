@@ -1,14 +1,13 @@
 import { SignInSchema } from '$lib/validationSchema'
 import { fail, redirect } from '@sveltejs/kit'
-import type { Actions, PageServerLoad } from './$types'
 
-export const load = (async ({ locals: { getSession } }) => {
+export const load = async ({ locals: { getSession } }) => {
 	const session = await getSession()
 
 	if (session) {
 		throw redirect(303, '/account')
 	}
-}) satisfies PageServerLoad
+}
 
 export const actions = {
 	default: async (event) => {
@@ -38,4 +37,4 @@ export const actions = {
 
 		throw redirect(303, '/account')
 	}
-} satisfies Actions
+}

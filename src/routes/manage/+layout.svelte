@@ -1,4 +1,5 @@
 <script>
+	import { enhance } from '$app/forms'
 	import { page } from '$app/stores'
 </script>
 
@@ -32,7 +33,9 @@
 			</aside>
 		</div>
 		<div class="menu-footer p-4">
-			<a href="/auth/signout" class="button is-black is-fullwidth">Log Out</a>
+			<form action="/auth/signout" method="post" use:enhance>
+				<button class="button is-black is-fullwidth">Log Out</button>
+			</form>
 		</div>
 	</div>
 </div>
