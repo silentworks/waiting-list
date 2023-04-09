@@ -16,9 +16,9 @@
     "m:status": "ley status"
   },
   "devDependencies": {
-    "@supabase/supabase-js": "^2.13.0",
+    "@supabase/supabase-js": "^2.15.0",
     "@sveltejs/adapter-node": "^1.2.3",
-    "@sveltejs/kit": "^1.15.0",
+    "@sveltejs/kit": "^1.15.2",
     "@types/cookie": "^0.5.1",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
@@ -40,7 +40,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@supabase/auth-helpers-sveltekit": "^0.9.0",
+    "@supabase/auth-helpers-sveltekit": "^0.9.3",
     "email-regex": "^5.0.0",
     "vest": "^4.6.9"
   }
