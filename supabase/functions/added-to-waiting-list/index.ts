@@ -3,23 +3,23 @@
 // This enables autocomplete, go to definition, etc.
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
-// import { Database } from './schema.ts'
+import { Database } from './schema.ts'
 
-console.log('Hello from `add-to-waiting-list` function!')
+console.log('Hello from `added-to-waiting-list` function!')
 
-// type WaitingList = Database['public']['Tables']['waiting_list']['Row']
+type WaitingList = Database['public']['Tables']['waiting_list']['Row']
 
-// interface WebhookPayload {
-// 	type: 'INSERT' | 'UPDATE' | 'DELETE'
-// 	table: string
-// 	record: WaitingList
-// 	schema: 'public'
-// 	old_record: null | WaitingList
-// }
+interface WebhookPayload {
+	type: 'INSERT' | 'UPDATE' | 'DELETE'
+	table: string
+	record: WaitingList
+	schema: 'public'
+	old_record: null | WaitingList
+}
 
 serve(async (req: Request) => {
-	// const payload: WebhookPayload = await req.json()
-	// console.log(payload.record.full_name)
+	const payload: WebhookPayload = await req.json()
+	console.log(payload.record.full_name)
 
 	return new Response('ok')
 })
