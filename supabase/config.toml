@@ -58,6 +58,27 @@ double_confirm_changes = true
 # If enabled, users need to confirm their email address before signing in.
 enable_confirmations = true
 
+# Uncomment to customize email template
+[auth.email.template.invite]
+subject = "You have been invited"
+content_path = "./supabase/auth/email/invite.html"
+
+[auth.email.template.confirmation]
+subject = "Confirm Your Email for Auth Flows"
+content_path = "./supabase/auth/email/confirmation.html"
+
+[auth.email.template.recovery]
+subject = "Reset Your Password for Auth Flows"
+content_path = "./supabase/auth/email/recovery.html"
+
+[auth.email.template.magic_link]
+subject = "Your Magic Link for Auth Flows"
+content_path = "./supabase/auth/email/magic-link.html"
+
+[auth.email.template.email_change]
+subject = "Confirm Email Change for Auth Flows"
+content_path = "./supabase/auth/email/email-change.html"
+
 # Use an external OAuth provider. The full list of providers are: `apple`, `azure`, `bitbucket`,
 # `discord`, `facebook`, `github`, `gitlab`, `google`, `keycloak`, `linkedin`, `notion`, `twitch`,
 # `twitter`, `slack`, `spotify`, `workos`, `zoom`.
@@ -70,3 +91,14 @@ redirect_uri = ""
 # Overrides the default auth provider URL. Used to support self-hosted gitlab, single-tenant Azure,
 # or any other third-party OIDC providers.
 url = ""
+
+
+[analytics]
+enabled = false
+port = 54327
+vector_port = 54328
+# Setup BigQuery project to enable log viewer on local development stack.
+# See: https://logflare.app/guides/bigquery-setup
+gcp_project_id = ""
+gcp_project_number = ""
+gcp_jwt_path = "supabase/gcloud.json"

@@ -62,6 +62,20 @@ const resetPasswordSuite = create((data) => {
 	})
 })
 
+const inviteTokenSuite = create((data: InviteToken) => {
+	emailValidation(data)
+
+	test('token', 'Token is required', () => {
+		enforce(data.token).isString().isNotEmpty()
+	})
+})
+
+const confirmTokenSuite = create((data: ConfirmToken) => {
+	test('token', 'Token Hash is required', () => {
+		enforce(data.token).isString().isNotEmpty()
+	})
+})
+
 interface ForgotPassword {
 	email: string
 }
@@ -86,8 +100,19 @@ interface ResetPassword {
 	passwordConfirm: string
 }
 
+interface InviteToken {
+	email: string
+	token: string
+}
+
+interface ConfirmToken {
+	token: string
+}
+
 export const ForgotPasswordSchema = (data: ForgotPassword) => suiteRun(forgotPasswordSuite, data)
 export const SignInSchema = (data: SignIn) => suiteRun(signInSuite, data)
 export const SignUpSchema = (data: SignUp) => suiteRun(signUpSuite, data)
 export const WaitingListSchema = (data: WaitingList) => suiteRun(waitingListSuite, data)
 export const ResetPasswordSchema = (data: ResetPassword) => suiteRun(resetPasswordSuite, data)
+export const InviteTokenSchema = (data: InviteToken) => suiteRun(inviteTokenSuite, data)
+export const ConfirmTokenSchema = (data: ConfirmToken) => suiteRun(confirmTokenSuite, data)

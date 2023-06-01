@@ -24,14 +24,13 @@ export const load = async (event) => {
 
 export const actions = {
 	invite: async (event) => {
-		const { locals, request, url } = event
+		const { locals, request } = event
 		if (!locals.user?.isAdmin) {
 			return fail(401, { message: 'You are not authorized to make this request' })
 		}
 
 		const formData = await request.formData()
 		const formUser = formData.get('user') as string
-		const redirectTo = `${url.origin}/logging-in?next=/account/password-update`
 
 		if (!formUser) {
 			return fail(400, { user: formUser, missing: true })
@@ -44,8 +43,7 @@ export const actions = {
 				waiting_list_id: user.id,
 				full_name: user.fullName,
 				is_admin: false
-			},
-			redirectTo
+			}
 		})
 
 		if (error) {
@@ -59,7 +57,7 @@ export const actions = {
 			request,
 			locals: { supabase, user }
 		} = event
-		if (!user.isAdmin) {
+		if (!user?.isAdmin) {
 			return fail(401, { message: 'You are not authorized to make this request' })
 		}
 

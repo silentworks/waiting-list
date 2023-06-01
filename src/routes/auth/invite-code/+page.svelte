@@ -1,9 +1,7 @@
 <script lang="ts">
 	import Notification from '$lib/common/Notification.svelte'
 	import { enhance } from '$app/forms'
-	import { getFlash } from 'sveltekit-flash-message'
-	import { page } from '$app/stores'
-	import type { SubmitFunction } from './$types.js'
+	import type { SubmitFunction } from '@sveltejs/kit'
 
 	let isSubmitting = false
 
@@ -16,10 +14,6 @@
 			isSubmitting = false
 		}
 	}
-
-	const flash = getFlash(page, {
-		clearAfterMs: 8000
-	})
 </script>
 
 <svelte:head>
@@ -36,11 +30,6 @@
 		<div class="box p-6">
 			<h2 class="subtitle is-3 has-text-centered pb-4">Waiting List App</h2>
 			<div class="content">
-				{#if $flash}
-					<Notification showNotification={$flash.message !== undefined} status={$flash.type}>
-						{$flash.message}
-					</Notification>
-				{/if}
 				<Notification
 					showNotification={form?.message !== undefined}
 					status={form?.success ? 'success' : 'error'}
@@ -64,16 +53,10 @@
 					</div>
 					<div class="field">
 						<p class="control">
-							<input
-								name="password"
-								value=""
-								class="input"
-								type="password"
-								placeholder="Password"
-							/>
+							<input name="token" value="" class="input" type="text" placeholder="Token" />
 						</p>
-						{#if form?.errors?.password}
-							<p class="help is-danger">{form?.errors?.password}</p>
+						{#if form?.errors?.token}
+							<p class="help is-danger">{form?.errors?.token}</p>
 						{/if}
 					</div>
 					<div class="field">
