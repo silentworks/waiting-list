@@ -5,27 +5,6 @@ on:
       - main
 
 jobs:
-  database-migration:
-    name: Database migration
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
-    env:
-      CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
-    steps:
-      - name: Checkout app
-        uses: actions/checkout@v2
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        run: npm install -g pnpm && pnpm -v && pnpm i
-
-      - name: Check migration status
-        run: pnpm m:status
-
-      - name: Run migration
-        run: pnpm m:up
-
   deploy:
     name: Deploy app
     runs-on: ubuntu-latest
