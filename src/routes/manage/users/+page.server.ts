@@ -23,7 +23,7 @@ export const load = async ({ locals: { supabase } }) => {
 export const actions = {
 	remove: async (event) => {
 		const { locals, request } = event
-		if (!locals.user.isAdmin) {
+		if (!locals.user?.isAdmin) {
 			return fail(401, { message: 'You are not authorized to make this request' })
 		}
 

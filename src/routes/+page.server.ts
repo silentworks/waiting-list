@@ -22,7 +22,9 @@ export const actions = {
 		if (error) {
 			return fail(400, {
 				success: false,
-				message: `You've been successfully added to the waiting list.`
+				message: `We're sorry, but it seems that the email you provided might have already been invited. Please try using a different email address or contact our support team for assistance.`,
+				fullName,
+				email
 			})
 		}
 

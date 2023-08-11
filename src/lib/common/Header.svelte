@@ -1,14 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores'
-
-	let showDropdown = false
-	const dropDown = () => (showDropdown = !showDropdown)
-
-	const keyboardDropDown = ({ key }: { key: string }) => {
-		if (key === 'Escape') {
-			showDropdown = false
-		}
-	}
 </script>
 
 <nav class="navbar" aria-label="main navigation">

@@ -10,7 +10,6 @@ export const actions = {
 		} = event
 		const formData = await request.formData()
 		const email = formData.get('email') as string
-		const redirectTo = `${url.origin}/logging-in?next=/account/password-update`
 
 		const test = ForgotPasswordSchema({ email })
 
@@ -18,7 +17,7 @@ export const actions = {
 			return fail(400, { errors: test, email })
 		}
 
-		const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo })
+		const { error } = await supabase.auth.resetPasswordForEmail(email)
 
 		if (error) {
 			return fail(400, {

@@ -5,12 +5,12 @@ import supabase from '$lib/admin'
 export const load = async () => {
 	const { data, error } = await supabase
 		.from('profiles')
-		.select('is_admin')
+		.select('is_admin, confirmed_at')
 		.eq('is_admin', true)
 		.maybeSingle()
 
 	if (!error) {
-		if (!data?.is_admin) {
+		if (data?.confirmed_at === null || !data?.is_admin) {
 			return {}
 		}
 	}
@@ -21,7 +21,6 @@ export const load = async () => {
 export const actions = {
 	default: async (event) => {
 		const {
-			url,
 			request,
 			locals: { supabase }
 		} = event
@@ -29,7 +28,6 @@ export const actions = {
 		const email = formData.get('email') as string
 		const password = formData.get('password') as string
 		const fullName = formData.get('fullName') as string
-		const emailRedirectTo = `${url.origin}/logging-in`
 
 		const test = SignUpSchema({ email, password, fullName })
 
@@ -44,8 +42,7 @@ export const actions = {
 				data: {
 					is_admin: true,
 					full_name: fullName
-				},
-				emailRedirectTo
+				}
 			}
 		})
 

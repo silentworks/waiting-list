@@ -2,10 +2,6 @@ import { SupabaseClient, Session } from '@supabase/supabase-js'
 import { Database } from './lib/schema'
 import { CombinedUserMapper } from './lib/data/mappers/users'
 
-/// <reference types="@sveltejs/kit" />
-
-// See https://kit.svelte.dev/docs/typescript
-// for information about these interfaces
 declare global {
 	namespace App {
 		interface Locals {
@@ -17,6 +13,7 @@ declare global {
 		interface PageData {
 			session: Session | null
 			user?: CombinedUserMapper
+			flash?: { type: 'success' | 'error'; message: string }
 		}
 
 		// interface Error {}
