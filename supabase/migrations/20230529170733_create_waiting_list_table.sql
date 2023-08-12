@@ -1,4 +1,4 @@
-create table public.waiting_list (
+create table if not exists public.waiting_list (
 	id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
 	full_name VARCHAR NOT NULL,
 	email VARCHAR UNIQUE NOT NULL,

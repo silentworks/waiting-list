@@ -1,4 +1,4 @@
-create function public.handle_waiting_list_invited_at()
+create or replace function public.handle_waiting_list_invited_at()
 returns trigger as $$
 begin
 	IF ((NEW.raw_user_meta_data->>'waiting_list_id')::uuid is null) THEN
@@ -14,6 +14,6 @@ end;
 $$ language plpgsql security definer;
 
 
-create trigger on_invite_sent
+create or replace trigger on_invite_sent
 	after insert on auth.users
 	for each row execute procedure public.handle_waiting_list_invited_at();

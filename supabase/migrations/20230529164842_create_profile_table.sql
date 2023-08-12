@@ -1,4 +1,4 @@
-create table public.profiles (
+create table if not exists public.profiles (
 	id uuid PRIMARY KEY REFERENCES auth.users NOT NULL,
 	full_name VARCHAR NULL,
 	is_admin BOOL DEFAULT FALSE,

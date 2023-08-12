@@ -1,5 +1,5 @@
 -- admin check with boolean
-create function public.is_admin(user_id uuid)
+create or replace function public.is_admin(user_id uuid)
 returns boolean as $$
 declare
 	admin int;
