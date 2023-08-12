@@ -1,4 +1,4 @@
-create function public.handle_new_profile()
+create or replace function public.handle_new_profile()
 returns trigger as $$
 begin
 	insert into public.profiles (id, full_name, is_admin)
@@ -7,6 +7,6 @@ begin
 end;
 $$ language plpgsql security definer;
 
-create trigger on_auth_user_created
+create or replace trigger on_auth_user_created
 	after insert on auth.users 
 	for each row execute procedure public.handle_new_profile();
