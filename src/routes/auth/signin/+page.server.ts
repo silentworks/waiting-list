@@ -1,8 +1,12 @@
 import { SignInSchema } from '$lib/validationSchema'
 import { fail, redirect } from '@sveltejs/kit'
 import { loadFlash } from 'sveltekit-flash-message/server'
+import type { Actions, PageServerLoad } from './$types.js'
 
-export const load = loadFlash(async ({ locals: { getSession } }) => {
+export const load: PageServerLoad = loadFlash(async (event) => {
+	const {
+		locals: { getSession }
+	} = event
 	const session = await getSession()
 
 	if (session) {
@@ -10,15 +14,17 @@ export const load = loadFlash(async ({ locals: { getSession } }) => {
 	}
 })
 
-export const actions = {
+export const actions: Actions = {
 	default: async (event) => {
 		const {
+			url,
 			request,
 			locals: { supabase }
 		} = event
 		const formData = await request.formData()
 		const email = formData.get('email') as string
 		const password = formData.get('password') as string
+		const next = new URL(url.searchParams.get('next') ?? '/account', url)
 
 		const test = SignInSchema({ email, password })
 
@@ -36,6 +42,6 @@ export const actions = {
 			})
 		}
 
-		throw redirect(303, '/account')
+		throw redirect(303, next.pathname)
 	}
 }

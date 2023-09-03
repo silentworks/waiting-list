@@ -1,7 +1,8 @@
 import { WaitingListSchema } from '$lib/validationSchema'
 import { fail } from '@sveltejs/kit'
+import type { Actions } from './$types'
 
-export const actions = {
+export const actions: Actions = {
 	default: async (event) => {
 		const {
 			request,

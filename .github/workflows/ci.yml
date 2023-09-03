@@ -16,7 +16,7 @@ jobs:
           version: latest
 
       - name: Start Supabase local development setup
-        run: supabase start
+        run: supabase start -x realtime,storage-api,imgproxy,inbucket,studio,edge-runtime,logflare,vector,pgbouncer
 
       - name: Verify generated types are checked in
         run: |

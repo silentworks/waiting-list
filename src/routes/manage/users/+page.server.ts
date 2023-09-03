@@ -1,8 +1,9 @@
 import { usersMapper } from '$lib/data/mappers/users'
 import { fail } from '@sveltejs/kit'
 import supabase from '$lib/admin'
+import type { Actions, PageServerLoad } from './$types.js'
 
-export const load = async ({ locals: { supabase } }) => {
+export const load: PageServerLoad = async ({ locals: { supabase } }) => {
 	const { error, data } = await supabase
 		.from('profiles')
 		.select('*')
@@ -20,7 +21,7 @@ export const load = async ({ locals: { supabase } }) => {
 	}
 }
 
-export const actions = {
+export const actions: Actions = {
 	remove: async (event) => {
 		const { locals, request } = event
 		if (!locals.user?.isAdmin) {

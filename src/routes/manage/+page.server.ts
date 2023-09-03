@@ -1,8 +1,9 @@
 import { fail } from '@sveltejs/kit'
 import { waitingListsMapper } from '$lib/data/mappers/waiting_list'
 import supabase from '$lib/admin'
+import type { Actions, PageServerLoad } from './$types.js'
 
-export const load = async (event) => {
+export const load: PageServerLoad = async (event) => {
 	const {
 		locals: { supabase }
 	} = event
@@ -22,7 +23,7 @@ export const load = async (event) => {
 	}
 }
 
-export const actions = {
+export const actions: Actions = {
 	invite: async (event) => {
 		const { locals, request } = event
 		if (!locals.user?.isAdmin) {
@@ -47,7 +48,7 @@ export const actions = {
 		})
 
 		if (error) {
-			return fail(400, { message: 'There was an error sending the invite link.' })
+			return fail(400, { message: error.message })
 		}
 
 		return { ...user, isInvited: true, invitedAt: data.user.invited_at }
@@ -83,7 +84,7 @@ export const actions = {
 
 		const { error } = await supabase.from('waiting_list').delete().match({ id: userId })
 		if (error) {
-			return fail(400, { message: 'There was an error deleting the user.' })
+			return fail(400, { message: error.message })
 		}
 
 		return { success: true, message: 'User was deleted successfully' }

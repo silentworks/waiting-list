@@ -2,8 +2,9 @@ import { ConfirmTokenSchema } from '$lib/validationSchema'
 import type { EmailOtpType } from '@supabase/supabase-js'
 import { fail, redirect } from '@sveltejs/kit'
 import { setFlash } from 'sveltekit-flash-message/server'
+import type { RequestHandler } from './$types'
 
-export const GET = async (event) => {
+export const GET: RequestHandler = async (event) => {
 	let {
 		url,
 		locals: { supabase }
@@ -24,11 +25,11 @@ export const GET = async (event) => {
 		setFlash(
 			{
 				type: 'error',
-				message: `The token you have used has expired, please try getting invited again.`
+				message: `The token link has expired, please try getting invited again.`
 			},
 			event
 		)
-		next = '/auth/signin'
+		next = `/auth/signin${next ? '?next=' + next : ''}`
 	}
 
 	throw redirect(303, `/${next.slice(1)}`)
