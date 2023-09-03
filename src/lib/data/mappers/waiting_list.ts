@@ -7,6 +7,7 @@ export interface WaitingListMapper {
 	email: string
 	invitedAt: string | null
 	isInvited: boolean
+	isConfirmed: boolean
 }
 
 type WaitingListRow = Database['public']['Tables']['waiting_list']['Row']
@@ -16,7 +17,8 @@ export const waitingListMapper = (user: WaitingListRow): WaitingListMapper => ({
 	fullName: withDefault(user.full_name, ''),
 	email: user.email,
 	invitedAt: user.invited_at,
-	isInvited: user.invited_at ? true : false
+	isInvited: user.invited_at ? true : false,
+	isConfirmed: user.email_confirmed_at ? true : false
 })
 
 export const waitingListsMapper = (users: WaitingListRow[]): WaitingListMapper[] =>

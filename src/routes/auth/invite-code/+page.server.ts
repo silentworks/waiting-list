@@ -1,7 +1,11 @@
 import { InviteTokenSchema } from '$lib/validationSchema'
 import { fail, redirect } from '@sveltejs/kit'
+import type { Actions, PageServerLoad } from './$types.js'
 
-export const load = async ({ locals: { getSession } }) => {
+export const load: PageServerLoad = async (event) => {
+	const {
+		locals: { getSession }
+	} = event
 	const session = await getSession()
 
 	if (session) {
@@ -9,7 +13,7 @@ export const load = async ({ locals: { getSession } }) => {
 	}
 }
 
-export const actions = {
+export const actions: Actions = {
 	default: async (event) => {
 		const {
 			request,

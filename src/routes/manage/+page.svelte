@@ -42,7 +42,7 @@
 						<td>{user.isInvited ? 'Yes' : 'No'}</td>
 						<td>
 							<div class="buttons">
-								<ButtonAction action="?/invite" isLoading={false}>
+								<ButtonAction action="?/invite" isLoading={false} isDisabled={user.isConfirmed}>
 									<svelte:fragment slot="inputs">
 										<input name="user" value={JSON.stringify(user)} type="hidden" />
 									</svelte:fragment>

@@ -39,12 +39,12 @@ SUPABASE_SERVICE_ROLE_KEY=
 CONNECTION_STRING=
 ```
 
-The "CONNECTION_STRING" can be found inside the Supabase Dashboard by going to [**Settings > Database**](https://app.supabase.com/project/idqjyyqyuxmhbpclxvxq/settings/database) then scrolling down to **Connection string** and clicking on the **URI** tab. You should see a string looking like `postgresql://postgres:[YOUR-PASSWORD]@host:5432/postgres`.
+The "CONNECTION_STRING" can be found inside the Supabase Dashboard by going to [**Settings > Database**](https://app.supabase.com/project/_/settings/database) then scrolling down to **Connection string** and clicking on the **URI** tab. You should see a string looking like `postgresql://postgres:[YOUR-PASSWORD]@host:5432/postgres`.
 
 ### Run database migrations
 
 ```sh
-pnpm m:up
+pnpm exec supabase migration up
 ```
 
 ### Creating admin user
@@ -64,7 +64,11 @@ pnpm dev
 pnpm dev -- --open
 ```
 
-## Building
+## Production
+
+There are email templates in this project that are used for local development. To update your hosted project, please copy the templates from `supabase/auth/email` into the [Email Templates](https://supabase.com/dashboard/project/_/auth/templates) section of the Dashboard.
+
+### Building
 
 To create a production version of your app:
 
