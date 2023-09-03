@@ -8,7 +8,6 @@ This project is built with:
 - [Bulma](https://bulma.io/)
 - [Vest](https://vestjs.dev/)
 - [Supabase](https://supabase.com/)
-- [ley](https://github.com/lukeed/ley)
 
 ## Features
 
@@ -36,12 +35,21 @@ Edit the file and enter all the required variable values
 PUBLIC_SUPABASE_URL=
 PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
-CONNECTION_STRING=
 ```
 
-The "CONNECTION_STRING" can be found inside the Supabase Dashboard by going to [**Settings > Database**](https://app.supabase.com/project/_/settings/database) then scrolling down to **Connection string** and clicking on the **URI** tab. You should see a string looking like `postgresql://postgres:[YOUR-PASSWORD]@host:5432/postgres`.
+This project makes use of the [Supabase CLI](https://supabase.com/docs/guides/cli/getting-started) which uses docker under the hood for setting up a Supabase project locally. Docker must be running before attempting to run any of the `supaabse` commands.
+
+### Starting your project
+
+```sh
+pnpm exec supabase start
+```
+
+This commend will download the necessary docker containers and run the migration files inside of the `supabase/migrations` directory.
 
 ### Run database migrations
+
+When creating a new migration file you can manually run the command below to update your local database.
 
 ```sh
 pnpm exec supabase migration up
@@ -68,9 +76,11 @@ pnpm dev -- --open
 
 There are email templates in this project that are used for local development. To update your hosted project, please copy the templates from `supabase/auth/email` into the [Email Templates](https://supabase.com/dashboard/project/_/auth/templates) section of the Dashboard.
 
+This project also contains GitHub workflow files for deploying your application into production using [Fly.io](https://fly.io/).
+
 ### Building
 
-To create a production version of your app:
+To manually create a production version of your app:
 
 ```bash
 pnpm build
