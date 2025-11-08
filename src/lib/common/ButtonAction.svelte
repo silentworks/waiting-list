@@ -1,11 +1,24 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
 
-	export let action: string
-	export let isDisabled = false
-	export let isLoading = false
-	let className = ''
-	export { className as class }
+	interface Props {
+		action: string;
+		isDisabled?: boolean;
+		isLoading?: boolean;
+		class?: string;
+		inputs?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		action,
+		isDisabled = false,
+		isLoading = $bindable(false),
+		class: className = '',
+		inputs,
+		children
+	}: Props = $props();
+	
 </script>
 
 <form
@@ -19,12 +32,12 @@
 		}
 	}}
 >
-	<slot name="inputs" />
+	{@render inputs?.()}
 	<button
 		class="button is-success is-small {className}"
 		class:is-loading={isLoading}
 		disabled={isLoading || isDisabled}
 	>
-		<slot />
+		{@render children?.()}
 	</button>
 </form>

@@ -1,21 +1,13 @@
 // src/routes/+layout.ts
 import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public'
-import { createSupabaseLoadClient } from '@supabase/auth-helpers-sveltekit'
+import { createBrowserClient } from '@supabase/ssr'
 import type { Database } from '../lib/schema'
 import type { LayoutLoadEvent } from './$types'
 
 export const load = async ({ fetch, data, depends }: LayoutLoadEvent) => {
 	depends('supabase:auth')
 
-	const supabase = createSupabaseLoadClient<Database>({
-		supabaseUrl: PUBLIC_SUPABASE_URL,
-		supabaseKey: PUBLIC_SUPABASE_ANON_KEY,
-		event: { fetch },
-		serverSession: data.session,
-		cookieOptions: {
-			name: 'waiting-list-auth-token'
-		}
-	})
+	const supabase = createBrowserClient<Database>(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY)
 
 	const {
 		data: { session }

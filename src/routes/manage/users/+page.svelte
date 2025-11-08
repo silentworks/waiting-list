@@ -3,15 +3,12 @@
 	import Notification from '$lib/common/Notification.svelte'
 	import ButtonAction from '$lib/common/ButtonAction.svelte'
 
-	export let form
-	export let data
-
-	let { users, user } = data
-	$: ({ users, user } = data)
+	let { form, data } = $props()
+	let { users, user } = $derived(data)
 </script>
 
 <Layout {user}>
-	<svelte:fragment slot="page-title">Users</svelte:fragment>
+	{#snippet pageTitle()}Users{/snippet}
 	<Notification
 		showNotification={form?.message !== undefined}
 		status={form?.success ? 'success' : 'error'}
@@ -39,10 +36,10 @@
 						<td>
 							<div class="buttons">
 								<ButtonAction action="?/remove" class="is-danger">
-									<svelte:fragment slot="inputs">
+									{#snippet inputs()}
 										<input name="userId" value={user.id} type="hidden" />
-										<input name="userFullName" value={user.fullName} type="hidden" />
-									</svelte:fragment>
+										<input name="userFullName" value={user.fullName} type="hidden" />	
+									{/snippet}
 									Delete
 								</ButtonAction>
 							</div>

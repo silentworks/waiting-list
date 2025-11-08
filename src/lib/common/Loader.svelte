@@ -1,9 +1,13 @@
-<script>
-	export let isActive = false
+<script lang="ts">
+	interface Props {
+		isActive?: boolean;
+	}
+
+	let { isActive = false }: Props = $props();
 </script>
 
 <div class="loader-wrapper" class:is-active={isActive}>
-	<div class="loader is-loading" />
+	<div class="loader is-loading"></div>
 </div>
 
 <style>

@@ -6,11 +6,11 @@ export const load: LayoutServerLoad = async (event) => {
 	const session = await getSession()
 
 	if (!session) {
-		throw redirect(303, '/auth/signin')
+		redirect(303, '/auth/signin');
 	}
 
 	if (!user?.isAdmin) {
-		throw redirect(303, '/account')
+		redirect(303, '/account');
 	}
 
 	return { session }

@@ -2,12 +2,12 @@
 	import Notification from '$lib/common/Notification.svelte'
 	import { enhance } from '$app/forms'
 	import { getFlash } from 'sveltekit-flash-message'
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import type { SubmitFunction } from './$types.js'
 
-	let isSubmitting = false
+	let isSubmitting = $state(false)
 
-	export let form
+	let { form } = $props();
 
 	const handleSubmit: SubmitFunction = () => {
 		isSubmitting = true

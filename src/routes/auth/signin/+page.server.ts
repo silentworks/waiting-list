@@ -10,7 +10,7 @@ export const load: PageServerLoad = loadFlash(async (event) => {
 	const session = await getSession()
 
 	if (session) {
-		throw redirect(303, '/account')
+		redirect(303, '/account');
 	}
 })
 
@@ -42,6 +42,6 @@ export const actions: Actions = {
 			})
 		}
 
-		throw redirect(303, next.pathname)
+		redirect(303, next.pathname);
 	}
 }

@@ -3,10 +3,9 @@
 	import Notification from '$lib/common/Notification.svelte'
 	import ButtonAction from '$lib/common/ButtonAction.svelte'
 
-	export let form
-	export let data
+	let { form, data } = $props();
 
-	$: ({ users, user } = data)
+	let { users, user } = $derived(data)
 </script>
 
 <Layout {user}>
@@ -43,15 +42,19 @@
 						<td>
 							<div class="buttons">
 								<ButtonAction action="?/invite" isLoading={false} isDisabled={user.isConfirmed}>
-									<svelte:fragment slot="inputs">
-										<input name="user" value={JSON.stringify(user)} type="hidden" />
-									</svelte:fragment>
+									{#snippet inputs()}
+																	
+											<input name="user" value={JSON.stringify(user)} type="hidden" />
+										
+																	{/snippet}
 									{user.isInvited ? 'Invite Again' : 'Invite'}
 								</ButtonAction>
 								<ButtonAction action="?/remove" class="is-danger ml-1" isDisabled={user.isInvited}>
-									<svelte:fragment slot="inputs">
-										<input name="userId" value={user.id} type="hidden" />
-									</svelte:fragment>
+									{#snippet inputs()}
+																	
+											<input name="userId" value={user.id} type="hidden" />
+										
+																	{/snippet}
 									Delete
 								</ButtonAction>
 							</div>

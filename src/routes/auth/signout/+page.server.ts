@@ -10,7 +10,7 @@ export const actions: Actions = {
 
 		if (session) {
 			await supabase.auth.signOut()
-			throw redirect(303, '/auth/signin')
+			redirect(303, '/auth/signin');
 		}
 	}
 }
