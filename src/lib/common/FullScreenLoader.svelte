@@ -1,5 +1,5 @@
 <div class="fullscreen-loader">
-	<div class="loader" />
+	<div class="loader"></div>
 </div>
 
 <style>

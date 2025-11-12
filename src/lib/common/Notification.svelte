@@ -1,9 +1,20 @@
-<script>
-	let className = ''
-	export let status = 'error'
-	export let withButton = false
-	export let showNotification = false
-	export { className as class }
+<script lang="ts">
+	interface Props {
+		class?: string;
+		status?: string;
+		withButton?: boolean;
+		showNotification?: boolean;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		class: className = '',
+		status = 'error',
+		withButton = false,
+		showNotification = false,
+		children
+	}: Props = $props();
+	
 </script>
 
 {#if showNotification}
@@ -13,8 +24,8 @@
 		class:is-success={status == 'success'}
 	>
 		{#if withButton}
-			<button class="delete" on:click={() => showNotification != showNotification} />
+			<button class="delete" onclick={() => showNotification != showNotification}></button>
 		{/if}
-		<slot />
+		{@render children?.()}
 	</div>
 {/if}

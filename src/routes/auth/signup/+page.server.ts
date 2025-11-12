@@ -16,7 +16,7 @@ export const load: PageServerLoad = async () => {
 		}
 	}
 
-	throw redirect(302, '/auth/signin')
+	redirect(302, '/auth/signin');
 }
 
 export const actions: Actions = {

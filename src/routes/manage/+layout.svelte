@@ -1,6 +1,11 @@
-<script>
+<script lang="ts">
 	import { enhance } from '$app/forms'
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <svelte:head>
@@ -19,14 +24,14 @@
 						<a
 							href="/manage"
 							class="p-4"
-							class:has-background-white-ter={$page.url.pathname == '/manage'}>Dashboard</a
+							class:has-background-white-ter={page.url.pathname == '/manage'}>Dashboard</a
 						>
 					</li>
 					<li>
 						<a
 							href="/manage/users"
 							class="p-4"
-							class:has-background-white-ter={$page.url.pathname == '/manage/users'}>Users</a
+							class:has-background-white-ter={page.url.pathname == '/manage/users'}>Users</a
 						>
 					</li>
 				</ul>
@@ -40,5 +45,5 @@
 	</div>
 </div>
 <div class="column is-9 is-10-desktop has-background-white-ter">
-	<slot />
+	{@render children?.()}
 </div>

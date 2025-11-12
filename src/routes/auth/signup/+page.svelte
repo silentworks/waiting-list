@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms'
 	import Notification from '$lib/common/Notification.svelte'
 
-	export let form
+	let { form } = $props();
 </script>
 
 <svelte:head>

@@ -2,10 +2,9 @@
 	import Notification from '$lib/common/Notification.svelte'
 	import { enhance } from '$app/forms'
 
-	export let form
-	export let data
+	let { form, data } = $props();
 
-	$: ({ user } = data)
+	let { user } = $derived(data)
 </script>
 
 <div class="container is-max-desktop p-6">

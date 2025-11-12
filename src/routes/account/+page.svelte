@@ -1,7 +1,7 @@
 <script lang="ts">
-	export let data
+	let { data } = $props();
 
-	$: ({ user } = data)
+	let { user } = $derived(data)
 </script>
 
 <svelte:head>

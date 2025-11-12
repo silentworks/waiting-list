@@ -3,9 +3,9 @@
 	import { enhance } from '$app/forms'
 	import type { SubmitFunction } from '@sveltejs/kit'
 
-	let isSubmitting = false
+	let isSubmitting = $state(false)
 
-	export let form
+	let { form } = $props();
 
 	const handleSubmit: SubmitFunction = () => {
 		isSubmitting = true

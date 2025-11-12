@@ -1,9 +1,13 @@
-<script>
-	export let bgColor = '#3ecf8e'
+<script lang="ts">
+	interface Props {
+		bgColor?: string;
+	}
+
+	let { bgColor = '#3ecf8e' }: Props = $props();
 </script>
 
 <div class="inline-loader" style="background-color: {bgColor}">
-	<div class="loader" />
+	<div class="loader"></div>
 </div>
 
 <style>

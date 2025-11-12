@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 </script>
 
 <nav class="navbar" aria-label="main navigation">
@@ -16,7 +16,7 @@
 							<a
 								href="/account/password-update"
 								class="button is-ghost"
-								class:is-active={$page.url.pathname == '/password-update'}>Update Password</a
+								class:is-active={page.url.pathname == '/password-update'}>Update Password</a
 							>
 						</div>
 						<div class="control">

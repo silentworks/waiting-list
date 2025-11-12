@@ -2,9 +2,9 @@
 	import { invalidate } from '$app/navigation'
 	import { onMount } from 'svelte'
 
-	export let data
+	let { data, children } = $props();
 
-	$: ({ session, supabase } = data)
+	let { session, supabase } = $derived(data)
 
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange((event, _session) => {
@@ -23,7 +23,7 @@
 
 <div class="site-wrapper" class:is-logged-in={session?.user?.id}>
 	<main class="columns is-gapless is-fullheight">
-		<slot />
+		{@render children?.()}
 	</main>
 </div>
 
