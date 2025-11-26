@@ -25,7 +25,7 @@ importers:
         specifier: ^2.0.0
         version: 2.1.2(@sveltejs/kit@2.48.4(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.43.4)(vite@5.4.21(@types/node@24.10.0)))(svelte@5.43.4)(vite@5.4.21(@types/node@24.10.0)))
       '@sveltejs/kit':
-        specifier: ^2.5.27
+        specifier: ^2.12.0
         version: 2.48.4(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.43.4)(vite@5.4.21(@types/node@24.10.0)))(svelte@5.43.4)(vite@5.4.21(@types/node@24.10.0))
       '@sveltejs/vite-plugin-svelte':
         specifier: ^4.0.0
@@ -67,8 +67,8 @@ importers:
         specifier: ^3.2.6
         version: 3.4.0(prettier@3.6.2)(svelte@5.43.4)
       supabase:
-        specifier: 2.54.11
-        version: 2.54.11
+        specifier: 2.62.5
+        version: 2.62.5
       svelte:
         specifier: ^5.0.0
         version: 5.43.4
@@ -1289,8 +1289,8 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  supabase@2.54.11:
-    resolution: {integrity: sha512-KuDDVi1s2fhfun81LNPaCLpW4/LFsP3G2LKUQimzEoj64sP1DtZ/d97uw6GFYbNMPW9JC2Ruuei53qHInOwJLA==}
+  supabase@2.62.5:
+    resolution: {integrity: sha512-KjR57sEwNpTLOMHo+Nt9bHtq9RGWV0GGp6MWALp7RQtOcZdUopUOH+hoOojAuVyk4ChOipB7POu0y3vssW272A==}
     engines: {npm: '>=8'}
     hasBin: true
 
@@ -1366,8 +1366,8 @@ packages:
       '@sveltejs/kit': 1.x || 2.x
       svelte: 3.x || 4.x || >=5.0.0-next.51
 
-  tar@7.5.1:
-    resolution: {integrity: sha512-nlGpxf+hv0v7GkWBK2V9spgactGOp0qvfWRxUMjqHyzrt3SgwE48DIv/FhqPHJYLHpgW1opq3nERbz5Anq7n1g==}
+  tar@7.5.2:
+    resolution: {integrity: sha512-7NyxrTE4Anh8km8iEy7o0QYPs+0JKBTj5ZaqHg6B39erLg0qYXN3BijtShwbsNSvQ+LN75+KV+C4QR/f6Gwnpg==}
     engines: {node: '>=18'}
 
   text-table@0.2.0:
@@ -2634,12 +2634,12 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  supabase@2.54.11:
+  supabase@2.62.5:
     dependencies:
       bin-links: 6.0.0
       https-proxy-agent: 7.0.6
       node-fetch: 3.3.2
-      tar: 7.5.1
+      tar: 7.5.2
     transitivePeerDependencies:
       - supports-color
 
@@ -2701,7 +2701,7 @@ snapshots:
       '@sveltejs/kit': 2.48.4(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.43.4)(vite@5.4.21(@types/node@24.10.0)))(svelte@5.43.4)(vite@5.4.21(@types/node@24.10.0))
       svelte: 5.43.4
 
-  tar@7.5.1:
+  tar@7.5.2:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
