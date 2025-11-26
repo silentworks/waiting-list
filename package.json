@@ -32,7 +32,7 @@
 		"postgres": "^3.3.5",
 		"prettier": "^3.1.0",
 		"prettier-plugin-svelte": "^3.2.6",
-		"supabase": "2.54.11",
+		"supabase": "2.62.5",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"svelte-preprocess": "^6.0.0",

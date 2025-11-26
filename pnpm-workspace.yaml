@@ -1,0 +1,10 @@
+ignoredBuiltDependencies:
+  - esbuild
+  - rollup
+  - svelte-preprocess
+
+onlyBuiltDependencies:
+  - esbuild
+  - rollup
+  - supabase
+  - svelte-preprocess
